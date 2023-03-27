@@ -1,0 +1,561 @@
++ . /data/sls/scratch/share-201907/slstoolchainrc
+++ export TCROOT=/data/sls/scratch/share-201907
+++ TCROOT=/data/sls/scratch/share-201907
+++ export PATH=/data/sls/scratch/share-201907/bin:/data/sls/scratch/share-201907/opt/cuda/bin:/usr/local/csail/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:
+++ PATH=/data/sls/scratch/share-201907/bin:/data/sls/scratch/share-201907/opt/cuda/bin:/usr/local/csail/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:
+++ export LD_LIBRARY_PATH=/data/sls/scratch/share-201907/lib:/data/sls/scratch/share-201907/lib64:/data/sls/scratch/share-201907/opt/cuda/lib64:
+++ LD_LIBRARY_PATH=/data/sls/scratch/share-201907/lib:/data/sls/scratch/share-201907/lib64:/data/sls/scratch/share-201907/opt/cuda/lib64:
+++ export OMP_NUM_THREADS=1
+++ OMP_NUM_THREADS=1
++ source /data/sls/scratch/yuangong/avbyol/venv-a5/bin/activate
+++ deactivate nondestructive
+++ '[' -n '' ']'
+++ '[' -n '' ']'
+++ '[' -n /bin/bash -o -n '' ']'
+++ hash -r
+++ '[' -n '' ']'
+++ unset VIRTUAL_ENV
+++ '[' '!' nondestructive = nondestructive ']'
+++ VIRTUAL_ENV=/data/sls/scratch/yuangong/avbyol/venv-a5
+++ export VIRTUAL_ENV
+++ _OLD_VIRTUAL_PATH=/data/sls/scratch/share-201907/bin:/data/sls/scratch/share-201907/opt/cuda/bin:/usr/local/csail/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:
+++ PATH=/data/sls/scratch/yuangong/avbyol/venv-a5/bin:/data/sls/scratch/share-201907/bin:/data/sls/scratch/share-201907/opt/cuda/bin:/usr/local/csail/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:
+++ export PATH
+++ '[' -n '' ']'
+++ '[' -z '' ']'
+++ _OLD_VIRTUAL_PS1=
+++ '[' 'x(venv-a5) ' '!=' x ']'
+++ PS1='(venv-a5) '
+++ export PS1
+++ '[' -n /bin/bash -o -n '' ']'
+++ hash -r
++ export TORCH_HOME=../../pretrained_models
++ TORCH_HOME=../../pretrained_models
++ '[' 0 -ne 4 ']'
++ model=cav-mae-ft
++ ftmode=audioonly
++ pretrain_path=/data/sls/scratch/yuangong/cav-mae/pretrained_model/cav_mae_models/audioset/main/cav-mae-scale-256/audio_model.21.pth
++ dataset=audioset
++ dataset_mean=-5.081
++ dataset_std=4.4849
++ target_length=1024
++ noise=True
++ bal=None
++ lr=5e-5
++ epoch=15
++ lrscheduler_start=5
++ lrscheduler_decay=0.5
++ lrscheduler_step=1
++ wa=True
++ wa_start=3
++ wa_end=15
++ lr_adapt=False
++ tr_data=/data/sls/scratch/yuangong/cav-mae/pretrained_model/datafiles/audioset/audioset_20k_cleaned.json
++ te_data=/data/sls/scratch/yuangong/cav-mae/pretrained_model/datafiles/audioset/audioset_eval_cleaned.json
++ freqm=48
++ timem=192
++ mixup=0.5
++ batch_size=36
++ label_smooth=0.1
++ imagenetpretrain=None
++ freeze_base=False
++ head_lr=100
++ exp_dir=./exp/testmae06-bal-cav-mae-ft-5e-5-5-0.5-1-bs36-ldaFalse-audioonly-imNone-fzFalse-h100-a5
++ mkdir -p ./exp/testmae06-bal-cav-mae-ft-5e-5-5-0.5-1-bs36-ldaFalse-audioonly-imNone-fzFalse-h100-a5
++ CUDA_CACHE_DISABLE=1
++ python -W ignore ../../src/run_cavmae_ft.py --model cav-mae-ft --dataset audioset --data-train /data/sls/scratch/yuangong/cav-mae/pretrained_model/datafiles/audioset/audioset_20k_cleaned.json --data-val /data/sls/scratch/yuangong/cav-mae/pretrained_model/datafiles/audioset/audioset_eval_cleaned.json --exp-dir ./exp/testmae06-bal-cav-mae-ft-5e-5-5-0.5-1-bs36-ldaFalse-audioonly-imNone-fzFalse-h100-a5 --label-csv /data/sls/scratch/yuangong/convast/egs/audioset/data/class_labels_indices.csv --n_class 527 --lr 5e-5 --n-epochs 15 --batch-size 36 --save_model True --freqm 48 --timem 192 --mixup 0.5 --bal None --label_smooth 0.1 --lrscheduler_start 5 --lrscheduler_decay 0.5 --lrscheduler_step 1 --dataset_mean -5.081 --dataset_std 4.4849 --target_length 1024 --noise True --loss BCE --metrics mAP --warmup True --wa True --wa_start 3 --wa_end 15 --lr_adapt False --pretrain_path /data/sls/scratch/yuangong/cav-mae/pretrained_model/cav_mae_models/audioset/main/cav-mae-scale-256/audio_model.21.pth --ftmode audioonly --imagenet_pretrain None --freeze_base False --head_lr 100 --num-workers 32
+I am process 20338, running on sls-titan-4: starting (Mon Mar 13 16:19:23 2023)
+balanced sampler is not used
+Dataset has 18691 samples
+Using Label Smoothing: 0.1
+now using following mask: 48 freq, 192 time
+now using mix-up with rate 0.500000
+now process audioset
+use dataset mean -5.081 and std 4.485 to normalize the input.
+now use noise augmentation
+number of classes is 527
+now in train mode.
+now use frame -1 from total 10 frames
+now using 224 * 224 image input
+Dataset has 17249 samples
+Using Label Smoothing: 0.0
+now using following mask: 0 freq, 0 time
+now using mix-up with rate 0.000000
+now process audioset
+use dataset mean -5.081 and std 4.485 to normalize the input.
+not use noise augmentation
+number of classes is 527
+now in eval mode.
+now use frame -1 from total 10 frames
+now using 224 * 224 image input
+finetune a cav-mae model with 11 modality-specific layers and 1 modality-sharing layers
+Use norm_pix_loss:  False
+Number of Audio Patches: 512, Visual Patches: 196
+Audio Positional Embedding Shape: torch.Size([1, 512, 768])
+Visual Positional Embedding Shape: torch.Size([1, 196, 768])
+now load cav-mae pretrained weights from  /data/sls/scratch/yuangong/cav-mae/pretrained_model/cav_mae_models/audioset/main/cav-mae-scale-256/audio_model.21.pth
+['module.mlp_head.0.weight', 'module.mlp_head.0.bias', 'module.mlp_head.1.weight', 'module.mlp_head.1.bias'] ['module.mask_token', 'module.decoder_modality_a', 'module.decoder_modality_v', 'module.decoder_pos_embed_a', 'module.decoder_pos_embed_v', 'module.decoder_embed.weight', 'module.decoder_embed.bias', 'module.decoder_blocks.0.norm1.weight', 'module.decoder_blocks.0.norm1.bias', 'module.decoder_blocks.0.norm1_a.weight', 'module.decoder_blocks.0.norm1_a.bias', 'module.decoder_blocks.0.norm1_v.weight', 'module.decoder_blocks.0.norm1_v.bias', 'module.decoder_blocks.0.attn.qkv.weight', 'module.decoder_blocks.0.attn.qkv.bias', 'module.decoder_blocks.0.attn.proj.weight', 'module.decoder_blocks.0.attn.proj.bias', 'module.decoder_blocks.0.norm2.weight', 'module.decoder_blocks.0.norm2.bias', 'module.decoder_blocks.0.norm2_a.weight', 'module.decoder_blocks.0.norm2_a.bias', 'module.decoder_blocks.0.norm2_v.weight', 'module.decoder_blocks.0.norm2_v.bias', 'module.decoder_blocks.0.mlp.fc1.weight', 'module.decoder_blocks.0.mlp.fc1.bias', 'module.decoder_blocks.0.mlp.fc2.weight', 'module.decoder_blocks.0.mlp.fc2.bias', 'module.decoder_blocks.1.norm1.weight', 'module.decoder_blocks.1.norm1.bias', 'module.decoder_blocks.1.norm1_a.weight', 'module.decoder_blocks.1.norm1_a.bias', 'module.decoder_blocks.1.norm1_v.weight', 'module.decoder_blocks.1.norm1_v.bias', 'module.decoder_blocks.1.attn.qkv.weight', 'module.decoder_blocks.1.attn.qkv.bias', 'module.decoder_blocks.1.attn.proj.weight', 'module.decoder_blocks.1.attn.proj.bias', 'module.decoder_blocks.1.norm2.weight', 'module.decoder_blocks.1.norm2.bias', 'module.decoder_blocks.1.norm2_a.weight', 'module.decoder_blocks.1.norm2_a.bias', 'module.decoder_blocks.1.norm2_v.weight', 'module.decoder_blocks.1.norm2_v.bias', 'module.decoder_blocks.1.mlp.fc1.weight', 'module.decoder_blocks.1.mlp.fc1.bias', 'module.decoder_blocks.1.mlp.fc2.weight', 'module.decoder_blocks.1.mlp.fc2.bias', 'module.decoder_blocks.2.norm1.weight', 'module.decoder_blocks.2.norm1.bias', 'module.decoder_blocks.2.norm1_a.weight', 'module.decoder_blocks.2.norm1_a.bias', 'module.decoder_blocks.2.norm1_v.weight', 'module.decoder_blocks.2.norm1_v.bias', 'module.decoder_blocks.2.attn.qkv.weight', 'module.decoder_blocks.2.attn.qkv.bias', 'module.decoder_blocks.2.attn.proj.weight', 'module.decoder_blocks.2.attn.proj.bias', 'module.decoder_blocks.2.norm2.weight', 'module.decoder_blocks.2.norm2.bias', 'module.decoder_blocks.2.norm2_a.weight', 'module.decoder_blocks.2.norm2_a.bias', 'module.decoder_blocks.2.norm2_v.weight', 'module.decoder_blocks.2.norm2_v.bias', 'module.decoder_blocks.2.mlp.fc1.weight', 'module.decoder_blocks.2.mlp.fc1.bias', 'module.decoder_blocks.2.mlp.fc2.weight', 'module.decoder_blocks.2.mlp.fc2.bias', 'module.decoder_blocks.3.norm1.weight', 'module.decoder_blocks.3.norm1.bias', 'module.decoder_blocks.3.norm1_a.weight', 'module.decoder_blocks.3.norm1_a.bias', 'module.decoder_blocks.3.norm1_v.weight', 'module.decoder_blocks.3.norm1_v.bias', 'module.decoder_blocks.3.attn.qkv.weight', 'module.decoder_blocks.3.attn.qkv.bias', 'module.decoder_blocks.3.attn.proj.weight', 'module.decoder_blocks.3.attn.proj.bias', 'module.decoder_blocks.3.norm2.weight', 'module.decoder_blocks.3.norm2.bias', 'module.decoder_blocks.3.norm2_a.weight', 'module.decoder_blocks.3.norm2_a.bias', 'module.decoder_blocks.3.norm2_v.weight', 'module.decoder_blocks.3.norm2_v.bias', 'module.decoder_blocks.3.mlp.fc1.weight', 'module.decoder_blocks.3.mlp.fc1.bias', 'module.decoder_blocks.3.mlp.fc2.weight', 'module.decoder_blocks.3.mlp.fc2.bias', 'module.decoder_blocks.4.norm1.weight', 'module.decoder_blocks.4.norm1.bias', 'module.decoder_blocks.4.norm1_a.weight', 'module.decoder_blocks.4.norm1_a.bias', 'module.decoder_blocks.4.norm1_v.weight', 'module.decoder_blocks.4.norm1_v.bias', 'module.decoder_blocks.4.attn.qkv.weight', 'module.decoder_blocks.4.attn.qkv.bias', 'module.decoder_blocks.4.attn.proj.weight', 'module.decoder_blocks.4.attn.proj.bias', 'module.decoder_blocks.4.norm2.weight', 'module.decoder_blocks.4.norm2.bias', 'module.decoder_blocks.4.norm2_a.weight', 'module.decoder_blocks.4.norm2_a.bias', 'module.decoder_blocks.4.norm2_v.weight', 'module.decoder_blocks.4.norm2_v.bias', 'module.decoder_blocks.4.mlp.fc1.weight', 'module.decoder_blocks.4.mlp.fc1.bias', 'module.decoder_blocks.4.mlp.fc2.weight', 'module.decoder_blocks.4.mlp.fc2.bias', 'module.decoder_blocks.5.norm1.weight', 'module.decoder_blocks.5.norm1.bias', 'module.decoder_blocks.5.norm1_a.weight', 'module.decoder_blocks.5.norm1_a.bias', 'module.decoder_blocks.5.norm1_v.weight', 'module.decoder_blocks.5.norm1_v.bias', 'module.decoder_blocks.5.attn.qkv.weight', 'module.decoder_blocks.5.attn.qkv.bias', 'module.decoder_blocks.5.attn.proj.weight', 'module.decoder_blocks.5.attn.proj.bias', 'module.decoder_blocks.5.norm2.weight', 'module.decoder_blocks.5.norm2.bias', 'module.decoder_blocks.5.norm2_a.weight', 'module.decoder_blocks.5.norm2_a.bias', 'module.decoder_blocks.5.norm2_v.weight', 'module.decoder_blocks.5.norm2_v.bias', 'module.decoder_blocks.5.mlp.fc1.weight', 'module.decoder_blocks.5.mlp.fc1.bias', 'module.decoder_blocks.5.mlp.fc2.weight', 'module.decoder_blocks.5.mlp.fc2.bias', 'module.decoder_blocks.6.norm1.weight', 'module.decoder_blocks.6.norm1.bias', 'module.decoder_blocks.6.norm1_a.weight', 'module.decoder_blocks.6.norm1_a.bias', 'module.decoder_blocks.6.norm1_v.weight', 'module.decoder_blocks.6.norm1_v.bias', 'module.decoder_blocks.6.attn.qkv.weight', 'module.decoder_blocks.6.attn.qkv.bias', 'module.decoder_blocks.6.attn.proj.weight', 'module.decoder_blocks.6.attn.proj.bias', 'module.decoder_blocks.6.norm2.weight', 'module.decoder_blocks.6.norm2.bias', 'module.decoder_blocks.6.norm2_a.weight', 'module.decoder_blocks.6.norm2_a.bias', 'module.decoder_blocks.6.norm2_v.weight', 'module.decoder_blocks.6.norm2_v.bias', 'module.decoder_blocks.6.mlp.fc1.weight', 'module.decoder_blocks.6.mlp.fc1.bias', 'module.decoder_blocks.6.mlp.fc2.weight', 'module.decoder_blocks.6.mlp.fc2.bias', 'module.decoder_blocks.7.norm1.weight', 'module.decoder_blocks.7.norm1.bias', 'module.decoder_blocks.7.norm1_a.weight', 'module.decoder_blocks.7.norm1_a.bias', 'module.decoder_blocks.7.norm1_v.weight', 'module.decoder_blocks.7.norm1_v.bias', 'module.decoder_blocks.7.attn.qkv.weight', 'module.decoder_blocks.7.attn.qkv.bias', 'module.decoder_blocks.7.attn.proj.weight', 'module.decoder_blocks.7.attn.proj.bias', 'module.decoder_blocks.7.norm2.weight', 'module.decoder_blocks.7.norm2.bias', 'module.decoder_blocks.7.norm2_a.weight', 'module.decoder_blocks.7.norm2_a.bias', 'module.decoder_blocks.7.norm2_v.weight', 'module.decoder_blocks.7.norm2_v.bias', 'module.decoder_blocks.7.mlp.fc1.weight', 'module.decoder_blocks.7.mlp.fc1.bias', 'module.decoder_blocks.7.mlp.fc2.weight', 'module.decoder_blocks.7.mlp.fc2.bias', 'module.decoder_norm.weight', 'module.decoder_norm.bias', 'module.decoder_pred_a.weight', 'module.decoder_pred_a.bias', 'module.decoder_pred_v.weight', 'module.decoder_pred_v.bias']
+
+Creating experiment directory: ./exp/testmae06-bal-cav-mae-ft-5e-5-5-0.5-1-bs36-ldaFalse-audioonly-imNone-fzFalse-h100-a5
+Now starting training for 15 epochs.
+running on cuda
+Total parameter number is : 164.907 million
+Total trainable parameter number is : 164.907 million
+The newly initialized mlp layer uses 100.000 x larger lr
+base lr, mlp lr :  5e-05 0.005
+Total newly initialized MLP parameter number is : 0.407 million
+Total pretrained backbone parameter number is : 164.500 million
+The learning rate scheduler starts at 5 epoch with decay rate of 0.500 every 1 epoches
+now training with audioset, main metrics: mAP, loss function: BCEWithLogitsLoss(), learning rate scheduler: <torch.optim.lr_scheduler.MultiStepLR object at 0x7f55703a8190>
+current #steps=0, #epochs=1
+start training...
+---------------
+2023-03-13 16:19:44.566212
+current #epochs=1, #steps=0
+Epoch: [1][100/519]	Per Sample Total Time 0.05576	Per Sample Data Time 0.00198	Per Sample DNN Time 0.05378	Train Loss 0.0304	
+Epoch: [1][200/519]	Per Sample Total Time 0.05181	Per Sample Data Time 0.00100	Per Sample DNN Time 0.05080	Train Loss 0.0241	
+Epoch: [1][300/519]	Per Sample Total Time 0.05046	Per Sample Data Time 0.00067	Per Sample DNN Time 0.04979	Train Loss 0.0240	
+Epoch: [1][400/519]	Per Sample Total Time 0.04974	Per Sample Data Time 0.00051	Per Sample DNN Time 0.04923	Train Loss 0.0239	
+Epoch: [1][500/519]	Per Sample Total Time 0.04944	Per Sample Data Time 0.00041	Per Sample DNN Time 0.04903	Train Loss 0.0215	
+start validation
+mAP: 0.044178
+AUC: 0.833250
+d_prime: 1.367669
+train_loss: 0.027968
+valid_loss: 0.023213
+validation finished
+Epoch-1 lr: 5e-05
+epoch 1 training time: 1391.823
+---------------
+2023-03-13 16:42:56.390851
+current #epochs=2, #steps=519
+Epoch: [2][81/519]	Per Sample Total Time 0.05121	Per Sample Data Time 0.00301	Per Sample DNN Time 0.04821	Train Loss 0.0248	
+Epoch: [2][181/519]	Per Sample Total Time 0.04936	Per Sample Data Time 0.00136	Per Sample DNN Time 0.04799	Train Loss 0.0209	
+Epoch: [2][281/519]	Per Sample Total Time 0.04881	Per Sample Data Time 0.00088	Per Sample DNN Time 0.04793	Train Loss 0.0209	
+Epoch: [2][381/519]	Per Sample Total Time 0.04850	Per Sample Data Time 0.00066	Per Sample DNN Time 0.04785	Train Loss 0.0223	
+Epoch: [2][481/519]	Per Sample Total Time 0.04839	Per Sample Data Time 0.00052	Per Sample DNN Time 0.04787	Train Loss 0.0202	
+frame SlGOQ8lIESM 9 does not exist
+frame 4qh7oY9mN1w 9 does not exist
+start validation
+mAP: 0.245036
+AUC: 0.949496
+d_prime: 2.319288
+train_loss: 0.021625
+valid_loss: 0.017102
+validation finished
+Epoch-2 lr: 5e-05
+epoch 2 training time: 1350.788
+---------------
+2023-03-13 17:05:27.180103
+current #epochs=3, #steps=1038
+Epoch: [3][62/519]	Per Sample Total Time 0.05272	Per Sample Data Time 0.00346	Per Sample DNN Time 0.04927	Train Loss 0.0179	
+Epoch: [3][162/519]	Per Sample Total Time 0.05004	Per Sample Data Time 0.00134	Per Sample DNN Time 0.04870	Train Loss 0.0180	
+Epoch: [3][262/519]	Per Sample Total Time 0.04928	Per Sample Data Time 0.00084	Per Sample DNN Time 0.04845	Train Loss 0.0194	
+Epoch: [3][362/519]	Per Sample Total Time 0.04889	Per Sample Data Time 0.00061	Per Sample DNN Time 0.04828	Train Loss 0.0184	
+Epoch: [3][462/519]	Per Sample Total Time 0.04856	Per Sample Data Time 0.00048	Per Sample DNN Time 0.04808	Train Loss 0.0195	
+frame -r1H8hBeYmw 9 does not exist
+frame fu5PSTbkCTY 8 does not exist
+start validation
+mAP: 0.327708
+AUC: 0.962307
+d_prime: 2.514624
+train_loss: 0.018435
+valid_loss: 0.015252
+validation finished
+Epoch-3 lr: 5e-05
+epoch 3 training time: 1360.951
+---------------
+2023-03-13 17:28:08.129352
+current #epochs=4, #steps=1557
+Epoch: [4][43/519]	Per Sample Total Time 0.05356	Per Sample Data Time 0.00433	Per Sample DNN Time 0.04923	Train Loss 0.0159	
+Epoch: [4][143/519]	Per Sample Total Time 0.05005	Per Sample Data Time 0.00133	Per Sample DNN Time 0.04872	Train Loss 0.0180	
+Epoch: [4][243/519]	Per Sample Total Time 0.04924	Per Sample Data Time 0.00079	Per Sample DNN Time 0.04845	Train Loss 0.0195	
+Epoch: [4][343/519]	Per Sample Total Time 0.04886	Per Sample Data Time 0.00056	Per Sample DNN Time 0.04829	Train Loss 0.0169	
+Epoch: [4][443/519]	Per Sample Total Time 0.04863	Per Sample Data Time 0.00044	Per Sample DNN Time 0.04820	Train Loss 0.0187	
+frame kLdHpgN9kwU 8 does not exist
+frame kLdHpgN9kwU 7 does not exist
+frame fu5PSTbkCTY 8 does not exist
+start validation
+mAP: 0.345227
+AUC: 0.964765
+d_prime: 2.558147
+train_loss: 0.017298
+valid_loss: 0.014914
+validation finished
+Epoch-4 lr: 5e-05
+epoch 4 training time: 1361.694
+---------------
+2023-03-13 17:50:49.825941
+current #epochs=5, #steps=2076
+Epoch: [5][24/519]	Per Sample Total Time 0.05847	Per Sample Data Time 0.00887	Per Sample DNN Time 0.04960	Train Loss 0.0182	
+Epoch: [5][124/519]	Per Sample Total Time 0.05051	Per Sample Data Time 0.00178	Per Sample DNN Time 0.04872	Train Loss 0.0162	
+Epoch: [5][224/519]	Per Sample Total Time 0.04950	Per Sample Data Time 0.00100	Per Sample DNN Time 0.04850	Train Loss 0.0173	
+Epoch: [5][324/519]	Per Sample Total Time 0.04892	Per Sample Data Time 0.00069	Per Sample DNN Time 0.04823	Train Loss 0.0182	
+Epoch: [5][424/519]	Per Sample Total Time 0.04861	Per Sample Data Time 0.00053	Per Sample DNN Time 0.04808	Train Loss 0.0167	
+frame kLdHpgN9kwU 9 does not exist
+frame kLdHpgN9kwU 8 does not exist
+frame kLdHpgN9kwU 7 does not exist
+frame Bf0r1QRW8q4 9 does not exist
+start validation
+mAP: 0.352751
+AUC: 0.963911
+d_prime: 2.542739
+train_loss: 0.016787
+valid_loss: 0.014679
+validation finished
+Epoch-5 lr: 2.5e-05
+epoch 5 training time: 1358.632
+---------------
+2023-03-13 18:13:28.455758
+current #epochs=6, #steps=2595
+Epoch: [6][5/519]	Per Sample Total Time 0.09364	Per Sample Data Time 0.04089	Per Sample DNN Time 0.05275	Train Loss 0.0144	
+Epoch: [6][105/519]	Per Sample Total Time 0.05104	Per Sample Data Time 0.00233	Per Sample DNN Time 0.04871	Train Loss 0.0166	
+Epoch: [6][205/519]	Per Sample Total Time 0.04941	Per Sample Data Time 0.00120	Per Sample DNN Time 0.04821	Train Loss 0.0156	
+Epoch: [6][305/519]	Per Sample Total Time 0.04894	Per Sample Data Time 0.00081	Per Sample DNN Time 0.04813	Train Loss 0.0160	
+Epoch: [6][405/519]	Per Sample Total Time 0.04866	Per Sample Data Time 0.00062	Per Sample DNN Time 0.04804	Train Loss 0.0171	
+Epoch: [6][505/519]	Per Sample Total Time 0.04865	Per Sample Data Time 0.00050	Per Sample DNN Time 0.04815	Train Loss 0.0140	
+frame SlGOQ8lIESM 9 does not exist
+frame kLdHpgN9kwU 7 does not exist
+start validation
+mAP: 0.366913
+AUC: 0.965649
+d_prime: 2.574403
+train_loss: 0.015642
+valid_loss: 0.014092
+validation finished
+Epoch-6 lr: 1.25e-05
+epoch 6 training time: 1351.081
+---------------
+2023-03-13 18:35:59.537292
+current #epochs=7, #steps=3114
+Epoch: [7][86/519]	Per Sample Total Time 0.05174	Per Sample Data Time 0.00215	Per Sample DNN Time 0.04960	Train Loss 0.0165	
+Epoch: [7][186/519]	Per Sample Total Time 0.04997	Per Sample Data Time 0.00100	Per Sample DNN Time 0.04897	Train Loss 0.0140	
+Epoch: [7][286/519]	Per Sample Total Time 0.04919	Per Sample Data Time 0.00066	Per Sample DNN Time 0.04853	Train Loss 0.0162	
+Epoch: [7][386/519]	Per Sample Total Time 0.04881	Per Sample Data Time 0.00049	Per Sample DNN Time 0.04832	Train Loss 0.0161	
+Epoch: [7][486/519]	Per Sample Total Time 0.04864	Per Sample Data Time 0.00039	Per Sample DNN Time 0.04825	Train Loss 0.0147	
+frame fu5PSTbkCTY 8 does not exist
+frame kLdHpgN9kwU 9 does not exist
+frame kLdHpgN9kwU 8 does not exist
+frame kLdHpgN9kwU 7 does not exist
+start validation
+mAP: 0.374537
+AUC: 0.965626
+d_prime: 2.573977
+train_loss: 0.014812
+valid_loss: 0.013770
+validation finished
+Epoch-7 lr: 6.25e-06
+epoch 7 training time: 1362.242
+---------------
+2023-03-13 18:58:41.778343
+current #epochs=8, #steps=3633
+Epoch: [8][67/519]	Per Sample Total Time 0.05290	Per Sample Data Time 0.00360	Per Sample DNN Time 0.04929	Train Loss 0.0123	
+Epoch: [8][167/519]	Per Sample Total Time 0.05052	Per Sample Data Time 0.00147	Per Sample DNN Time 0.04906	Train Loss 0.0145	
+Epoch: [8][267/519]	Per Sample Total Time 0.04971	Per Sample Data Time 0.00092	Per Sample DNN Time 0.04879	Train Loss 0.0148	
+Epoch: [8][367/519]	Per Sample Total Time 0.04926	Per Sample Data Time 0.00068	Per Sample DNN Time 0.04859	Train Loss 0.0141	
+Epoch: [8][467/519]	Per Sample Total Time 0.04903	Per Sample Data Time 0.00053	Per Sample DNN Time 0.04849	Train Loss 0.0153	
+frame kLdHpgN9kwU 9 does not exist
+frame kLdHpgN9kwU 8 does not exist
+frame kLdHpgN9kwU 7 does not exist
+frame 4qh7oY9mN1w 9 does not exist
+frame njTjykvEXzk 9 does not exist
+frame fu5PSTbkCTY 9 does not exist
+frame fu5PSTbkCTY 8 does not exist
+start validation
+mAP: 0.377194
+AUC: 0.965540
+d_prime: 2.572368
+train_loss: 0.014317
+valid_loss: 0.013681
+validation finished
+Epoch-8 lr: 3.125e-06
+epoch 8 training time: 1364.575
+---------------
+2023-03-13 19:21:26.353603
+current #epochs=9, #steps=4152
+Epoch: [9][48/519]	Per Sample Total Time 0.05365	Per Sample Data Time 0.00457	Per Sample DNN Time 0.04909	Train Loss 0.0143	
+Epoch: [9][148/519]	Per Sample Total Time 0.05025	Per Sample Data Time 0.00151	Per Sample DNN Time 0.04874	Train Loss 0.0148	
+Epoch: [9][248/519]	Per Sample Total Time 0.04945	Per Sample Data Time 0.00091	Per Sample DNN Time 0.04854	Train Loss 0.0142	
+Epoch: [9][348/519]	Per Sample Total Time 0.04904	Per Sample Data Time 0.00065	Per Sample DNN Time 0.04839	Train Loss 0.0148	
+Epoch: [9][448/519]	Per Sample Total Time 0.04879	Per Sample Data Time 0.00051	Per Sample DNN Time 0.04828	Train Loss 0.0150	
+frame kLdHpgN9kwU 8 does not exist
+frame kLdHpgN9kwU 7 does not exist
+frame fu5PSTbkCTY 8 does not exist
+start validation
+mAP: 0.376592
+AUC: 0.965079
+d_prime: 2.563879
+train_loss: 0.014070
+valid_loss: 0.013615
+validation finished
+Epoch-9 lr: 1.5625e-06
+epoch 9 training time: 1336.534
+---------------
+2023-03-13 19:43:42.887551
+current #epochs=10, #steps=4671
+Epoch: [10][29/519]	Per Sample Total Time 0.05696	Per Sample Data Time 0.00783	Per Sample DNN Time 0.04912	Train Loss 0.0152	
+Epoch: [10][129/519]	Per Sample Total Time 0.05053	Per Sample Data Time 0.00182	Per Sample DNN Time 0.04871	Train Loss 0.0145	
+Epoch: [10][229/519]	Per Sample Total Time 0.04950	Per Sample Data Time 0.00103	Per Sample DNN Time 0.04846	Train Loss 0.0130	
+Epoch: [10][329/519]	Per Sample Total Time 0.04898	Per Sample Data Time 0.00072	Per Sample DNN Time 0.04825	Train Loss 0.0148	
+Epoch: [10][429/519]	Per Sample Total Time 0.04870	Per Sample Data Time 0.00056	Per Sample DNN Time 0.04815	Train Loss 0.0138	
+frame kLdHpgN9kwU 8 does not exist
+frame kLdHpgN9kwU 7 does not exist
+frame SlGOQ8lIESM 9 does not exist
+start validation
+mAP: 0.377046
+AUC: 0.964960
+d_prime: 2.561698
+train_loss: 0.013919
+valid_loss: 0.013587
+validation finished
+Epoch-10 lr: 7.8125e-07
+epoch 10 training time: 1336.448
+---------------
+2023-03-13 20:05:59.335630
+current #epochs=11, #steps=5190
+Epoch: [11][10/519]	Per Sample Total Time 0.07274	Per Sample Data Time 0.02095	Per Sample DNN Time 0.05179	Train Loss 0.0146	
+Epoch: [11][110/519]	Per Sample Total Time 0.05095	Per Sample Data Time 0.00209	Per Sample DNN Time 0.04886	Train Loss 0.0123	
+Epoch: [11][210/519]	Per Sample Total Time 0.04967	Per Sample Data Time 0.00110	Per Sample DNN Time 0.04856	Train Loss 0.0136	
+Epoch: [11][310/519]	Per Sample Total Time 0.04913	Per Sample Data Time 0.00075	Per Sample DNN Time 0.04838	Train Loss 0.0140	
+Epoch: [11][410/519]	Per Sample Total Time 0.04877	Per Sample Data Time 0.00057	Per Sample DNN Time 0.04820	Train Loss 0.0139	
+Epoch: [11][510/519]	Per Sample Total Time 0.04877	Per Sample Data Time 0.00046	Per Sample DNN Time 0.04831	Train Loss 0.0125	
+frame Bf0r1QRW8q4 9 does not exist
+frame njTjykvEXzk 9 does not exist
+start validation
+mAP: 0.377021
+AUC: 0.965011
+d_prime: 2.562628
+train_loss: 0.013780
+valid_loss: 0.013568
+validation finished
+Epoch-11 lr: 3.90625e-07
+epoch 11 training time: 1335.351
+---------------
+2023-03-13 20:28:14.688004
+current #epochs=12, #steps=5709
+Epoch: [12][91/519]	Per Sample Total Time 0.05141	Per Sample Data Time 0.00215	Per Sample DNN Time 0.04926	Train Loss 0.0139	
+Epoch: [12][191/519]	Per Sample Total Time 0.04991	Per Sample Data Time 0.00104	Per Sample DNN Time 0.04888	Train Loss 0.0148	
+Epoch: [12][291/519]	Per Sample Total Time 0.04932	Per Sample Data Time 0.00069	Per Sample DNN Time 0.04863	Train Loss 0.0127	
+Epoch: [12][391/519]	Per Sample Total Time 0.04896	Per Sample Data Time 0.00051	Per Sample DNN Time 0.04845	Train Loss 0.0144	
+Epoch: [12][491/519]	Per Sample Total Time 0.04887	Per Sample Data Time 0.00041	Per Sample DNN Time 0.04846	Train Loss 0.0127	
+frame fu5PSTbkCTY 9 does not exist
+frame fu5PSTbkCTY 8 does not exist
+frame njTjykvEXzk 9 does not exist
+start validation
+mAP: 0.377136
+AUC: 0.964996
+d_prime: 2.562356
+train_loss: 0.013776
+valid_loss: 0.013568
+validation finished
+Epoch-12 lr: 1.953125e-07
+epoch 12 training time: 1340.216
+---------------
+2023-03-13 20:50:34.902407
+current #epochs=13, #steps=6228
+Epoch: [13][72/519]	Per Sample Total Time 0.05232	Per Sample Data Time 0.00308	Per Sample DNN Time 0.04924	Train Loss 0.0145	
+Epoch: [13][172/519]	Per Sample Total Time 0.05032	Per Sample Data Time 0.00131	Per Sample DNN Time 0.04901	Train Loss 0.0135	
+Epoch: [13][272/519]	Per Sample Total Time 0.04949	Per Sample Data Time 0.00083	Per Sample DNN Time 0.04866	Train Loss 0.0132	
+Epoch: [13][372/519]	Per Sample Total Time 0.04907	Per Sample Data Time 0.00061	Per Sample DNN Time 0.04846	Train Loss 0.0135	
+Epoch: [13][472/519]	Per Sample Total Time 0.04890	Per Sample Data Time 0.00049	Per Sample DNN Time 0.04841	Train Loss 0.0141	
+start validation
+mAP: 0.377158
+AUC: 0.964939
+d_prime: 2.561307
+train_loss: 0.013722
+valid_loss: 0.013578
+validation finished
+Epoch-13 lr: 9.765625e-08
+epoch 13 training time: 1341.612
+---------------
+2023-03-13 21:12:56.513963
+current #epochs=14, #steps=6747
+Epoch: [14][53/519]	Per Sample Total Time 0.05348	Per Sample Data Time 0.00390	Per Sample DNN Time 0.04958	Train Loss 0.0105	
+Epoch: [14][153/519]	Per Sample Total Time 0.05028	Per Sample Data Time 0.00138	Per Sample DNN Time 0.04890	Train Loss 0.0127	
+Epoch: [14][253/519]	Per Sample Total Time 0.04937	Per Sample Data Time 0.00084	Per Sample DNN Time 0.04853	Train Loss 0.0124	
+Epoch: [14][353/519]	Per Sample Total Time 0.04895	Per Sample Data Time 0.00061	Per Sample DNN Time 0.04834	Train Loss 0.0149	
+Epoch: [14][453/519]	Per Sample Total Time 0.04871	Per Sample Data Time 0.00048	Per Sample DNN Time 0.04823	Train Loss 0.0135	
+frame fu5PSTbkCTY 8 does not exist
+frame SlGOQ8lIESM 9 does not exist
+frame sq3jcffMfwU 9 does not exist
+frame fu5PSTbkCTY 8 does not exist
+start validation
+mAP: 0.377211
+AUC: 0.964926
+d_prime: 2.561083
+train_loss: 0.013668
+valid_loss: 0.013580
+validation finished
+Epoch-14 lr: 4.8828125e-08
+epoch 14 training time: 1358.507
+---------------
+2023-03-13 21:35:35.022580
+current #epochs=15, #steps=7266
+Epoch: [15][34/519]	Per Sample Total Time 0.05759	Per Sample Data Time 0.00708	Per Sample DNN Time 0.05051	Train Loss 0.0141	
+Epoch: [15][134/519]	Per Sample Total Time 0.05135	Per Sample Data Time 0.00185	Per Sample DNN Time 0.04950	Train Loss 0.0131	
+Epoch: [15][234/519]	Per Sample Total Time 0.05006	Per Sample Data Time 0.00107	Per Sample DNN Time 0.04899	Train Loss 0.0150	
+Epoch: [15][334/519]	Per Sample Total Time 0.04934	Per Sample Data Time 0.00075	Per Sample DNN Time 0.04858	Train Loss 0.0158	
+Epoch: [15][434/519]	Per Sample Total Time 0.04896	Per Sample Data Time 0.00058	Per Sample DNN Time 0.04838	Train Loss 0.0159	
+frame njTjykvEXzk 9 does not exist
+frame 4qh7oY9mN1w 9 does not exist
+start validation
+mAP: 0.377234
+AUC: 0.964920
+d_prime: 2.560965
+train_loss: 0.013681
+valid_loss: 0.013581
+validation finished
+Epoch-15 lr: 2.44140625e-08
+epoch 15 training time: 1362.553
+wa 13 models from 3 to 15
+<All keys matched successfully>
+Dataset has 17249 samples
+Using Label Smoothing: 0.0
+now using following mask: 0 freq, 0 time
+now using mix-up with rate 0.000000
+now process audioset
+use dataset mean -5.081 and std 4.485 to normalize the input.
+not use noise augmentation
+number of classes is 527
+now in eval mode.
+now use frame 0 from total 10 frames
+now using 224 * 224 image input
+torch.Size([17249, 527])
+mAP of frame 0 is 0.3829
+Dataset has 17249 samples
+Using Label Smoothing: 0.0
+now using following mask: 0 freq, 0 time
+now using mix-up with rate 0.000000
+now process audioset
+use dataset mean -5.081 and std 4.485 to normalize the input.
+not use noise augmentation
+number of classes is 527
+now in eval mode.
+now use frame 1 from total 10 frames
+now using 224 * 224 image input
+torch.Size([17249, 527])
+mAP of frame 1 is 0.3829
+Dataset has 17249 samples
+Using Label Smoothing: 0.0
+now using following mask: 0 freq, 0 time
+now using mix-up with rate 0.000000
+now process audioset
+use dataset mean -5.081 and std 4.485 to normalize the input.
+not use noise augmentation
+number of classes is 527
+now in eval mode.
+now use frame 2 from total 10 frames
+now using 224 * 224 image input
+torch.Size([17249, 527])
+mAP of frame 2 is 0.3829
+Dataset has 17249 samples
+Using Label Smoothing: 0.0
+now using following mask: 0 freq, 0 time
+now using mix-up with rate 0.000000
+now process audioset
+use dataset mean -5.081 and std 4.485 to normalize the input.
+not use noise augmentation
+number of classes is 527
+now in eval mode.
+now use frame 3 from total 10 frames
+now using 224 * 224 image input
+torch.Size([17249, 527])
+mAP of frame 3 is 0.3829
+Dataset has 17249 samples
+Using Label Smoothing: 0.0
+now using following mask: 0 freq, 0 time
+now using mix-up with rate 0.000000
+now process audioset
+use dataset mean -5.081 and std 4.485 to normalize the input.
+not use noise augmentation
+number of classes is 527
+now in eval mode.
+now use frame 4 from total 10 frames
+now using 224 * 224 image input
+torch.Size([17249, 527])
+mAP of frame 4 is 0.3829
+Dataset has 17249 samples
+Using Label Smoothing: 0.0
+now using following mask: 0 freq, 0 time
+now using mix-up with rate 0.000000
+now process audioset
+use dataset mean -5.081 and std 4.485 to normalize the input.
+not use noise augmentation
+number of classes is 527
+now in eval mode.
+now use frame 5 from total 10 frames
+now using 224 * 224 image input
+torch.Size([17249, 527])
+mAP of frame 5 is 0.3829
+Dataset has 17249 samples
+Using Label Smoothing: 0.0
+now using following mask: 0 freq, 0 time
+now using mix-up with rate 0.000000
+now process audioset
+use dataset mean -5.081 and std 4.485 to normalize the input.
+not use noise augmentation
+number of classes is 527
+now in eval mode.
+now use frame 6 from total 10 frames
+now using 224 * 224 image input
+frame 154WG9Gv1I4 6 does not exist
+torch.Size([17249, 527])
+mAP of frame 6 is 0.3829
+Dataset has 17249 samples
+Using Label Smoothing: 0.0
+now using following mask: 0 freq, 0 time
+now using mix-up with rate 0.000000
+now process audioset
+use dataset mean -5.081 and std 4.485 to normalize the input.
+not use noise augmentation
+number of classes is 527
+now in eval mode.
+now use frame 7 from total 10 frames
+now using 224 * 224 image input
+frame 154WG9Gv1I4 7 does not exist
+frame 154WG9Gv1I4 6 does not exist
+torch.Size([17249, 527])
+mAP of frame 7 is 0.3829
+Dataset has 17249 samples
+Using Label Smoothing: 0.0
+now using following mask: 0 freq, 0 time
+now using mix-up with rate 0.000000
+now process audioset
+use dataset mean -5.081 and std 4.485 to normalize the input.
+not use noise augmentation
+number of classes is 527
+now in eval mode.
+now use frame 8 from total 10 frames
+now using 224 * 224 image input
+frame IW0a2qTioAA 8 does not exist
+frame 154WG9Gv1I4 8 does not exist
+frame 154WG9Gv1I4 7 does not exist
+frame 154WG9Gv1I4 6 does not exist
+torch.Size([17249, 527])
+mAP of frame 8 is 0.3829
+Dataset has 17249 samples
+Using Label Smoothing: 0.0
+now using following mask: 0 freq, 0 time
+now using mix-up with rate 0.000000
+now process audioset
+use dataset mean -5.081 and std 4.485 to normalize the input.
+not use noise augmentation
+number of classes is 527
+now in eval mode.
+now use frame 9 from total 10 frames
+now using 224 * 224 image input
+frame 1oJAVJPX0YY 9 does not exist
+frame uSBP9aYwfhU 9 does not exist
+frame 154WG9Gv1I4 9 does not exist
+frame 154WG9Gv1I4 8 does not exist
+frame 154WG9Gv1I4 7 does not exist
+frame 154WG9Gv1I4 6 does not exist
+frame IW0a2qTioAA 9 does not exist
+frame IW0a2qTioAA 8 does not exist
+frame FGPx2E089VU 9 does not exist
+frame iMI6yys_yKo 9 does not exist
+frame bVPLdRReUZ8 9 does not exist
+frame IgVdF1Igzis 9 does not exist
+torch.Size([17249, 527])
+mAP of frame 9 is 0.3829
+multi-frame mAP is 0.3829

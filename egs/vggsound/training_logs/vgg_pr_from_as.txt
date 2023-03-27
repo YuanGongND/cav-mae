@@ -1,0 +1,1351 @@
++ . /data/sls/scratch/share-201907/slstoolchainrc
+++ export TCROOT=/data/sls/scratch/share-201907
+++ TCROOT=/data/sls/scratch/share-201907
+++ export PATH=/data/sls/scratch/share-201907/bin:/data/sls/scratch/share-201907/opt/cuda/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games
+++ PATH=/data/sls/scratch/share-201907/bin:/data/sls/scratch/share-201907/opt/cuda/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games
+++ export LD_LIBRARY_PATH=/data/sls/scratch/share-201907/lib:/data/sls/scratch/share-201907/lib64:/data/sls/scratch/share-201907/opt/cuda/lib64:
+++ LD_LIBRARY_PATH=/data/sls/scratch/share-201907/lib:/data/sls/scratch/share-201907/lib64:/data/sls/scratch/share-201907/opt/cuda/lib64:
+++ export OMP_NUM_THREADS=1
+++ OMP_NUM_THREADS=1
++ source /data/sls/scratch/yuangong/avbyol/venv-a5/bin/activate
+++ deactivate nondestructive
+++ '[' -n '' ']'
+++ '[' -n '' ']'
+++ '[' -n /bin/bash -o -n '' ']'
+++ hash -r
+++ '[' -n '' ']'
+++ unset VIRTUAL_ENV
+++ '[' '!' nondestructive = nondestructive ']'
+++ VIRTUAL_ENV=/data/sls/scratch/yuangong/avbyol/venv-a5
+++ export VIRTUAL_ENV
+++ _OLD_VIRTUAL_PATH=/data/sls/scratch/share-201907/bin:/data/sls/scratch/share-201907/opt/cuda/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games
+++ PATH=/data/sls/scratch/yuangong/avbyol/venv-a5/bin:/data/sls/scratch/share-201907/bin:/data/sls/scratch/share-201907/opt/cuda/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games
+++ export PATH
+++ '[' -n '' ']'
+++ '[' -z '' ']'
+++ _OLD_VIRTUAL_PS1=
+++ '[' 'x(venv-a5) ' '!=' x ']'
+++ PS1='(venv-a5) '
+++ export PS1
+++ '[' -n /bin/bash -o -n '' ']'
+++ hash -r
++ export TORCH_HOME=../../pretrained_models
++ TORCH_HOME=../../pretrained_models
++ model=cav-mae
++ masking_ratio=0.75
++ mask_mode=unstructured
++ contrast_loss_weight=0.01
++ mae_loss_weight=1.0
++ norm_pix_loss=True
++ tr_pos=False
+++ pwd
++ cur_dir=/data/sls/scratch/yuangong/cav-mae/egs/vggsound
++ wget -nc 'https://www.dropbox.com/s/l5t5geufdy3qvnv/audio_model.21.pth?dl=1' -O cav-mae-scale++.pth
+File ‘cav-mae-scale++.pth’ already there; not retrieving.
++ pretrain_path=/data/sls/scratch/yuangong/cav-mae/egs/vggsound/cav-mae-scale++.pth
++ lr=5e-5
++ epoch=10
++ bal=None
++ lrscheduler_start=10
++ lrscheduler_decay=0.5
++ lrscheduler_step=5
++ dataset_mean=-5.081
++ dataset_std=4.4849
++ target_length=1024
++ noise=True
++ mixup=0.0
++ batch_size=120
++ lr_adapt=False
++ dataset=vggsound
++ tr_data=/data/sls/scratch/yuangong/cav-mae/pretrained_model/datafiles/vggsound/vgg_train_cleaned.json
++ te_data=/data/sls/scratch/yuangong/cav-mae/pretrained_model/datafiles/vggsound/vgg_test_cleaned.json
++ exp_dir=./exp/testmae02-vggsound-cav-mae-balNone-lr5e-5-epoch10-bs120-normTrue-c0.01-p1.0-tpFalse-mr-unstructured-0.75-as-a5
++ mkdir -p ./exp/testmae02-vggsound-cav-mae-balNone-lr5e-5-epoch10-bs120-normTrue-c0.01-p1.0-tpFalse-mr-unstructured-0.75-as-a5
++ CUDA_CACHE_DISABLE=1
++ python -W ignore ../../src/run_cavmae_pretrain.py --model cav-mae --dataset vggsound --data-train /data/sls/scratch/yuangong/cav-mae/pretrained_model/datafiles/vggsound/vgg_train_cleaned.json --data-val /data/sls/scratch/yuangong/cav-mae/pretrained_model/datafiles/vggsound/vgg_test_cleaned.json --exp-dir ./exp/testmae02-vggsound-cav-mae-balNone-lr5e-5-epoch10-bs120-normTrue-c0.01-p1.0-tpFalse-mr-unstructured-0.75-as-a5 --label-csv /data/sls/scratch/yuangong/cav-mae/pretrained_model/datafiles/vggsound/class_labels_indices_vgg.csv --n_class 309 --lr 5e-5 --n-epochs 10 --batch-size 120 --save_model True --mixup 0.0 --bal None --lrscheduler_start 10 --lrscheduler_decay 0.5 --lrscheduler_step 5 --dataset_mean -5.081 --dataset_std 4.4849 --target_length 1024 --noise True --warmup True --lr_adapt False --norm_pix_loss True --pretrain_path /data/sls/scratch/yuangong/cav-mae/egs/vggsound/cav-mae-scale++.pth --mae_loss_weight 1.0 --contrast_loss_weight 0.01 --tr_pos False --masking_ratio 0.75 --mask_mode unstructured
+I am process 54176, running on sls-a5-2.csail.mit.edu: starting (Tue Mar 14 20:50:47 2023)
+current mae loss 1.000, and contrastive loss 0.010
+balanced sampler is not used
+Dataset has 183727 samples
+Using Label Smoothing: 0
+now using following mask: 0 freq, 0 time
+now using mix-up with rate 0.000000
+now process vggsound
+use dataset mean -5.081 and std 4.485 to normalize the input.
+now use noise augmentation
+number of classes is 309
+now in train mode.
+now use frame -1 from total 10 frames
+now using 224 * 224 image input
+Dataset has 15446 samples
+Using Label Smoothing: 0.0
+now using following mask: 0 freq, 0 time
+now using mix-up with rate 0.000000
+now process vggsound
+use dataset mean -5.081 and std 4.485 to normalize the input.
+not use noise augmentation
+number of classes is 309
+now in eval mode.
+now use frame -1 from total 10 frames
+now using 224 * 224 image input
+pretrain a cav-mae model with 11 modality-specific layers and 1 modality-sharing layers
+A CAV-MAE Model
+Use norm_pix_loss:  True
+Learnable Positional Embedding:  False
+Number of Audio Patches: 512, Visual Patches: 196
+Audio Positional Embedding Shape: torch.Size([1, 512, 768])
+Visual Positional Embedding Shape: torch.Size([1, 196, 768])
+now load mae pretrained weights from  /data/sls/scratch/yuangong/cav-mae/egs/vggsound/cav-mae-scale++.pth
+[] []
+
+Creating experiment directory: ./exp/testmae02-vggsound-cav-mae-balNone-lr5e-5-epoch10-bs120-normTrue-c0.01-p1.0-tpFalse-mr-unstructured-0.75-as-a5
+Now starting training for 10 epochs.
+running on cuda
+Total parameter number is : 191.036 million
+Total trainable parameter number is : 190.130 million
+The learning rate scheduler starts at 10 epoch with decay rate of 0.500 every 5 epoches
+now training with vggsound, learning rate scheduler: <torch.optim.lr_scheduler.MultiStepLR object at 0x7efeb1817a10>
+current #steps=0, #epochs=1
+start training...
+---------------
+2023-03-14 20:51:20.995471
+current #epochs=1, #steps=0
+current masking ratio is 0.750 for both modalities; audio mask mode unstructured
+Epoch: [1][100/1531]	Per Sample Total Time 0.01400	Per Sample Data Time 0.00305	Per Sample DNN Time 0.01094	Train Total Loss 3.5747	Train MAE Loss Audio 2.2559	Train MAE Loss Visual 1.2811	Train Contrastive Loss 0.0377	Train Contrastive Acc 0.725	
+Epoch: [1][200/1531]	Per Sample Total Time 0.01058	Per Sample Data Time 0.00154	Per Sample DNN Time 0.00905	Train Total Loss 3.5493	Train MAE Loss Audio 2.1956	Train MAE Loss Visual 1.3247	Train Contrastive Loss 0.0289	Train Contrastive Acc 0.792	
+Epoch: [1][300/1531]	Per Sample Total Time 0.00939	Per Sample Data Time 0.00103	Per Sample DNN Time 0.00836	Train Total Loss 3.6677	Train MAE Loss Audio 2.2848	Train MAE Loss Visual 1.3532	Train Contrastive Loss 0.0297	Train Contrastive Acc 0.758	
+Epoch: [1][400/1531]	Per Sample Total Time 0.00881	Per Sample Data Time 0.00077	Per Sample DNN Time 0.00804	Train Total Loss 3.5439	Train MAE Loss Audio 2.2270	Train MAE Loss Visual 1.2919	Train Contrastive Loss 0.0250	Train Contrastive Acc 0.783	
+Epoch: [1][500/1531]	Per Sample Total Time 0.00848	Per Sample Data Time 0.00062	Per Sample DNN Time 0.00786	Train Total Loss 3.6162	Train MAE Loss Audio 2.2334	Train MAE Loss Visual 1.3667	Train Contrastive Loss 0.0161	Train Contrastive Acc 0.867	
+Epoch: [1][600/1531]	Per Sample Total Time 0.00827	Per Sample Data Time 0.00052	Per Sample DNN Time 0.00775	Train Total Loss 3.6431	Train MAE Loss Audio 2.2695	Train MAE Loss Visual 1.3511	Train Contrastive Loss 0.0226	Train Contrastive Acc 0.842	
+Epoch: [1][700/1531]	Per Sample Total Time 0.00810	Per Sample Data Time 0.00045	Per Sample DNN Time 0.00765	Train Total Loss 3.6493	Train MAE Loss Audio 2.1990	Train MAE Loss Visual 1.4280	Train Contrastive Loss 0.0222	Train Contrastive Acc 0.825	
+Epoch: [1][800/1531]	Per Sample Total Time 0.00798	Per Sample Data Time 0.00039	Per Sample DNN Time 0.00759	Train Total Loss 3.6004	Train MAE Loss Audio 2.1698	Train MAE Loss Visual 1.4119	Train Contrastive Loss 0.0188	Train Contrastive Acc 0.833	
+Epoch: [1][900/1531]	Per Sample Total Time 0.00789	Per Sample Data Time 0.00035	Per Sample DNN Time 0.00754	Train Total Loss 3.5859	Train MAE Loss Audio 2.2089	Train MAE Loss Visual 1.3633	Train Contrastive Loss 0.0137	Train Contrastive Acc 0.858	
+Epoch: [1][1000/1531]	Per Sample Total Time 0.00782	Per Sample Data Time 0.00031	Per Sample DNN Time 0.00750	Train Total Loss 3.5233	Train MAE Loss Audio 2.2148	Train MAE Loss Visual 1.2840	Train Contrastive Loss 0.0245	Train Contrastive Acc 0.758	
+Epoch: [1][1100/1531]	Per Sample Total Time 0.00774	Per Sample Data Time 0.00029	Per Sample DNN Time 0.00745	Train Total Loss 3.5711	Train MAE Loss Audio 2.2032	Train MAE Loss Visual 1.3459	Train Contrastive Loss 0.0220	Train Contrastive Acc 0.850	
+Epoch: [1][1200/1531]	Per Sample Total Time 0.00768	Per Sample Data Time 0.00026	Per Sample DNN Time 0.00742	Train Total Loss 3.4673	Train MAE Loss Audio 2.1873	Train MAE Loss Visual 1.2603	Train Contrastive Loss 0.0198	Train Contrastive Acc 0.850	
+Epoch: [1][1300/1531]	Per Sample Total Time 0.00764	Per Sample Data Time 0.00024	Per Sample DNN Time 0.00739	Train Total Loss 3.6872	Train MAE Loss Audio 2.2359	Train MAE Loss Visual 1.4298	Train Contrastive Loss 0.0215	Train Contrastive Acc 0.858	
+Epoch: [1][1400/1531]	Per Sample Total Time 0.00759	Per Sample Data Time 0.00023	Per Sample DNN Time 0.00737	Train Total Loss 3.5941	Train MAE Loss Audio 2.2257	Train MAE Loss Visual 1.3412	Train Contrastive Loss 0.0271	Train Contrastive Acc 0.800	
+Epoch: [1][1500/1531]	Per Sample Total Time 0.00754	Per Sample Data Time 0.00021	Per Sample DNN Time 0.00733	Train Total Loss 3.6743	Train MAE Loss Audio 2.2502	Train MAE Loss Visual 1.4082	Train Contrastive Loss 0.0158	Train Contrastive Acc 0.892	
+there is an error in loading image
+frame NB8CqMH9NvE_000120 9 does not exist
+there is an error in loading image
+frame NVQb73vzEpY_000003 7 does not exist
+frame NVQb73vzEpY_000003 6 does not exist
+frame NVQb73vzEpY_000003 5 does not exist
+frame NVQb73vzEpY_000003 4 does not exist
+frame NVQb73vzEpY_000003 3 does not exist
+frame NVQb73vzEpY_000003 2 does not exist
+frame NVQb73vzEpY_000003 1 does not exist
+there is an error in loading image
+frame -N0qJZkizOw_000030 7 does not exist
+frame -N0qJZkizOw_000030 6 does not exist
+frame -N0qJZkizOw_000030 5 does not exist
+frame -N0qJZkizOw_000030 4 does not exist
+frame -N0qJZkizOw_000030 3 does not exist
+frame -N0qJZkizOw_000030 2 does not exist
+frame -N0qJZkizOw_000030 1 does not exist
+there is an error in loading image
+frame leBIxqLUdjQ_000007 7 does not exist
+frame leBIxqLUdjQ_000007 6 does not exist
+frame UOlAgFNy_HQ_000030 6 does not exist
+frame UOlAgFNy_HQ_000030 5 does not exist
+frame UOlAgFNy_HQ_000030 4 does not exist
+frame UOlAgFNy_HQ_000030 3 does not exist
+frame UOlAgFNy_HQ_000030 2 does not exist
+frame BsLgruLdjDI_000208 1 does not exist
+there is an error in loading image
+frame H6LWbizxQeQ_000012 5 does not exist
+frame H6LWbizxQeQ_000012 4 does not exist
+frame H6LWbizxQeQ_000012 3 does not exist
+frame H6LWbizxQeQ_000012 2 does not exist
+frame H6LWbizxQeQ_000012 1 does not exist
+there is an error in loading image
+frame eWg3Z2LsQrk_000096 9 does not exist
+frame eWg3Z2LsQrk_000096 8 does not exist
+frame eWg3Z2LsQrk_000096 7 does not exist
+frame eWg3Z2LsQrk_000096 6 does not exist
+frame eWg3Z2LsQrk_000096 5 does not exist
+frame 5nCVaazCHaA_000090 8 does not exist
+frame 5nCVaazCHaA_000090 7 does not exist
+frame 5nCVaazCHaA_000090 6 does not exist
+frame 5nCVaazCHaA_000090 5 does not exist
+frame 5nCVaazCHaA_000090 4 does not exist
+frame 5nCVaazCHaA_000090 3 does not exist
+frame 5nCVaazCHaA_000090 2 does not exist
+frame 5nCVaazCHaA_000090 1 does not exist
+there is an error in loading image
+frame PsXRzD-yBe4_000066 7 does not exist
+frame PsXRzD-yBe4_000066 6 does not exist
+frame PsXRzD-yBe4_000066 5 does not exist
+frame PsXRzD-yBe4_000066 4 does not exist
+frame PsXRzD-yBe4_000066 3 does not exist
+frame PsXRzD-yBe4_000066 2 does not exist
+frame PsXRzD-yBe4_000066 1 does not exist
+there is an error in loading image
+frame BNegPkBeFgA_000140 1 does not exist
+there is an error in loading image
+frame ljjUj5fQZgs_000450 8 does not exist
+frame ljjUj5fQZgs_000450 7 does not exist
+frame ljjUj5fQZgs_000450 6 does not exist
+frame ljjUj5fQZgs_000450 5 does not exist
+frame ljjUj5fQZgs_000450 4 does not exist
+frame ljjUj5fQZgs_000450 3 does not exist
+frame ljjUj5fQZgs_000450 2 does not exist
+frame ljjUj5fQZgs_000450 1 does not exist
+frame 8II9NNK4yUM_000010 5 does not exist
+frame 8II9NNK4yUM_000010 4 does not exist
+frame 8II9NNK4yUM_000010 3 does not exist
+frame 8II9NNK4yUM_000010 2 does not exist
+frame 8II9NNK4yUM_000010 1 does not exist
+there is an error in loading image
+frame bk9xgrw3dp8_000030 8 does not exist
+frame bk9xgrw3dp8_000030 7 does not exist
+frame bk9xgrw3dp8_000030 6 does not exist
+frame bk9xgrw3dp8_000030 5 does not exist
+frame bk9xgrw3dp8_000030 4 does not exist
+frame bk9xgrw3dp8_000030 3 does not exist
+frame bk9xgrw3dp8_000030 2 does not exist
+frame bk9xgrw3dp8_000030 1 does not exist
+there is an error in loading image
+frame Eb03vQmXqKg_000030 2 does not exist
+frame Eb03vQmXqKg_000030 1 does not exist
+there is an error in loading image
+frame h1YC8Cb5QWI_000323 8 does not exist
+frame h1YC8Cb5QWI_000323 7 does not exist
+start validation
+frame -w8maIWtnUk_000030 5 does not exist
+frame -w8maIWtnUk_000030 4 does not exist
+frame -w8maIWtnUk_000030 3 does not exist
+frame -w8maIWtnUk_000030 2 does not exist
+frame -w8maIWtnUk_000030 1 does not exist
+there is an error in loading image
+Eval Audio MAE Loss: 2.153291
+Eval Visual MAE Loss: 1.340612
+Eval Total MAE Loss: 3.493903
+Eval Contrastive Loss: 0.033124
+Eval Total Loss: 3.527027
+Eval Contrastive Accuracy: 0.742643
+Train Audio MAE Loss: 2.233490
+Train Visual MAE Loss: 1.369946
+Train Contrastive Loss: 0.022933
+Train Total Loss: 3.626370
+validation finished
+Epoch-1 lr: 5e-05
+epoch 1 training time: 1498.681
+---------------
+2023-03-14 21:16:19.681351
+current #epochs=2, #steps=1531
+current masking ratio is 0.750 for both modalities; audio mask mode unstructured
+Epoch: [2][69/1531]	Per Sample Total Time 0.00829	Per Sample Data Time 0.00143	Per Sample DNN Time 0.00686	Train Total Loss 3.6230	Train MAE Loss Audio 2.2966	Train MAE Loss Visual 1.3065	Train Contrastive Loss 0.0198	Train Contrastive Acc 0.850	
+Epoch: [2][169/1531]	Per Sample Total Time 0.00749	Per Sample Data Time 0.00059	Per Sample DNN Time 0.00690	Train Total Loss 3.7538	Train MAE Loss Audio 2.2752	Train MAE Loss Visual 1.4588	Train Contrastive Loss 0.0198	Train Contrastive Acc 0.850	
+Epoch: [2][269/1531]	Per Sample Total Time 0.00727	Per Sample Data Time 0.00038	Per Sample DNN Time 0.00690	Train Total Loss 3.6244	Train MAE Loss Audio 2.2154	Train MAE Loss Visual 1.3825	Train Contrastive Loss 0.0265	Train Contrastive Acc 0.783	
+Epoch: [2][369/1531]	Per Sample Total Time 0.00715	Per Sample Data Time 0.00028	Per Sample DNN Time 0.00688	Train Total Loss 3.6120	Train MAE Loss Audio 2.2811	Train MAE Loss Visual 1.3136	Train Contrastive Loss 0.0174	Train Contrastive Acc 0.883	
+Epoch: [2][469/1531]	Per Sample Total Time 0.00712	Per Sample Data Time 0.00022	Per Sample DNN Time 0.00690	Train Total Loss 3.5381	Train MAE Loss Audio 2.2340	Train MAE Loss Visual 1.2806	Train Contrastive Loss 0.0235	Train Contrastive Acc 0.800	
+Epoch: [2][569/1531]	Per Sample Total Time 0.00708	Per Sample Data Time 0.00018	Per Sample DNN Time 0.00690	Train Total Loss 3.7322	Train MAE Loss Audio 2.3008	Train MAE Loss Visual 1.4083	Train Contrastive Loss 0.0232	Train Contrastive Acc 0.808	
+Epoch: [2][669/1531]	Per Sample Total Time 0.00704	Per Sample Data Time 0.00016	Per Sample DNN Time 0.00689	Train Total Loss 3.7396	Train MAE Loss Audio 2.2386	Train MAE Loss Visual 1.4837	Train Contrastive Loss 0.0173	Train Contrastive Acc 0.833	
+Epoch: [2][769/1531]	Per Sample Total Time 0.00703	Per Sample Data Time 0.00014	Per Sample DNN Time 0.00690	Train Total Loss 3.7477	Train MAE Loss Audio 2.2444	Train MAE Loss Visual 1.4829	Train Contrastive Loss 0.0205	Train Contrastive Acc 0.833	
+Epoch: [2][869/1531]	Per Sample Total Time 0.00701	Per Sample Data Time 0.00012	Per Sample DNN Time 0.00689	Train Total Loss 3.7009	Train MAE Loss Audio 2.2792	Train MAE Loss Visual 1.4008	Train Contrastive Loss 0.0210	Train Contrastive Acc 0.825	
+Epoch: [2][969/1531]	Per Sample Total Time 0.00701	Per Sample Data Time 0.00011	Per Sample DNN Time 0.00690	Train Total Loss 3.5336	Train MAE Loss Audio 2.1978	Train MAE Loss Visual 1.3141	Train Contrastive Loss 0.0216	Train Contrastive Acc 0.800	
+Epoch: [2][1069/1531]	Per Sample Total Time 0.00699	Per Sample Data Time 0.00010	Per Sample DNN Time 0.00689	Train Total Loss 3.5876	Train MAE Loss Audio 2.2570	Train MAE Loss Visual 1.3063	Train Contrastive Loss 0.0242	Train Contrastive Acc 0.842	
+Epoch: [2][1169/1531]	Per Sample Total Time 0.00699	Per Sample Data Time 0.00009	Per Sample DNN Time 0.00690	Train Total Loss 3.6159	Train MAE Loss Audio 2.2761	Train MAE Loss Visual 1.3134	Train Contrastive Loss 0.0263	Train Contrastive Acc 0.783	
+Epoch: [2][1269/1531]	Per Sample Total Time 0.00699	Per Sample Data Time 0.00008	Per Sample DNN Time 0.00691	Train Total Loss 3.5834	Train MAE Loss Audio 2.2129	Train MAE Loss Visual 1.3516	Train Contrastive Loss 0.0189	Train Contrastive Acc 0.850	
+Epoch: [2][1369/1531]	Per Sample Total Time 0.00700	Per Sample Data Time 0.00008	Per Sample DNN Time 0.00692	Train Total Loss 3.6202	Train MAE Loss Audio 2.2667	Train MAE Loss Visual 1.3414	Train Contrastive Loss 0.0121	Train Contrastive Acc 0.858	
+Epoch: [2][1469/1531]	Per Sample Total Time 0.00700	Per Sample Data Time 0.00007	Per Sample DNN Time 0.00693	Train Total Loss 3.6489	Train MAE Loss Audio 2.2203	Train MAE Loss Visual 1.4084	Train Contrastive Loss 0.0202	Train Contrastive Acc 0.867	
+frame PsXRzD-yBe4_000066 5 does not exist
+frame PsXRzD-yBe4_000066 4 does not exist
+frame PsXRzD-yBe4_000066 3 does not exist
+frame PsXRzD-yBe4_000066 2 does not exist
+frame PsXRzD-yBe4_000066 1 does not exist
+there is an error in loading image
+frame 2IUileqD6qI_000010 8 does not exist
+frame 2IUileqD6qI_000010 7 does not exist
+frame 2IUileqD6qI_000010 6 does not exist
+frame 2IUileqD6qI_000010 5 does not exist
+frame 2IUileqD6qI_000010 4 does not exist
+frame 2IUileqD6qI_000010 3 does not exist
+frame 2IUileqD6qI_000010 2 does not exist
+frame 2IUileqD6qI_000010 1 does not exist
+there is an error in loading image
+frame 8II9NNK4yUM_000010 8 does not exist
+frame 8II9NNK4yUM_000010 7 does not exist
+frame 8II9NNK4yUM_000010 6 does not exist
+frame 8II9NNK4yUM_000010 5 does not exist
+frame 8II9NNK4yUM_000010 4 does not exist
+frame 8II9NNK4yUM_000010 3 does not exist
+frame 8II9NNK4yUM_000010 2 does not exist
+frame 8II9NNK4yUM_000010 1 does not exist
+there is an error in loading image
+frame BNegPkBeFgA_000140 8 does not exist
+frame BNegPkBeFgA_000140 7 does not exist
+frame BNegPkBeFgA_000140 6 does not exist
+frame BNegPkBeFgA_000140 5 does not exist
+frame BNegPkBeFgA_000140 4 does not exist
+frame BNegPkBeFgA_000140 3 does not exist
+frame BNegPkBeFgA_000140 2 does not exist
+frame BNegPkBeFgA_000140 1 does not exist
+there is an error in loading image
+frame bk9xgrw3dp8_000030 6 does not exist
+frame bk9xgrw3dp8_000030 5 does not exist
+frame bk9xgrw3dp8_000030 4 does not exist
+frame bk9xgrw3dp8_000030 3 does not exist
+frame bk9xgrw3dp8_000030 2 does not exist
+frame bk9xgrw3dp8_000030 1 does not exist
+there is an error in loading image
+frame C_HzWDFy4zo_000014 9 does not exist
+frame 5yyjz_8nz-0_000055 4 does not exist
+frame 5yyjz_8nz-0_000055 3 does not exist
+frame 5yyjz_8nz-0_000055 2 does not exist
+frame 5yyjz_8nz-0_000055 1 does not exist
+there is an error in loading image
+frame KYwLCuV7VCU_000020 7 does not exist
+frame KYwLCuV7VCU_000020 6 does not exist
+frame Eb03vQmXqKg_000030 1 does not exist
+there is an error in loading image
+frame h1YC8Cb5QWI_000323 9 does not exist
+frame h1YC8Cb5QWI_000323 8 does not exist
+frame h1YC8Cb5QWI_000323 7 does not exist
+frame NVQb73vzEpY_000003 6 does not exist
+frame NVQb73vzEpY_000003 5 does not exist
+frame NVQb73vzEpY_000003 4 does not exist
+frame NVQb73vzEpY_000003 3 does not exist
+frame NVQb73vzEpY_000003 2 does not exist
+frame NVQb73vzEpY_000003 1 does not exist
+there is an error in loading image
+frame ljjUj5fQZgs_000450 4 does not exist
+frame ljjUj5fQZgs_000450 3 does not exist
+frame ljjUj5fQZgs_000450 2 does not exist
+frame ljjUj5fQZgs_000450 1 does not exist
+frame -N0qJZkizOw_000030 8 does not exist
+frame -N0qJZkizOw_000030 7 does not exist
+frame -N0qJZkizOw_000030 6 does not exist
+frame -N0qJZkizOw_000030 5 does not exist
+frame -N0qJZkizOw_000030 4 does not exist
+frame -N0qJZkizOw_000030 3 does not exist
+frame -N0qJZkizOw_000030 2 does not exist
+frame -N0qJZkizOw_000030 1 does not exist
+there is an error in loading image
+frame BsLgruLdjDI_000208 9 does not exist
+frame BsLgruLdjDI_000208 8 does not exist
+frame BsLgruLdjDI_000208 7 does not exist
+frame BsLgruLdjDI_000208 6 does not exist
+frame BsLgruLdjDI_000208 5 does not exist
+frame BsLgruLdjDI_000208 4 does not exist
+frame BsLgruLdjDI_000208 3 does not exist
+frame BsLgruLdjDI_000208 2 does not exist
+frame BsLgruLdjDI_000208 1 does not exist
+there is an error in loading image
+frame eWg3Z2LsQrk_000096 7 does not exist
+frame eWg3Z2LsQrk_000096 6 does not exist
+frame eWg3Z2LsQrk_000096 5 does not exist
+frame 5nCVaazCHaA_000090 1 does not exist
+there is an error in loading image
+frame H6LWbizxQeQ_000012 6 does not exist
+frame H6LWbizxQeQ_000012 5 does not exist
+frame H6LWbizxQeQ_000012 4 does not exist
+frame H6LWbizxQeQ_000012 3 does not exist
+frame H6LWbizxQeQ_000012 2 does not exist
+frame H6LWbizxQeQ_000012 1 does not exist
+there is an error in loading image
+frame ZYZgumdhE3g_000007 9 does not exist
+frame ZYZgumdhE3g_000007 8 does not exist
+frame ZYZgumdhE3g_000007 7 does not exist
+frame UOlAgFNy_HQ_000030 7 does not exist
+frame UOlAgFNy_HQ_000030 6 does not exist
+frame UOlAgFNy_HQ_000030 5 does not exist
+frame UOlAgFNy_HQ_000030 4 does not exist
+frame UOlAgFNy_HQ_000030 3 does not exist
+frame UOlAgFNy_HQ_000030 2 does not exist
+start validation
+frame -w8maIWtnUk_000030 5 does not exist
+frame -w8maIWtnUk_000030 4 does not exist
+frame -w8maIWtnUk_000030 3 does not exist
+frame -w8maIWtnUk_000030 2 does not exist
+frame -w8maIWtnUk_000030 1 does not exist
+there is an error in loading image
+Eval Audio MAE Loss: 2.152649
+Eval Visual MAE Loss: 1.337374
+Eval Total MAE Loss: 3.490023
+Eval Contrastive Loss: 0.032401
+Eval Total Loss: 3.522424
+Eval Contrastive Accuracy: 0.750911
+Train Audio MAE Loss: 2.232958
+Train Visual MAE Loss: 1.369484
+Train Contrastive Loss: 0.019207
+Train Total Loss: 3.621649
+validation finished
+Epoch-2 lr: 5e-05
+epoch 2 training time: 1371.699
+---------------
+2023-03-14 21:39:11.379997
+current #epochs=3, #steps=3062
+current masking ratio is 0.750 for both modalities; audio mask mode unstructured
+Epoch: [3][38/1531]	Per Sample Total Time 0.00958	Per Sample Data Time 0.00242	Per Sample DNN Time 0.00716	Train Total Loss 3.4795	Train MAE Loss Audio 2.1549	Train MAE Loss Visual 1.3087	Train Contrastive Loss 0.0159	Train Contrastive Acc 0.867	
+Epoch: [3][138/1531]	Per Sample Total Time 0.00776	Per Sample Data Time 0.00068	Per Sample DNN Time 0.00707	Train Total Loss 3.4823	Train MAE Loss Audio 2.1831	Train MAE Loss Visual 1.2826	Train Contrastive Loss 0.0166	Train Contrastive Acc 0.883	
+Epoch: [3][238/1531]	Per Sample Total Time 0.00744	Per Sample Data Time 0.00040	Per Sample DNN Time 0.00704	Train Total Loss 3.5173	Train MAE Loss Audio 2.1975	Train MAE Loss Visual 1.3032	Train Contrastive Loss 0.0166	Train Contrastive Acc 0.842	
+Epoch: [3][338/1531]	Per Sample Total Time 0.00732	Per Sample Data Time 0.00028	Per Sample DNN Time 0.00704	Train Total Loss 3.5788	Train MAE Loss Audio 2.2314	Train MAE Loss Visual 1.3317	Train Contrastive Loss 0.0158	Train Contrastive Acc 0.875	
+Epoch: [3][438/1531]	Per Sample Total Time 0.00723	Per Sample Data Time 0.00022	Per Sample DNN Time 0.00701	Train Total Loss 3.4731	Train MAE Loss Audio 2.1443	Train MAE Loss Visual 1.3087	Train Contrastive Loss 0.0201	Train Contrastive Acc 0.858	
+Epoch: [3][538/1531]	Per Sample Total Time 0.00718	Per Sample Data Time 0.00018	Per Sample DNN Time 0.00700	Train Total Loss 3.5876	Train MAE Loss Audio 2.1598	Train MAE Loss Visual 1.4179	Train Contrastive Loss 0.0099	Train Contrastive Acc 0.942	
+Epoch: [3][638/1531]	Per Sample Total Time 0.00717	Per Sample Data Time 0.00015	Per Sample DNN Time 0.00701	Train Total Loss 3.5845	Train MAE Loss Audio 2.1836	Train MAE Loss Visual 1.3806	Train Contrastive Loss 0.0202	Train Contrastive Acc 0.825	
+Epoch: [3][738/1531]	Per Sample Total Time 0.00714	Per Sample Data Time 0.00013	Per Sample DNN Time 0.00701	Train Total Loss 3.5795	Train MAE Loss Audio 2.2173	Train MAE Loss Visual 1.3433	Train Contrastive Loss 0.0190	Train Contrastive Acc 0.825	
+Epoch: [3][838/1531]	Per Sample Total Time 0.00713	Per Sample Data Time 0.00012	Per Sample DNN Time 0.00701	Train Total Loss 3.8073	Train MAE Loss Audio 2.3288	Train MAE Loss Visual 1.4596	Train Contrastive Loss 0.0188	Train Contrastive Acc 0.833	
+Epoch: [3][938/1531]	Per Sample Total Time 0.00713	Per Sample Data Time 0.00011	Per Sample DNN Time 0.00702	Train Total Loss 3.6450	Train MAE Loss Audio 2.2234	Train MAE Loss Visual 1.4030	Train Contrastive Loss 0.0186	Train Contrastive Acc 0.817	
+Epoch: [3][1038/1531]	Per Sample Total Time 0.00711	Per Sample Data Time 0.00010	Per Sample DNN Time 0.00701	Train Total Loss 3.7498	Train MAE Loss Audio 2.2855	Train MAE Loss Visual 1.4514	Train Contrastive Loss 0.0129	Train Contrastive Acc 0.900	
+Epoch: [3][1138/1531]	Per Sample Total Time 0.00711	Per Sample Data Time 0.00009	Per Sample DNN Time 0.00702	Train Total Loss 3.6431	Train MAE Loss Audio 2.2046	Train MAE Loss Visual 1.4221	Train Contrastive Loss 0.0163	Train Contrastive Acc 0.900	
+Epoch: [3][1238/1531]	Per Sample Total Time 0.00710	Per Sample Data Time 0.00008	Per Sample DNN Time 0.00702	Train Total Loss 3.6149	Train MAE Loss Audio 2.2552	Train MAE Loss Visual 1.3486	Train Contrastive Loss 0.0110	Train Contrastive Acc 0.908	
+Epoch: [3][1338/1531]	Per Sample Total Time 0.00710	Per Sample Data Time 0.00008	Per Sample DNN Time 0.00702	Train Total Loss 3.5639	Train MAE Loss Audio 2.2085	Train MAE Loss Visual 1.3375	Train Contrastive Loss 0.0178	Train Contrastive Acc 0.875	
+Epoch: [3][1438/1531]	Per Sample Total Time 0.00710	Per Sample Data Time 0.00007	Per Sample DNN Time 0.00703	Train Total Loss 3.5767	Train MAE Loss Audio 2.1705	Train MAE Loss Visual 1.3885	Train Contrastive Loss 0.0177	Train Contrastive Acc 0.825	
+frame 2IUileqD6qI_000010 2 does not exist
+frame 2IUileqD6qI_000010 1 does not exist
+there is an error in loading image
+frame Eb03vQmXqKg_000030 6 does not exist
+frame Eb03vQmXqKg_000030 5 does not exist
+frame Eb03vQmXqKg_000030 4 does not exist
+frame Eb03vQmXqKg_000030 3 does not exist
+frame Eb03vQmXqKg_000030 2 does not exist
+frame Eb03vQmXqKg_000030 1 does not exist
+there is an error in loading image
+frame bk9xgrw3dp8_000030 8 does not exist
+frame bk9xgrw3dp8_000030 7 does not exist
+frame bk9xgrw3dp8_000030 6 does not exist
+frame bk9xgrw3dp8_000030 5 does not exist
+frame bk9xgrw3dp8_000030 4 does not exist
+frame bk9xgrw3dp8_000030 3 does not exist
+frame bk9xgrw3dp8_000030 2 does not exist
+frame bk9xgrw3dp8_000030 1 does not exist
+there is an error in loading image
+frame H6LWbizxQeQ_000012 3 does not exist
+frame H6LWbizxQeQ_000012 2 does not exist
+frame H6LWbizxQeQ_000012 1 does not exist
+there is an error in loading image
+frame 5nCVaazCHaA_000090 6 does not exist
+frame 5nCVaazCHaA_000090 5 does not exist
+frame 5nCVaazCHaA_000090 4 does not exist
+frame 5nCVaazCHaA_000090 3 does not exist
+frame 5nCVaazCHaA_000090 2 does not exist
+frame 5nCVaazCHaA_000090 1 does not exist
+there is an error in loading image
+frame PsXRzD-yBe4_000066 4 does not exist
+frame PsXRzD-yBe4_000066 3 does not exist
+frame PsXRzD-yBe4_000066 2 does not exist
+frame PsXRzD-yBe4_000066 1 does not exist
+there is an error in loading image
+there is an error in loading image
+frame 5yyjz_8nz-0_000055 4 does not exist
+frame 5yyjz_8nz-0_000055 3 does not exist
+frame 5yyjz_8nz-0_000055 2 does not exist
+frame 5yyjz_8nz-0_000055 1 does not exist
+there is an error in loading image
+frame UOlAgFNy_HQ_000030 2 does not exist
+frame BNegPkBeFgA_000140 6 does not exist
+frame BNegPkBeFgA_000140 5 does not exist
+frame BNegPkBeFgA_000140 4 does not exist
+frame BNegPkBeFgA_000140 3 does not exist
+frame BNegPkBeFgA_000140 2 does not exist
+frame BNegPkBeFgA_000140 1 does not exist
+there is an error in loading image
+frame BsLgruLdjDI_000208 5 does not exist
+frame BsLgruLdjDI_000208 4 does not exist
+frame BsLgruLdjDI_000208 3 does not exist
+frame BsLgruLdjDI_000208 2 does not exist
+frame BsLgruLdjDI_000208 1 does not exist
+there is an error in loading image
+frame KYwLCuV7VCU_000020 6 does not exist
+frame ljjUj5fQZgs_000450 3 does not exist
+frame ljjUj5fQZgs_000450 2 does not exist
+frame ljjUj5fQZgs_000450 1 does not exist
+frame 8II9NNK4yUM_000010 9 does not exist
+frame 8II9NNK4yUM_000010 8 does not exist
+frame 8II9NNK4yUM_000010 7 does not exist
+frame 8II9NNK4yUM_000010 6 does not exist
+frame 8II9NNK4yUM_000010 5 does not exist
+frame 8II9NNK4yUM_000010 4 does not exist
+frame 8II9NNK4yUM_000010 3 does not exist
+frame 8II9NNK4yUM_000010 2 does not exist
+frame 8II9NNK4yUM_000010 1 does not exist
+there is an error in loading image
+frame NVQb73vzEpY_000003 5 does not exist
+frame NVQb73vzEpY_000003 4 does not exist
+frame NVQb73vzEpY_000003 3 does not exist
+frame NVQb73vzEpY_000003 2 does not exist
+frame NVQb73vzEpY_000003 1 does not exist
+there is an error in loading image
+start validation
+frame -w8maIWtnUk_000030 5 does not exist
+frame -w8maIWtnUk_000030 4 does not exist
+frame -w8maIWtnUk_000030 3 does not exist
+frame -w8maIWtnUk_000030 2 does not exist
+frame -w8maIWtnUk_000030 1 does not exist
+there is an error in loading image
+Eval Audio MAE Loss: 2.152785
+Eval Visual MAE Loss: 1.337846
+Eval Total MAE Loss: 3.490631
+Eval Contrastive Loss: 0.032618
+Eval Total Loss: 3.523250
+Eval Contrastive Accuracy: 0.747656
+Train Audio MAE Loss: 2.232372
+Train Visual MAE Loss: 1.369597
+Train Contrastive Loss: 0.017355
+Train Total Loss: 3.619324
+validation finished
+Epoch-3 lr: 5e-05
+epoch 3 training time: 1372.933
+---------------
+2023-03-14 22:02:04.314071
+current #epochs=4, #steps=4593
+current masking ratio is 0.750 for both modalities; audio mask mode unstructured
+Epoch: [4][7/1531]	Per Sample Total Time 0.01896	Per Sample Data Time 0.01104	Per Sample DNN Time 0.00792	Train Total Loss 3.6249	Train MAE Loss Audio 2.1981	Train MAE Loss Visual 1.4119	Train Contrastive Loss 0.0149	Train Contrastive Acc 0.875	
+Epoch: [4][107/1531]	Per Sample Total Time 0.00791	Per Sample Data Time 0.00082	Per Sample DNN Time 0.00708	Train Total Loss 3.6529	Train MAE Loss Audio 2.2470	Train MAE Loss Visual 1.3915	Train Contrastive Loss 0.0145	Train Contrastive Acc 0.875	
+Epoch: [4][207/1531]	Per Sample Total Time 0.00752	Per Sample Data Time 0.00043	Per Sample DNN Time 0.00709	Train Total Loss 3.5957	Train MAE Loss Audio 2.1984	Train MAE Loss Visual 1.3748	Train Contrastive Loss 0.0225	Train Contrastive Acc 0.808	
+Epoch: [4][307/1531]	Per Sample Total Time 0.00736	Per Sample Data Time 0.00029	Per Sample DNN Time 0.00707	Train Total Loss 3.5312	Train MAE Loss Audio 2.2245	Train MAE Loss Visual 1.2860	Train Contrastive Loss 0.0207	Train Contrastive Acc 0.825	
+Epoch: [4][407/1531]	Per Sample Total Time 0.00724	Per Sample Data Time 0.00022	Per Sample DNN Time 0.00702	Train Total Loss 3.5953	Train MAE Loss Audio 2.1960	Train MAE Loss Visual 1.3863	Train Contrastive Loss 0.0131	Train Contrastive Acc 0.850	
+Epoch: [4][507/1531]	Per Sample Total Time 0.00720	Per Sample Data Time 0.00018	Per Sample DNN Time 0.00702	Train Total Loss 3.6542	Train MAE Loss Audio 2.1745	Train MAE Loss Visual 1.4688	Train Contrastive Loss 0.0108	Train Contrastive Acc 0.917	
+Epoch: [4][607/1531]	Per Sample Total Time 0.00713	Per Sample Data Time 0.00015	Per Sample DNN Time 0.00698	Train Total Loss 3.7048	Train MAE Loss Audio 2.2952	Train MAE Loss Visual 1.3954	Train Contrastive Loss 0.0142	Train Contrastive Acc 0.867	
+Epoch: [4][707/1531]	Per Sample Total Time 0.00711	Per Sample Data Time 0.00013	Per Sample DNN Time 0.00697	Train Total Loss 3.6463	Train MAE Loss Audio 2.2457	Train MAE Loss Visual 1.3871	Train Contrastive Loss 0.0136	Train Contrastive Acc 0.900	
+Epoch: [4][807/1531]	Per Sample Total Time 0.00710	Per Sample Data Time 0.00012	Per Sample DNN Time 0.00698	Train Total Loss 3.4913	Train MAE Loss Audio 2.1520	Train MAE Loss Visual 1.3253	Train Contrastive Loss 0.0141	Train Contrastive Acc 0.842	
+Epoch: [4][907/1531]	Per Sample Total Time 0.00709	Per Sample Data Time 0.00011	Per Sample DNN Time 0.00698	Train Total Loss 3.6865	Train MAE Loss Audio 2.1731	Train MAE Loss Visual 1.4978	Train Contrastive Loss 0.0156	Train Contrastive Acc 0.842	
+Epoch: [4][1007/1531]	Per Sample Total Time 0.00708	Per Sample Data Time 0.00010	Per Sample DNN Time 0.00698	Train Total Loss 3.5774	Train MAE Loss Audio 2.1983	Train MAE Loss Visual 1.3634	Train Contrastive Loss 0.0156	Train Contrastive Acc 0.858	
+Epoch: [4][1107/1531]	Per Sample Total Time 0.00707	Per Sample Data Time 0.00009	Per Sample DNN Time 0.00698	Train Total Loss 3.7171	Train MAE Loss Audio 2.3559	Train MAE Loss Visual 1.3439	Train Contrastive Loss 0.0174	Train Contrastive Acc 0.875	
+Epoch: [4][1207/1531]	Per Sample Total Time 0.00706	Per Sample Data Time 0.00008	Per Sample DNN Time 0.00698	Train Total Loss 3.6583	Train MAE Loss Audio 2.2567	Train MAE Loss Visual 1.3845	Train Contrastive Loss 0.0171	Train Contrastive Acc 0.900	
+Epoch: [4][1307/1531]	Per Sample Total Time 0.00706	Per Sample Data Time 0.00008	Per Sample DNN Time 0.00698	Train Total Loss 3.6139	Train MAE Loss Audio 2.2742	Train MAE Loss Visual 1.3232	Train Contrastive Loss 0.0165	Train Contrastive Acc 0.858	
+Epoch: [4][1407/1531]	Per Sample Total Time 0.00703	Per Sample Data Time 0.00007	Per Sample DNN Time 0.00696	Train Total Loss 3.5867	Train MAE Loss Audio 2.2483	Train MAE Loss Visual 1.3223	Train Contrastive Loss 0.0160	Train Contrastive Acc 0.867	
+Epoch: [4][1507/1531]	Per Sample Total Time 0.00701	Per Sample Data Time 0.00007	Per Sample DNN Time 0.00695	Train Total Loss 3.6233	Train MAE Loss Audio 2.2316	Train MAE Loss Visual 1.3776	Train Contrastive Loss 0.0140	Train Contrastive Acc 0.900	
+frame -N0qJZkizOw_000030 6 does not exist
+frame -N0qJZkizOw_000030 5 does not exist
+frame -N0qJZkizOw_000030 4 does not exist
+frame -N0qJZkizOw_000030 3 does not exist
+frame -N0qJZkizOw_000030 2 does not exist
+frame -N0qJZkizOw_000030 1 does not exist
+there is an error in loading image
+frame BsLgruLdjDI_000208 6 does not exist
+frame BsLgruLdjDI_000208 5 does not exist
+frame BsLgruLdjDI_000208 4 does not exist
+frame BsLgruLdjDI_000208 3 does not exist
+frame BsLgruLdjDI_000208 2 does not exist
+frame BsLgruLdjDI_000208 1 does not exist
+there is an error in loading image
+frame NVQb73vzEpY_000003 6 does not exist
+frame NVQb73vzEpY_000003 5 does not exist
+frame NVQb73vzEpY_000003 4 does not exist
+frame NVQb73vzEpY_000003 3 does not exist
+frame NVQb73vzEpY_000003 2 does not exist
+frame NVQb73vzEpY_000003 1 does not exist
+there is an error in loading image
+frame H6LWbizxQeQ_000012 5 does not exist
+frame H6LWbizxQeQ_000012 4 does not exist
+frame H6LWbizxQeQ_000012 3 does not exist
+frame H6LWbizxQeQ_000012 2 does not exist
+frame H6LWbizxQeQ_000012 1 does not exist
+there is an error in loading image
+frame 2IUileqD6qI_000010 3 does not exist
+frame 2IUileqD6qI_000010 2 does not exist
+frame 2IUileqD6qI_000010 1 does not exist
+there is an error in loading image
+frame dZp53187l9U_000063 7 does not exist
+frame ljjUj5fQZgs_000450 3 does not exist
+frame ljjUj5fQZgs_000450 2 does not exist
+frame ljjUj5fQZgs_000450 1 does not exist
+there is an error in loading image
+frame 5yyjz_8nz-0_000055 5 does not exist
+frame 5yyjz_8nz-0_000055 4 does not exist
+frame 5yyjz_8nz-0_000055 3 does not exist
+frame 5yyjz_8nz-0_000055 2 does not exist
+frame 5yyjz_8nz-0_000055 1 does not exist
+there is an error in loading image
+frame 5nCVaazCHaA_000090 5 does not exist
+frame 5nCVaazCHaA_000090 4 does not exist
+frame 5nCVaazCHaA_000090 3 does not exist
+frame 5nCVaazCHaA_000090 2 does not exist
+frame 5nCVaazCHaA_000090 1 does not exist
+there is an error in loading image
+frame KYwLCuV7VCU_000020 7 does not exist
+frame KYwLCuV7VCU_000020 6 does not exist
+frame UOlAgFNy_HQ_000030 6 does not exist
+frame UOlAgFNy_HQ_000030 5 does not exist
+frame UOlAgFNy_HQ_000030 4 does not exist
+frame UOlAgFNy_HQ_000030 3 does not exist
+frame UOlAgFNy_HQ_000030 2 does not exist
+frame BNegPkBeFgA_000140 6 does not exist
+frame BNegPkBeFgA_000140 5 does not exist
+frame BNegPkBeFgA_000140 4 does not exist
+frame BNegPkBeFgA_000140 3 does not exist
+frame BNegPkBeFgA_000140 2 does not exist
+frame BNegPkBeFgA_000140 1 does not exist
+there is an error in loading image
+frame PsXRzD-yBe4_000066 6 does not exist
+frame PsXRzD-yBe4_000066 5 does not exist
+frame PsXRzD-yBe4_000066 4 does not exist
+frame PsXRzD-yBe4_000066 3 does not exist
+frame PsXRzD-yBe4_000066 2 does not exist
+frame PsXRzD-yBe4_000066 1 does not exist
+there is an error in loading image
+frame bk9xgrw3dp8_000030 8 does not exist
+frame bk9xgrw3dp8_000030 7 does not exist
+frame bk9xgrw3dp8_000030 6 does not exist
+frame bk9xgrw3dp8_000030 5 does not exist
+frame bk9xgrw3dp8_000030 4 does not exist
+frame bk9xgrw3dp8_000030 3 does not exist
+frame bk9xgrw3dp8_000030 2 does not exist
+frame bk9xgrw3dp8_000030 1 does not exist
+there is an error in loading image
+frame Eb03vQmXqKg_000030 3 does not exist
+frame Eb03vQmXqKg_000030 2 does not exist
+frame Eb03vQmXqKg_000030 1 does not exist
+there is an error in loading image
+frame leBIxqLUdjQ_000007 9 does not exist
+frame leBIxqLUdjQ_000007 8 does not exist
+frame leBIxqLUdjQ_000007 7 does not exist
+frame leBIxqLUdjQ_000007 6 does not exist
+start validation
+frame -w8maIWtnUk_000030 5 does not exist
+frame -w8maIWtnUk_000030 4 does not exist
+frame -w8maIWtnUk_000030 3 does not exist
+frame -w8maIWtnUk_000030 2 does not exist
+frame -w8maIWtnUk_000030 1 does not exist
+there is an error in loading image
+Eval Audio MAE Loss: 2.152397
+Eval Visual MAE Loss: 1.339132
+Eval Total MAE Loss: 3.491529
+Eval Contrastive Loss: 0.032600
+Eval Total Loss: 3.524129
+Eval Contrastive Accuracy: 0.753125
+Train Audio MAE Loss: 2.232092
+Train Visual MAE Loss: 1.370020
+Train Contrastive Loss: 0.016122
+Train Total Loss: 3.618234
+validation finished
+Epoch-4 lr: 5e-05
+epoch 4 training time: 1351.083
+---------------
+2023-03-14 22:24:35.396063
+current #epochs=5, #steps=6124
+current masking ratio is 0.750 for both modalities; audio mask mode unstructured
+Epoch: [5][76/1531]	Per Sample Total Time 0.00797	Per Sample Data Time 0.00103	Per Sample DNN Time 0.00693	Train Total Loss 3.7595	Train MAE Loss Audio 2.3494	Train MAE Loss Visual 1.3957	Train Contrastive Loss 0.0143	Train Contrastive Acc 0.875	
+Epoch: [5][176/1531]	Per Sample Total Time 0.00734	Per Sample Data Time 0.00045	Per Sample DNN Time 0.00689	Train Total Loss 3.5394	Train MAE Loss Audio 2.1798	Train MAE Loss Visual 1.3400	Train Contrastive Loss 0.0197	Train Contrastive Acc 0.842	
+Epoch: [5][276/1531]	Per Sample Total Time 0.00711	Per Sample Data Time 0.00029	Per Sample DNN Time 0.00682	Train Total Loss 3.6598	Train MAE Loss Audio 2.2287	Train MAE Loss Visual 1.4176	Train Contrastive Loss 0.0135	Train Contrastive Acc 0.908	
+Epoch: [5][376/1531]	Per Sample Total Time 0.00706	Per Sample Data Time 0.00022	Per Sample DNN Time 0.00685	Train Total Loss 3.6452	Train MAE Loss Audio 2.1650	Train MAE Loss Visual 1.4641	Train Contrastive Loss 0.0161	Train Contrastive Acc 0.867	
+Epoch: [5][476/1531]	Per Sample Total Time 0.00701	Per Sample Data Time 0.00017	Per Sample DNN Time 0.00684	Train Total Loss 3.5593	Train MAE Loss Audio 2.1996	Train MAE Loss Visual 1.3499	Train Contrastive Loss 0.0099	Train Contrastive Acc 0.908	
+Epoch: [5][576/1531]	Per Sample Total Time 0.00697	Per Sample Data Time 0.00014	Per Sample DNN Time 0.00682	Train Total Loss 3.5719	Train MAE Loss Audio 2.2240	Train MAE Loss Visual 1.3324	Train Contrastive Loss 0.0154	Train Contrastive Acc 0.858	
+Epoch: [5][676/1531]	Per Sample Total Time 0.00693	Per Sample Data Time 0.00012	Per Sample DNN Time 0.00681	Train Total Loss 3.5733	Train MAE Loss Audio 2.2356	Train MAE Loss Visual 1.3181	Train Contrastive Loss 0.0196	Train Contrastive Acc 0.850	
+Epoch: [5][776/1531]	Per Sample Total Time 0.00693	Per Sample Data Time 0.00011	Per Sample DNN Time 0.00682	Train Total Loss 3.6188	Train MAE Loss Audio 2.1925	Train MAE Loss Visual 1.4146	Train Contrastive Loss 0.0118	Train Contrastive Acc 0.917	
+Epoch: [5][876/1531]	Per Sample Total Time 0.00695	Per Sample Data Time 0.00010	Per Sample DNN Time 0.00685	Train Total Loss 3.5412	Train MAE Loss Audio 2.1868	Train MAE Loss Visual 1.3364	Train Contrastive Loss 0.0179	Train Contrastive Acc 0.850	
+Epoch: [5][976/1531]	Per Sample Total Time 0.00696	Per Sample Data Time 0.00009	Per Sample DNN Time 0.00687	Train Total Loss 3.6830	Train MAE Loss Audio 2.2491	Train MAE Loss Visual 1.4208	Train Contrastive Loss 0.0131	Train Contrastive Acc 0.908	
+Epoch: [5][1076/1531]	Per Sample Total Time 0.00696	Per Sample Data Time 0.00008	Per Sample DNN Time 0.00688	Train Total Loss 3.5020	Train MAE Loss Audio 2.2387	Train MAE Loss Visual 1.2472	Train Contrastive Loss 0.0161	Train Contrastive Acc 0.850	
+Epoch: [5][1176/1531]	Per Sample Total Time 0.00696	Per Sample Data Time 0.00007	Per Sample DNN Time 0.00689	Train Total Loss 3.5155	Train MAE Loss Audio 2.2070	Train MAE Loss Visual 1.2908	Train Contrastive Loss 0.0177	Train Contrastive Acc 0.875	
+Epoch: [5][1276/1531]	Per Sample Total Time 0.00696	Per Sample Data Time 0.00007	Per Sample DNN Time 0.00689	Train Total Loss 3.6124	Train MAE Loss Audio 2.2682	Train MAE Loss Visual 1.3234	Train Contrastive Loss 0.0208	Train Contrastive Acc 0.817	
+Epoch: [5][1376/1531]	Per Sample Total Time 0.00696	Per Sample Data Time 0.00006	Per Sample DNN Time 0.00690	Train Total Loss 3.6826	Train MAE Loss Audio 2.3006	Train MAE Loss Visual 1.3675	Train Contrastive Loss 0.0145	Train Contrastive Acc 0.900	
+Epoch: [5][1476/1531]	Per Sample Total Time 0.00695	Per Sample Data Time 0.00006	Per Sample DNN Time 0.00689	Train Total Loss 3.6061	Train MAE Loss Audio 2.2615	Train MAE Loss Visual 1.3255	Train Contrastive Loss 0.0192	Train Contrastive Acc 0.808	
+frame cKc0zgaLXCI_000104 8 does not exist
+frame mR-jCUnEKSc_000080 9 does not exist
+frame BsLgruLdjDI_000208 9 does not exist
+frame BsLgruLdjDI_000208 8 does not exist
+frame BsLgruLdjDI_000208 7 does not exist
+frame BsLgruLdjDI_000208 6 does not exist
+frame BsLgruLdjDI_000208 5 does not exist
+frame BsLgruLdjDI_000208 4 does not exist
+frame BsLgruLdjDI_000208 3 does not exist
+frame BsLgruLdjDI_000208 2 does not exist
+frame BsLgruLdjDI_000208 1 does not exist
+there is an error in loading image
+there is an error in loading image
+frame KYwLCuV7VCU_000020 6 does not exist
+frame -N0qJZkizOw_000030 8 does not exist
+frame -N0qJZkizOw_000030 7 does not exist
+frame -N0qJZkizOw_000030 6 does not exist
+frame -N0qJZkizOw_000030 5 does not exist
+frame -N0qJZkizOw_000030 4 does not exist
+frame -N0qJZkizOw_000030 3 does not exist
+frame -N0qJZkizOw_000030 2 does not exist
+frame -N0qJZkizOw_000030 1 does not exist
+there is an error in loading image
+frame 2IUileqD6qI_000010 7 does not exist
+frame 2IUileqD6qI_000010 6 does not exist
+frame 2IUileqD6qI_000010 5 does not exist
+frame 2IUileqD6qI_000010 4 does not exist
+frame 2IUileqD6qI_000010 3 does not exist
+frame 2IUileqD6qI_000010 2 does not exist
+frame 2IUileqD6qI_000010 1 does not exist
+there is an error in loading image
+there is an error in loading image
+frame UOlAgFNy_HQ_000030 2 does not exist
+frame Eb03vQmXqKg_000030 5 does not exist
+frame Eb03vQmXqKg_000030 4 does not exist
+frame Eb03vQmXqKg_000030 3 does not exist
+frame Eb03vQmXqKg_000030 2 does not exist
+frame Eb03vQmXqKg_000030 1 does not exist
+there is an error in loading image
+frame H6LWbizxQeQ_000012 5 does not exist
+frame H6LWbizxQeQ_000012 4 does not exist
+frame H6LWbizxQeQ_000012 3 does not exist
+frame H6LWbizxQeQ_000012 2 does not exist
+frame H6LWbizxQeQ_000012 1 does not exist
+there is an error in loading image
+frame 5nCVaazCHaA_000090 1 does not exist
+there is an error in loading image
+frame ZYZgumdhE3g_000007 8 does not exist
+frame ZYZgumdhE3g_000007 7 does not exist
+frame PsXRzD-yBe4_000066 9 does not exist
+frame PsXRzD-yBe4_000066 8 does not exist
+frame PsXRzD-yBe4_000066 7 does not exist
+frame PsXRzD-yBe4_000066 6 does not exist
+frame PsXRzD-yBe4_000066 5 does not exist
+frame PsXRzD-yBe4_000066 4 does not exist
+frame PsXRzD-yBe4_000066 3 does not exist
+frame PsXRzD-yBe4_000066 2 does not exist
+frame PsXRzD-yBe4_000066 1 does not exist
+there is an error in loading image
+frame 5yyjz_8nz-0_000055 2 does not exist
+frame 5yyjz_8nz-0_000055 1 does not exist
+there is an error in loading image
+frame 8II9NNK4yUM_000010 1 does not exist
+there is an error in loading image
+frame ljjUj5fQZgs_000450 6 does not exist
+frame ljjUj5fQZgs_000450 5 does not exist
+frame ljjUj5fQZgs_000450 4 does not exist
+frame ljjUj5fQZgs_000450 3 does not exist
+frame ljjUj5fQZgs_000450 2 does not exist
+frame ljjUj5fQZgs_000450 1 does not exist
+there is an error in loading image
+start validation
+frame -w8maIWtnUk_000030 5 does not exist
+frame -w8maIWtnUk_000030 4 does not exist
+frame -w8maIWtnUk_000030 3 does not exist
+frame -w8maIWtnUk_000030 2 does not exist
+frame -w8maIWtnUk_000030 1 does not exist
+there is an error in loading image
+Eval Audio MAE Loss: 2.151510
+Eval Visual MAE Loss: 1.339562
+Eval Total MAE Loss: 3.491072
+Eval Contrastive Loss: 0.032679
+Eval Total Loss: 3.523752
+Eval Contrastive Accuracy: 0.749870
+Train Audio MAE Loss: 2.231629
+Train Visual MAE Loss: 1.368134
+Train Contrastive Loss: 0.014942
+Train Total Loss: 3.614704
+validation finished
+Epoch-5 lr: 5e-05
+epoch 5 training time: 1338.030
+---------------
+2023-03-14 22:46:53.426064
+current #epochs=6, #steps=7655
+current masking ratio is 0.750 for both modalities; audio mask mode unstructured
+Epoch: [6][45/1531]	Per Sample Total Time 0.00852	Per Sample Data Time 0.00176	Per Sample DNN Time 0.00676	Train Total Loss 3.5303	Train MAE Loss Audio 2.2245	Train MAE Loss Visual 1.2913	Train Contrastive Loss 0.0145	Train Contrastive Acc 0.900	
+Epoch: [6][145/1531]	Per Sample Total Time 0.00735	Per Sample Data Time 0.00056	Per Sample DNN Time 0.00679	Train Total Loss 3.5732	Train MAE Loss Audio 2.1799	Train MAE Loss Visual 1.3823	Train Contrastive Loss 0.0110	Train Contrastive Acc 0.917	
+Epoch: [6][245/1531]	Per Sample Total Time 0.00710	Per Sample Data Time 0.00033	Per Sample DNN Time 0.00677	Train Total Loss 3.6126	Train MAE Loss Audio 2.2641	Train MAE Loss Visual 1.3368	Train Contrastive Loss 0.0117	Train Contrastive Acc 0.908	
+Epoch: [6][345/1531]	Per Sample Total Time 0.00702	Per Sample Data Time 0.00024	Per Sample DNN Time 0.00678	Train Total Loss 3.6636	Train MAE Loss Audio 2.2343	Train MAE Loss Visual 1.4149	Train Contrastive Loss 0.0144	Train Contrastive Acc 0.867	
+Epoch: [6][445/1531]	Per Sample Total Time 0.00694	Per Sample Data Time 0.00019	Per Sample DNN Time 0.00676	Train Total Loss 3.5985	Train MAE Loss Audio 2.2024	Train MAE Loss Visual 1.3852	Train Contrastive Loss 0.0109	Train Contrastive Acc 0.917	
+Epoch: [6][545/1531]	Per Sample Total Time 0.00692	Per Sample Data Time 0.00015	Per Sample DNN Time 0.00677	Train Total Loss 3.5896	Train MAE Loss Audio 2.2323	Train MAE Loss Visual 1.3420	Train Contrastive Loss 0.0152	Train Contrastive Acc 0.883	
+Epoch: [6][645/1531]	Per Sample Total Time 0.00688	Per Sample Data Time 0.00013	Per Sample DNN Time 0.00675	Train Total Loss 3.6575	Train MAE Loss Audio 2.2510	Train MAE Loss Visual 1.3895	Train Contrastive Loss 0.0170	Train Contrastive Acc 0.867	
+Epoch: [6][745/1531]	Per Sample Total Time 0.00686	Per Sample Data Time 0.00011	Per Sample DNN Time 0.00675	Train Total Loss 3.5292	Train MAE Loss Audio 2.1477	Train MAE Loss Visual 1.3622	Train Contrastive Loss 0.0193	Train Contrastive Acc 0.833	
+Epoch: [6][845/1531]	Per Sample Total Time 0.00685	Per Sample Data Time 0.00010	Per Sample DNN Time 0.00675	Train Total Loss 3.5169	Train MAE Loss Audio 2.2260	Train MAE Loss Visual 1.2779	Train Contrastive Loss 0.0131	Train Contrastive Acc 0.883	
+Epoch: [6][945/1531]	Per Sample Total Time 0.00684	Per Sample Data Time 0.00009	Per Sample DNN Time 0.00675	Train Total Loss 3.6450	Train MAE Loss Audio 2.1973	Train MAE Loss Visual 1.4359	Train Contrastive Loss 0.0118	Train Contrastive Acc 0.892	
+Epoch: [6][1045/1531]	Per Sample Total Time 0.00683	Per Sample Data Time 0.00008	Per Sample DNN Time 0.00674	Train Total Loss 3.6981	Train MAE Loss Audio 2.3180	Train MAE Loss Visual 1.3606	Train Contrastive Loss 0.0195	Train Contrastive Acc 0.867	
+Epoch: [6][1145/1531]	Per Sample Total Time 0.00681	Per Sample Data Time 0.00008	Per Sample DNN Time 0.00673	Train Total Loss 3.7032	Train MAE Loss Audio 2.2619	Train MAE Loss Visual 1.4259	Train Contrastive Loss 0.0154	Train Contrastive Acc 0.892	
+Epoch: [6][1245/1531]	Per Sample Total Time 0.00681	Per Sample Data Time 0.00007	Per Sample DNN Time 0.00674	Train Total Loss 3.5066	Train MAE Loss Audio 2.2370	Train MAE Loss Visual 1.2570	Train Contrastive Loss 0.0126	Train Contrastive Acc 0.917	
+Epoch: [6][1345/1531]	Per Sample Total Time 0.00682	Per Sample Data Time 0.00007	Per Sample DNN Time 0.00675	Train Total Loss 3.6248	Train MAE Loss Audio 2.2244	Train MAE Loss Visual 1.3865	Train Contrastive Loss 0.0139	Train Contrastive Acc 0.883	
+Epoch: [6][1445/1531]	Per Sample Total Time 0.00682	Per Sample Data Time 0.00006	Per Sample DNN Time 0.00675	Train Total Loss 3.6801	Train MAE Loss Audio 2.3229	Train MAE Loss Visual 1.3422	Train Contrastive Loss 0.0149	Train Contrastive Acc 0.867	
+frame PsXRzD-yBe4_000066 4 does not exist
+frame PsXRzD-yBe4_000066 3 does not exist
+frame PsXRzD-yBe4_000066 2 does not exist
+frame PsXRzD-yBe4_000066 1 does not exist
+there is an error in loading image
+frame Eb03vQmXqKg_000030 8 does not exist
+frame Eb03vQmXqKg_000030 7 does not exist
+frame Eb03vQmXqKg_000030 6 does not exist
+frame Eb03vQmXqKg_000030 5 does not exist
+frame Eb03vQmXqKg_000030 4 does not exist
+frame Eb03vQmXqKg_000030 3 does not exist
+frame Eb03vQmXqKg_000030 2 does not exist
+frame Eb03vQmXqKg_000030 1 does not exist
+there is an error in loading image
+frame H6LWbizxQeQ_000012 3 does not exist
+frame H6LWbizxQeQ_000012 2 does not exist
+frame H6LWbizxQeQ_000012 1 does not exist
+there is an error in loading image
+there is an error in loading image
+frame -N0qJZkizOw_000030 4 does not exist
+frame -N0qJZkizOw_000030 3 does not exist
+frame -N0qJZkizOw_000030 2 does not exist
+frame -N0qJZkizOw_000030 1 does not exist
+there is an error in loading image
+frame Uu8TTrcODQo_000014 9 does not exist
+frame Uu8TTrcODQo_000014 8 does not exist
+frame NVQb73vzEpY_000003 2 does not exist
+frame NVQb73vzEpY_000003 1 does not exist
+there is an error in loading image
+frame 5yyjz_8nz-0_000055 3 does not exist
+frame 5yyjz_8nz-0_000055 2 does not exist
+frame 5yyjz_8nz-0_000055 1 does not exist
+there is an error in loading image
+there is an error in loading image
+frame BNegPkBeFgA_000140 4 does not exist
+frame BNegPkBeFgA_000140 3 does not exist
+frame BNegPkBeFgA_000140 2 does not exist
+frame BNegPkBeFgA_000140 1 does not exist
+there is an error in loading image
+there is an error in loading image
+frame bk9xgrw3dp8_000030 6 does not exist
+frame bk9xgrw3dp8_000030 5 does not exist
+frame bk9xgrw3dp8_000030 4 does not exist
+frame bk9xgrw3dp8_000030 3 does not exist
+frame bk9xgrw3dp8_000030 2 does not exist
+frame bk9xgrw3dp8_000030 1 does not exist
+there is an error in loading image
+frame UOlAgFNy_HQ_000030 8 does not exist
+frame UOlAgFNy_HQ_000030 7 does not exist
+frame UOlAgFNy_HQ_000030 6 does not exist
+frame UOlAgFNy_HQ_000030 5 does not exist
+frame UOlAgFNy_HQ_000030 4 does not exist
+frame UOlAgFNy_HQ_000030 3 does not exist
+frame UOlAgFNy_HQ_000030 2 does not exist
+frame ljjUj5fQZgs_000450 6 does not exist
+frame ljjUj5fQZgs_000450 5 does not exist
+frame ljjUj5fQZgs_000450 4 does not exist
+frame ljjUj5fQZgs_000450 3 does not exist
+frame ljjUj5fQZgs_000450 2 does not exist
+frame ljjUj5fQZgs_000450 1 does not exist
+frame BsLgruLdjDI_000208 9 does not exist
+frame BsLgruLdjDI_000208 8 does not exist
+frame BsLgruLdjDI_000208 7 does not exist
+frame BsLgruLdjDI_000208 6 does not exist
+frame BsLgruLdjDI_000208 5 does not exist
+frame BsLgruLdjDI_000208 4 does not exist
+frame BsLgruLdjDI_000208 3 does not exist
+frame BsLgruLdjDI_000208 2 does not exist
+frame BsLgruLdjDI_000208 1 does not exist
+there is an error in loading image
+frame h1YC8Cb5QWI_000323 9 does not exist
+frame h1YC8Cb5QWI_000323 8 does not exist
+frame h1YC8Cb5QWI_000323 7 does not exist
+start validation
+frame -w8maIWtnUk_000030 5 does not exist
+frame -w8maIWtnUk_000030 4 does not exist
+frame -w8maIWtnUk_000030 3 does not exist
+frame -w8maIWtnUk_000030 2 does not exist
+frame -w8maIWtnUk_000030 1 does not exist
+there is an error in loading image
+Eval Audio MAE Loss: 2.151664
+Eval Visual MAE Loss: 1.337991
+Eval Total MAE Loss: 3.489655
+Eval Contrastive Loss: 0.032731
+Eval Total Loss: 3.522386
+Eval Contrastive Accuracy: 0.751628
+Train Audio MAE Loss: 2.231364
+Train Visual MAE Loss: 1.368658
+Train Contrastive Loss: 0.014254
+Train Total Loss: 3.614277
+validation finished
+Epoch-6 lr: 5e-05
+epoch 6 training time: 1349.156
+---------------
+2023-03-14 23:09:22.582354
+current #epochs=7, #steps=9186
+current masking ratio is 0.750 for both modalities; audio mask mode unstructured
+Epoch: [7][14/1531]	Per Sample Total Time 0.01209	Per Sample Data Time 0.00482	Per Sample DNN Time 0.00727	Train Total Loss 3.6410	Train MAE Loss Audio 2.2017	Train MAE Loss Visual 1.4258	Train Contrastive Loss 0.0135	Train Contrastive Acc 0.875	
+Epoch: [7][114/1531]	Per Sample Total Time 0.00754	Per Sample Data Time 0.00064	Per Sample DNN Time 0.00690	Train Total Loss 3.5853	Train MAE Loss Audio 2.2389	Train MAE Loss Visual 1.3369	Train Contrastive Loss 0.0095	Train Contrastive Acc 0.925	
+Epoch: [7][214/1531]	Per Sample Total Time 0.00720	Per Sample Data Time 0.00034	Per Sample DNN Time 0.00686	Train Total Loss 3.5836	Train MAE Loss Audio 2.2235	Train MAE Loss Visual 1.3451	Train Contrastive Loss 0.0150	Train Contrastive Acc 0.875	
+Epoch: [7][314/1531]	Per Sample Total Time 0.00715	Per Sample Data Time 0.00024	Per Sample DNN Time 0.00691	Train Total Loss 3.7532	Train MAE Loss Audio 2.2576	Train MAE Loss Visual 1.4843	Train Contrastive Loss 0.0113	Train Contrastive Acc 0.925	
+Epoch: [7][414/1531]	Per Sample Total Time 0.00710	Per Sample Data Time 0.00018	Per Sample DNN Time 0.00692	Train Total Loss 3.6123	Train MAE Loss Audio 2.2007	Train MAE Loss Visual 1.3999	Train Contrastive Loss 0.0117	Train Contrastive Acc 0.908	
+Epoch: [7][514/1531]	Per Sample Total Time 0.00706	Per Sample Data Time 0.00015	Per Sample DNN Time 0.00691	Train Total Loss 3.6544	Train MAE Loss Audio 2.3066	Train MAE Loss Visual 1.3372	Train Contrastive Loss 0.0106	Train Contrastive Acc 0.917	
+Epoch: [7][614/1531]	Per Sample Total Time 0.00706	Per Sample Data Time 0.00012	Per Sample DNN Time 0.00694	Train Total Loss 3.6537	Train MAE Loss Audio 2.2361	Train MAE Loss Visual 1.4069	Train Contrastive Loss 0.0108	Train Contrastive Acc 0.925	
+Epoch: [7][714/1531]	Per Sample Total Time 0.00706	Per Sample Data Time 0.00011	Per Sample DNN Time 0.00695	Train Total Loss 3.6295	Train MAE Loss Audio 2.2986	Train MAE Loss Visual 1.3117	Train Contrastive Loss 0.0192	Train Contrastive Acc 0.833	
+Epoch: [7][814/1531]	Per Sample Total Time 0.00702	Per Sample Data Time 0.00010	Per Sample DNN Time 0.00693	Train Total Loss 3.5309	Train MAE Loss Audio 2.2007	Train MAE Loss Visual 1.3142	Train Contrastive Loss 0.0160	Train Contrastive Acc 0.850	
+Epoch: [7][914/1531]	Per Sample Total Time 0.00702	Per Sample Data Time 0.00009	Per Sample DNN Time 0.00694	Train Total Loss 3.6975	Train MAE Loss Audio 2.2906	Train MAE Loss Visual 1.3952	Train Contrastive Loss 0.0118	Train Contrastive Acc 0.900	
+Epoch: [7][1014/1531]	Per Sample Total Time 0.00702	Per Sample Data Time 0.00008	Per Sample DNN Time 0.00694	Train Total Loss 3.6468	Train MAE Loss Audio 2.2253	Train MAE Loss Visual 1.4089	Train Contrastive Loss 0.0126	Train Contrastive Acc 0.883	
+Epoch: [7][1114/1531]	Per Sample Total Time 0.00701	Per Sample Data Time 0.00007	Per Sample DNN Time 0.00694	Train Total Loss 3.6835	Train MAE Loss Audio 2.2639	Train MAE Loss Visual 1.4061	Train Contrastive Loss 0.0135	Train Contrastive Acc 0.892	
+Epoch: [7][1214/1531]	Per Sample Total Time 0.00701	Per Sample Data Time 0.00007	Per Sample DNN Time 0.00694	Train Total Loss 3.6709	Train MAE Loss Audio 2.2529	Train MAE Loss Visual 1.4089	Train Contrastive Loss 0.0091	Train Contrastive Acc 0.925	
+Epoch: [7][1314/1531]	Per Sample Total Time 0.00701	Per Sample Data Time 0.00006	Per Sample DNN Time 0.00694	Train Total Loss 3.6546	Train MAE Loss Audio 2.2866	Train MAE Loss Visual 1.3566	Train Contrastive Loss 0.0113	Train Contrastive Acc 0.900	
+Epoch: [7][1414/1531]	Per Sample Total Time 0.00701	Per Sample Data Time 0.00006	Per Sample DNN Time 0.00696	Train Total Loss 3.5684	Train MAE Loss Audio 2.2588	Train MAE Loss Visual 1.2989	Train Contrastive Loss 0.0108	Train Contrastive Acc 0.917	
+Epoch: [7][1514/1531]	Per Sample Total Time 0.00700	Per Sample Data Time 0.00005	Per Sample DNN Time 0.00694	Train Total Loss 3.6055	Train MAE Loss Audio 2.2216	Train MAE Loss Visual 1.3734	Train Contrastive Loss 0.0104	Train Contrastive Acc 0.917	
+frame -N0qJZkizOw_000030 7 does not exist
+frame -N0qJZkizOw_000030 6 does not exist
+frame -N0qJZkizOw_000030 5 does not exist
+frame -N0qJZkizOw_000030 4 does not exist
+frame -N0qJZkizOw_000030 3 does not exist
+frame -N0qJZkizOw_000030 2 does not exist
+frame -N0qJZkizOw_000030 1 does not exist
+there is an error in loading image
+frame BNegPkBeFgA_000140 6 does not exist
+frame BNegPkBeFgA_000140 5 does not exist
+frame BNegPkBeFgA_000140 4 does not exist
+frame BNegPkBeFgA_000140 3 does not exist
+frame BNegPkBeFgA_000140 2 does not exist
+frame BNegPkBeFgA_000140 1 does not exist
+there is an error in loading image
+frame 5nCVaazCHaA_000090 7 does not exist
+frame 5nCVaazCHaA_000090 6 does not exist
+frame 5nCVaazCHaA_000090 5 does not exist
+frame 5nCVaazCHaA_000090 4 does not exist
+frame 5nCVaazCHaA_000090 3 does not exist
+frame 5nCVaazCHaA_000090 2 does not exist
+frame 5nCVaazCHaA_000090 1 does not exist
+there is an error in loading image
+frame 8II9NNK4yUM_000010 2 does not exist
+frame 8II9NNK4yUM_000010 1 does not exist
+there is an error in loading image
+frame 2IUileqD6qI_000010 9 does not exist
+frame 2IUileqD6qI_000010 8 does not exist
+frame 2IUileqD6qI_000010 7 does not exist
+frame 2IUileqD6qI_000010 6 does not exist
+frame 2IUileqD6qI_000010 5 does not exist
+frame 2IUileqD6qI_000010 4 does not exist
+frame 2IUileqD6qI_000010 3 does not exist
+frame 2IUileqD6qI_000010 2 does not exist
+frame 2IUileqD6qI_000010 1 does not exist
+there is an error in loading image
+frame PsXRzD-yBe4_000066 6 does not exist
+frame PsXRzD-yBe4_000066 5 does not exist
+frame PsXRzD-yBe4_000066 4 does not exist
+frame PsXRzD-yBe4_000066 3 does not exist
+frame PsXRzD-yBe4_000066 2 does not exist
+frame PsXRzD-yBe4_000066 1 does not exist
+there is an error in loading image
+frame NVQb73vzEpY_000003 9 does not exist
+frame NVQb73vzEpY_000003 8 does not exist
+frame NVQb73vzEpY_000003 7 does not exist
+frame NVQb73vzEpY_000003 6 does not exist
+frame NVQb73vzEpY_000003 5 does not exist
+frame NVQb73vzEpY_000003 4 does not exist
+frame NVQb73vzEpY_000003 3 does not exist
+frame NVQb73vzEpY_000003 2 does not exist
+frame NVQb73vzEpY_000003 1 does not exist
+there is an error in loading image
+frame KYwLCuV7VCU_000020 9 does not exist
+frame KYwLCuV7VCU_000020 8 does not exist
+frame KYwLCuV7VCU_000020 7 does not exist
+frame KYwLCuV7VCU_000020 6 does not exist
+frame BsLgruLdjDI_000208 4 does not exist
+frame BsLgruLdjDI_000208 3 does not exist
+frame BsLgruLdjDI_000208 2 does not exist
+frame BsLgruLdjDI_000208 1 does not exist
+there is an error in loading image
+frame bk9xgrw3dp8_000030 3 does not exist
+frame bk9xgrw3dp8_000030 2 does not exist
+frame bk9xgrw3dp8_000030 1 does not exist
+there is an error in loading image
+frame Eb03vQmXqKg_000030 4 does not exist
+frame Eb03vQmXqKg_000030 3 does not exist
+frame Eb03vQmXqKg_000030 2 does not exist
+frame Eb03vQmXqKg_000030 1 does not exist
+there is an error in loading image
+frame H6LWbizxQeQ_000012 3 does not exist
+frame H6LWbizxQeQ_000012 2 does not exist
+frame H6LWbizxQeQ_000012 1 does not exist
+there is an error in loading image
+frame 5yyjz_8nz-0_000055 8 does not exist
+frame 5yyjz_8nz-0_000055 7 does not exist
+frame 5yyjz_8nz-0_000055 6 does not exist
+frame 5yyjz_8nz-0_000055 5 does not exist
+frame 5yyjz_8nz-0_000055 4 does not exist
+frame 5yyjz_8nz-0_000055 3 does not exist
+frame 5yyjz_8nz-0_000055 2 does not exist
+frame 5yyjz_8nz-0_000055 1 does not exist
+there is an error in loading image
+start validation
+frame -w8maIWtnUk_000030 5 does not exist
+frame -w8maIWtnUk_000030 4 does not exist
+frame -w8maIWtnUk_000030 3 does not exist
+frame -w8maIWtnUk_000030 2 does not exist
+frame -w8maIWtnUk_000030 1 does not exist
+there is an error in loading image
+Eval Audio MAE Loss: 2.151764
+Eval Visual MAE Loss: 1.338347
+Eval Total MAE Loss: 3.490110
+Eval Contrastive Loss: 0.032457
+Eval Total Loss: 3.522567
+Eval Contrastive Accuracy: 0.755729
+Train Audio MAE Loss: 2.231222
+Train Visual MAE Loss: 1.367094
+Train Contrastive Loss: 0.013414
+Train Total Loss: 3.611730
+validation finished
+Epoch-7 lr: 5e-05
+epoch 7 training time: 1354.918
+---------------
+2023-03-14 23:31:57.499839
+current #epochs=8, #steps=10717
+current masking ratio is 0.750 for both modalities; audio mask mode unstructured
+Epoch: [8][83/1531]	Per Sample Total Time 0.00770	Per Sample Data Time 0.00090	Per Sample DNN Time 0.00679	Train Total Loss 3.6545	Train MAE Loss Audio 2.2439	Train MAE Loss Visual 1.3984	Train Contrastive Loss 0.0122	Train Contrastive Acc 0.900	
+Epoch: [8][183/1531]	Per Sample Total Time 0.00718	Per Sample Data Time 0.00041	Per Sample DNN Time 0.00677	Train Total Loss 3.5755	Train MAE Loss Audio 2.1592	Train MAE Loss Visual 1.4069	Train Contrastive Loss 0.0094	Train Contrastive Acc 0.917	
+Epoch: [8][283/1531]	Per Sample Total Time 0.00695	Per Sample Data Time 0.00027	Per Sample DNN Time 0.00668	Train Total Loss 3.6450	Train MAE Loss Audio 2.3195	Train MAE Loss Visual 1.3157	Train Contrastive Loss 0.0097	Train Contrastive Acc 0.908	
+Epoch: [8][383/1531]	Per Sample Total Time 0.00694	Per Sample Data Time 0.00020	Per Sample DNN Time 0.00674	Train Total Loss 3.6030	Train MAE Loss Audio 2.2657	Train MAE Loss Visual 1.3272	Train Contrastive Loss 0.0101	Train Contrastive Acc 0.933	
+Epoch: [8][483/1531]	Per Sample Total Time 0.00693	Per Sample Data Time 0.00016	Per Sample DNN Time 0.00677	Train Total Loss 3.5766	Train MAE Loss Audio 2.1831	Train MAE Loss Visual 1.3845	Train Contrastive Loss 0.0091	Train Contrastive Acc 0.942	
+Epoch: [8][583/1531]	Per Sample Total Time 0.00685	Per Sample Data Time 0.00013	Per Sample DNN Time 0.00672	Train Total Loss 3.7168	Train MAE Loss Audio 2.2781	Train MAE Loss Visual 1.4260	Train Contrastive Loss 0.0127	Train Contrastive Acc 0.900	
+Epoch: [8][683/1531]	Per Sample Total Time 0.00683	Per Sample Data Time 0.00012	Per Sample DNN Time 0.00671	Train Total Loss 3.4764	Train MAE Loss Audio 2.1879	Train MAE Loss Visual 1.2806	Train Contrastive Loss 0.0079	Train Contrastive Acc 0.917	
+Epoch: [8][783/1531]	Per Sample Total Time 0.00682	Per Sample Data Time 0.00010	Per Sample DNN Time 0.00672	Train Total Loss 3.6034	Train MAE Loss Audio 2.1811	Train MAE Loss Visual 1.4110	Train Contrastive Loss 0.0114	Train Contrastive Acc 0.925	
+Epoch: [8][883/1531]	Per Sample Total Time 0.00680	Per Sample Data Time 0.00009	Per Sample DNN Time 0.00671	Train Total Loss 3.5046	Train MAE Loss Audio 2.2019	Train MAE Loss Visual 1.2919	Train Contrastive Loss 0.0108	Train Contrastive Acc 0.883	
+Epoch: [8][983/1531]	Per Sample Total Time 0.00678	Per Sample Data Time 0.00008	Per Sample DNN Time 0.00670	Train Total Loss 3.6536	Train MAE Loss Audio 2.2857	Train MAE Loss Visual 1.3511	Train Contrastive Loss 0.0168	Train Contrastive Acc 0.858	
+Epoch: [8][1083/1531]	Per Sample Total Time 0.00676	Per Sample Data Time 0.00007	Per Sample DNN Time 0.00669	Train Total Loss 3.6158	Train MAE Loss Audio 2.2714	Train MAE Loss Visual 1.3340	Train Contrastive Loss 0.0105	Train Contrastive Acc 0.925	
+Epoch: [8][1183/1531]	Per Sample Total Time 0.00674	Per Sample Data Time 0.00007	Per Sample DNN Time 0.00668	Train Total Loss 3.4841	Train MAE Loss Audio 2.1373	Train MAE Loss Visual 1.3337	Train Contrastive Loss 0.0131	Train Contrastive Acc 0.867	
+Epoch: [8][1283/1531]	Per Sample Total Time 0.00675	Per Sample Data Time 0.00006	Per Sample DNN Time 0.00669	Train Total Loss 3.5376	Train MAE Loss Audio 2.1376	Train MAE Loss Visual 1.3876	Train Contrastive Loss 0.0125	Train Contrastive Acc 0.875	
+Epoch: [8][1383/1531]	Per Sample Total Time 0.00676	Per Sample Data Time 0.00006	Per Sample DNN Time 0.00670	Train Total Loss 3.6477	Train MAE Loss Audio 2.2560	Train MAE Loss Visual 1.3819	Train Contrastive Loss 0.0097	Train Contrastive Acc 0.942	
+Epoch: [8][1483/1531]	Per Sample Total Time 0.00676	Per Sample Data Time 0.00006	Per Sample DNN Time 0.00671	Train Total Loss 3.5672	Train MAE Loss Audio 2.2056	Train MAE Loss Visual 1.3486	Train Contrastive Loss 0.0130	Train Contrastive Acc 0.900	
+frame PsXRzD-yBe4_000066 2 does not exist
+frame PsXRzD-yBe4_000066 1 does not exist
+there is an error in loading image
+frame 5yyjz_8nz-0_000055 4 does not exist
+frame 5yyjz_8nz-0_000055 3 does not exist
+frame 5yyjz_8nz-0_000055 2 does not exist
+frame 5yyjz_8nz-0_000055 1 does not exist
+there is an error in loading image
+frame NVQb73vzEpY_000003 6 does not exist
+frame NVQb73vzEpY_000003 5 does not exist
+frame NVQb73vzEpY_000003 4 does not exist
+frame NVQb73vzEpY_000003 3 does not exist
+frame NVQb73vzEpY_000003 2 does not exist
+frame NVQb73vzEpY_000003 1 does not exist
+there is an error in loading image
+frame -N0qJZkizOw_000030 4 does not exist
+frame -N0qJZkizOw_000030 3 does not exist
+frame -N0qJZkizOw_000030 2 does not exist
+frame -N0qJZkizOw_000030 1 does not exist
+there is an error in loading image
+frame 8II9NNK4yUM_000010 3 does not exist
+frame 8II9NNK4yUM_000010 2 does not exist
+frame 8II9NNK4yUM_000010 1 does not exist
+there is an error in loading image
+frame BNegPkBeFgA_000140 4 does not exist
+frame BNegPkBeFgA_000140 3 does not exist
+frame BNegPkBeFgA_000140 2 does not exist
+frame BNegPkBeFgA_000140 1 does not exist
+there is an error in loading image
+frame ZYZgumdhE3g_000007 7 does not exist
+frame ws9EsgYpj2A_000025 9 does not exist
+frame UOlAgFNy_HQ_000030 6 does not exist
+frame UOlAgFNy_HQ_000030 5 does not exist
+frame UOlAgFNy_HQ_000030 4 does not exist
+frame UOlAgFNy_HQ_000030 3 does not exist
+frame UOlAgFNy_HQ_000030 2 does not exist
+frame 2IUileqD6qI_000010 3 does not exist
+frame 2IUileqD6qI_000010 2 does not exist
+frame 2IUileqD6qI_000010 1 does not exist
+there is an error in loading image
+frame ljjUj5fQZgs_000450 5 does not exist
+frame ljjUj5fQZgs_000450 4 does not exist
+frame ljjUj5fQZgs_000450 3 does not exist
+frame ljjUj5fQZgs_000450 2 does not exist
+frame ljjUj5fQZgs_000450 1 does not exist
+frame 5nCVaazCHaA_000090 2 does not exist
+frame 5nCVaazCHaA_000090 1 does not exist
+there is an error in loading image
+frame BsLgruLdjDI_000208 8 does not exist
+frame BsLgruLdjDI_000208 7 does not exist
+frame BsLgruLdjDI_000208 6 does not exist
+frame BsLgruLdjDI_000208 5 does not exist
+frame BsLgruLdjDI_000208 4 does not exist
+frame BsLgruLdjDI_000208 3 does not exist
+frame BsLgruLdjDI_000208 2 does not exist
+frame BsLgruLdjDI_000208 1 does not exist
+there is an error in loading image
+frame bk9xgrw3dp8_000030 6 does not exist
+frame bk9xgrw3dp8_000030 5 does not exist
+frame bk9xgrw3dp8_000030 4 does not exist
+frame bk9xgrw3dp8_000030 3 does not exist
+frame bk9xgrw3dp8_000030 2 does not exist
+frame bk9xgrw3dp8_000030 1 does not exist
+there is an error in loading image
+frame Eb03vQmXqKg_000030 8 does not exist
+frame Eb03vQmXqKg_000030 7 does not exist
+frame Eb03vQmXqKg_000030 6 does not exist
+frame Eb03vQmXqKg_000030 5 does not exist
+frame Eb03vQmXqKg_000030 4 does not exist
+frame Eb03vQmXqKg_000030 3 does not exist
+frame Eb03vQmXqKg_000030 2 does not exist
+frame Eb03vQmXqKg_000030 1 does not exist
+there is an error in loading image
+frame eWg3Z2LsQrk_000096 7 does not exist
+frame eWg3Z2LsQrk_000096 6 does not exist
+frame eWg3Z2LsQrk_000096 5 does not exist
+frame H6LWbizxQeQ_000012 2 does not exist
+frame H6LWbizxQeQ_000012 1 does not exist
+there is an error in loading image
+frame h1YC8Cb5QWI_000323 9 does not exist
+frame h1YC8Cb5QWI_000323 8 does not exist
+frame h1YC8Cb5QWI_000323 7 does not exist
+start validation
+frame -w8maIWtnUk_000030 5 does not exist
+frame -w8maIWtnUk_000030 4 does not exist
+frame -w8maIWtnUk_000030 3 does not exist
+frame -w8maIWtnUk_000030 2 does not exist
+frame -w8maIWtnUk_000030 1 does not exist
+there is an error in loading image
+Eval Audio MAE Loss: 2.152045
+Eval Visual MAE Loss: 1.340027
+Eval Total MAE Loss: 3.492072
+Eval Contrastive Loss: 0.033188
+Eval Total Loss: 3.525260
+Eval Contrastive Accuracy: 0.751693
+Train Audio MAE Loss: 2.230746
+Train Visual MAE Loss: 1.367008
+Train Contrastive Loss: 0.012728
+Train Total Loss: 3.610482
+validation finished
+Epoch-8 lr: 5e-05
+epoch 8 training time: 1307.438
+---------------
+2023-03-14 23:53:44.937746
+current #epochs=9, #steps=12248
+current masking ratio is 0.750 for both modalities; audio mask mode unstructured
+Epoch: [9][52/1531]	Per Sample Total Time 0.00880	Per Sample Data Time 0.00146	Per Sample DNN Time 0.00734	Train Total Loss 3.5125	Train MAE Loss Audio 2.1827	Train MAE Loss Visual 1.3159	Train Contrastive Loss 0.0139	Train Contrastive Acc 0.867	
+Epoch: [9][152/1531]	Per Sample Total Time 0.00766	Per Sample Data Time 0.00051	Per Sample DNN Time 0.00714	Train Total Loss 3.4444	Train MAE Loss Audio 2.2109	Train MAE Loss Visual 1.2208	Train Contrastive Loss 0.0127	Train Contrastive Acc 0.908	
+Epoch: [9][252/1531]	Per Sample Total Time 0.00736	Per Sample Data Time 0.00031	Per Sample DNN Time 0.00705	Train Total Loss 3.7692	Train MAE Loss Audio 2.2715	Train MAE Loss Visual 1.4839	Train Contrastive Loss 0.0138	Train Contrastive Acc 0.883	
+Epoch: [9][352/1531]	Per Sample Total Time 0.00725	Per Sample Data Time 0.00023	Per Sample DNN Time 0.00702	Train Total Loss 3.6279	Train MAE Loss Audio 2.2706	Train MAE Loss Visual 1.3481	Train Contrastive Loss 0.0091	Train Contrastive Acc 0.933	
+Epoch: [9][452/1531]	Per Sample Total Time 0.00719	Per Sample Data Time 0.00018	Per Sample DNN Time 0.00701	Train Total Loss 3.7461	Train MAE Loss Audio 2.2959	Train MAE Loss Visual 1.4378	Train Contrastive Loss 0.0124	Train Contrastive Acc 0.900	
+Epoch: [9][552/1531]	Per Sample Total Time 0.00717	Per Sample Data Time 0.00015	Per Sample DNN Time 0.00703	Train Total Loss 3.5940	Train MAE Loss Audio 2.2285	Train MAE Loss Visual 1.3491	Train Contrastive Loss 0.0163	Train Contrastive Acc 0.883	
+Epoch: [9][652/1531]	Per Sample Total Time 0.00711	Per Sample Data Time 0.00012	Per Sample DNN Time 0.00698	Train Total Loss 3.5516	Train MAE Loss Audio 2.2006	Train MAE Loss Visual 1.3413	Train Contrastive Loss 0.0098	Train Contrastive Acc 0.900	
+Epoch: [9][752/1531]	Per Sample Total Time 0.00708	Per Sample Data Time 0.00011	Per Sample DNN Time 0.00697	Train Total Loss 3.6203	Train MAE Loss Audio 2.2407	Train MAE Loss Visual 1.3693	Train Contrastive Loss 0.0103	Train Contrastive Acc 0.892	
+Epoch: [9][852/1531]	Per Sample Total Time 0.00707	Per Sample Data Time 0.00010	Per Sample DNN Time 0.00698	Train Total Loss 3.6110	Train MAE Loss Audio 2.2456	Train MAE Loss Visual 1.3529	Train Contrastive Loss 0.0126	Train Contrastive Acc 0.917	
+Epoch: [9][952/1531]	Per Sample Total Time 0.00708	Per Sample Data Time 0.00009	Per Sample DNN Time 0.00699	Train Total Loss 3.5083	Train MAE Loss Audio 2.1758	Train MAE Loss Visual 1.3221	Train Contrastive Loss 0.0105	Train Contrastive Acc 0.900	
+Epoch: [9][1052/1531]	Per Sample Total Time 0.00707	Per Sample Data Time 0.00008	Per Sample DNN Time 0.00699	Train Total Loss 3.5514	Train MAE Loss Audio 2.2052	Train MAE Loss Visual 1.3289	Train Contrastive Loss 0.0173	Train Contrastive Acc 0.858	
+Epoch: [9][1152/1531]	Per Sample Total Time 0.00705	Per Sample Data Time 0.00007	Per Sample DNN Time 0.00697	Train Total Loss 3.4873	Train MAE Loss Audio 2.2036	Train MAE Loss Visual 1.2732	Train Contrastive Loss 0.0105	Train Contrastive Acc 0.908	
+Epoch: [9][1252/1531]	Per Sample Total Time 0.00704	Per Sample Data Time 0.00007	Per Sample DNN Time 0.00698	Train Total Loss 3.6607	Train MAE Loss Audio 2.1952	Train MAE Loss Visual 1.4487	Train Contrastive Loss 0.0168	Train Contrastive Acc 0.858	
+Epoch: [9][1352/1531]	Per Sample Total Time 0.00705	Per Sample Data Time 0.00006	Per Sample DNN Time 0.00698	Train Total Loss 3.5823	Train MAE Loss Audio 2.2852	Train MAE Loss Visual 1.2846	Train Contrastive Loss 0.0125	Train Contrastive Acc 0.867	
+Epoch: [9][1452/1531]	Per Sample Total Time 0.00705	Per Sample Data Time 0.00006	Per Sample DNN Time 0.00699	Train Total Loss 3.6770	Train MAE Loss Audio 2.2541	Train MAE Loss Visual 1.4118	Train Contrastive Loss 0.0111	Train Contrastive Acc 0.875	
+there is an error in loading image
+frame -N0qJZkizOw_000030 1 does not exist
+there is an error in loading image
+frame eWg3Z2LsQrk_000096 5 does not exist
+frame 2IUileqD6qI_000010 9 does not exist
+frame 2IUileqD6qI_000010 8 does not exist
+frame 2IUileqD6qI_000010 7 does not exist
+frame 2IUileqD6qI_000010 6 does not exist
+frame 2IUileqD6qI_000010 5 does not exist
+frame 2IUileqD6qI_000010 4 does not exist
+frame 2IUileqD6qI_000010 3 does not exist
+frame 2IUileqD6qI_000010 2 does not exist
+frame 2IUileqD6qI_000010 1 does not exist
+there is an error in loading image
+frame bk9xgrw3dp8_000030 7 does not exist
+frame bk9xgrw3dp8_000030 6 does not exist
+frame bk9xgrw3dp8_000030 5 does not exist
+frame bk9xgrw3dp8_000030 4 does not exist
+frame bk9xgrw3dp8_000030 3 does not exist
+frame bk9xgrw3dp8_000030 2 does not exist
+frame bk9xgrw3dp8_000030 1 does not exist
+there is an error in loading image
+frame 8II9NNK4yUM_000010 6 does not exist
+frame 8II9NNK4yUM_000010 5 does not exist
+frame 8II9NNK4yUM_000010 4 does not exist
+frame 8II9NNK4yUM_000010 3 does not exist
+frame 8II9NNK4yUM_000010 2 does not exist
+frame 8II9NNK4yUM_000010 1 does not exist
+there is an error in loading image
+frame ZYZgumdhE3g_000007 9 does not exist
+frame ZYZgumdhE3g_000007 8 does not exist
+frame ZYZgumdhE3g_000007 7 does not exist
+frame UOlAgFNy_HQ_000030 7 does not exist
+frame UOlAgFNy_HQ_000030 6 does not exist
+frame UOlAgFNy_HQ_000030 5 does not exist
+frame UOlAgFNy_HQ_000030 4 does not exist
+frame UOlAgFNy_HQ_000030 3 does not exist
+frame UOlAgFNy_HQ_000030 2 does not exist
+frame 5nCVaazCHaA_000090 3 does not exist
+frame 5nCVaazCHaA_000090 2 does not exist
+frame 5nCVaazCHaA_000090 1 does not exist
+there is an error in loading image
+frame H6LWbizxQeQ_000012 3 does not exist
+frame H6LWbizxQeQ_000012 2 does not exist
+frame H6LWbizxQeQ_000012 1 does not exist
+there is an error in loading image
+frame KYwLCuV7VCU_000020 8 does not exist
+frame KYwLCuV7VCU_000020 7 does not exist
+frame KYwLCuV7VCU_000020 6 does not exist
+frame BNegPkBeFgA_000140 3 does not exist
+frame BNegPkBeFgA_000140 2 does not exist
+frame BNegPkBeFgA_000140 1 does not exist
+there is an error in loading image
+frame BsLgruLdjDI_000208 3 does not exist
+frame BsLgruLdjDI_000208 2 does not exist
+frame BsLgruLdjDI_000208 1 does not exist
+there is an error in loading image
+frame PsXRzD-yBe4_000066 7 does not exist
+frame PsXRzD-yBe4_000066 6 does not exist
+frame PsXRzD-yBe4_000066 5 does not exist
+frame PsXRzD-yBe4_000066 4 does not exist
+frame PsXRzD-yBe4_000066 3 does not exist
+frame PsXRzD-yBe4_000066 2 does not exist
+frame PsXRzD-yBe4_000066 1 does not exist
+there is an error in loading image
+frame ljjUj5fQZgs_000450 9 does not exist
+frame ljjUj5fQZgs_000450 8 does not exist
+frame ljjUj5fQZgs_000450 7 does not exist
+frame ljjUj5fQZgs_000450 6 does not exist
+frame ljjUj5fQZgs_000450 5 does not exist
+frame ljjUj5fQZgs_000450 4 does not exist
+frame ljjUj5fQZgs_000450 3 does not exist
+frame ljjUj5fQZgs_000450 2 does not exist
+frame ljjUj5fQZgs_000450 1 does not exist
+frame 5yyjz_8nz-0_000055 8 does not exist
+frame 5yyjz_8nz-0_000055 7 does not exist
+frame 5yyjz_8nz-0_000055 6 does not exist
+frame 5yyjz_8nz-0_000055 5 does not exist
+frame 5yyjz_8nz-0_000055 4 does not exist
+frame 5yyjz_8nz-0_000055 3 does not exist
+frame 5yyjz_8nz-0_000055 2 does not exist
+frame 5yyjz_8nz-0_000055 1 does not exist
+there is an error in loading image
+frame Eb03vQmXqKg_000030 8 does not exist
+frame Eb03vQmXqKg_000030 7 does not exist
+frame Eb03vQmXqKg_000030 6 does not exist
+frame Eb03vQmXqKg_000030 5 does not exist
+frame Eb03vQmXqKg_000030 4 does not exist
+frame Eb03vQmXqKg_000030 3 does not exist
+frame Eb03vQmXqKg_000030 2 does not exist
+frame Eb03vQmXqKg_000030 1 does not exist
+there is an error in loading image
+start validation
+frame -w8maIWtnUk_000030 5 does not exist
+frame -w8maIWtnUk_000030 4 does not exist
+frame -w8maIWtnUk_000030 3 does not exist
+frame -w8maIWtnUk_000030 2 does not exist
+frame -w8maIWtnUk_000030 1 does not exist
+there is an error in loading image
+Eval Audio MAE Loss: 2.151182
+Eval Visual MAE Loss: 1.337697
+Eval Total MAE Loss: 3.488879
+Eval Contrastive Loss: 0.032278
+Eval Total Loss: 3.521157
+Eval Contrastive Accuracy: 0.751432
+Train Audio MAE Loss: 2.230801
+Train Visual MAE Loss: 1.366496
+Train Contrastive Loss: 0.012297
+Train Total Loss: 3.609595
+validation finished
+Epoch-9 lr: 5e-05
+epoch 9 training time: 1382.167
+---------------
+2023-03-15 00:16:47.105445
+current #epochs=10, #steps=13779
+current masking ratio is 0.750 for both modalities; audio mask mode unstructured
+Epoch: [10][21/1531]	Per Sample Total Time 0.01110	Per Sample Data Time 0.00367	Per Sample DNN Time 0.00743	Train Total Loss 3.5513	Train MAE Loss Audio 2.1512	Train MAE Loss Visual 1.3860	Train Contrastive Loss 0.0141	Train Contrastive Acc 0.883	
+Epoch: [10][121/1531]	Per Sample Total Time 0.00762	Per Sample Data Time 0.00067	Per Sample DNN Time 0.00695	Train Total Loss 3.6688	Train MAE Loss Audio 2.2137	Train MAE Loss Visual 1.4439	Train Contrastive Loss 0.0112	Train Contrastive Acc 0.925	
+Epoch: [10][221/1531]	Per Sample Total Time 0.00734	Per Sample Data Time 0.00037	Per Sample DNN Time 0.00697	Train Total Loss 3.5459	Train MAE Loss Audio 2.2214	Train MAE Loss Visual 1.3140	Train Contrastive Loss 0.0104	Train Contrastive Acc 0.925	
+Epoch: [10][321/1531]	Per Sample Total Time 0.00723	Per Sample Data Time 0.00026	Per Sample DNN Time 0.00697	Train Total Loss 3.5355	Train MAE Loss Audio 2.2317	Train MAE Loss Visual 1.2914	Train Contrastive Loss 0.0125	Train Contrastive Acc 0.883	
+Epoch: [10][421/1531]	Per Sample Total Time 0.00720	Per Sample Data Time 0.00020	Per Sample DNN Time 0.00701	Train Total Loss 3.4693	Train MAE Loss Audio 2.1896	Train MAE Loss Visual 1.2697	Train Contrastive Loss 0.0099	Train Contrastive Acc 0.900	
+Epoch: [10][521/1531]	Per Sample Total Time 0.00720	Per Sample Data Time 0.00016	Per Sample DNN Time 0.00704	Train Total Loss 3.5727	Train MAE Loss Audio 2.1974	Train MAE Loss Visual 1.3612	Train Contrastive Loss 0.0141	Train Contrastive Acc 0.883	
+Epoch: [10][621/1531]	Per Sample Total Time 0.00718	Per Sample Data Time 0.00014	Per Sample DNN Time 0.00704	Train Total Loss 3.6301	Train MAE Loss Audio 2.1556	Train MAE Loss Visual 1.4606	Train Contrastive Loss 0.0139	Train Contrastive Acc 0.917	
+Epoch: [10][721/1531]	Per Sample Total Time 0.00718	Per Sample Data Time 0.00012	Per Sample DNN Time 0.00706	Train Total Loss 3.5818	Train MAE Loss Audio 2.1599	Train MAE Loss Visual 1.4107	Train Contrastive Loss 0.0112	Train Contrastive Acc 0.917	
+Epoch: [10][821/1531]	Per Sample Total Time 0.00718	Per Sample Data Time 0.00010	Per Sample DNN Time 0.00707	Train Total Loss 3.6266	Train MAE Loss Audio 2.1936	Train MAE Loss Visual 1.4141	Train Contrastive Loss 0.0189	Train Contrastive Acc 0.850	
+Epoch: [10][921/1531]	Per Sample Total Time 0.00716	Per Sample Data Time 0.00009	Per Sample DNN Time 0.00707	Train Total Loss 3.6702	Train MAE Loss Audio 2.2523	Train MAE Loss Visual 1.4088	Train Contrastive Loss 0.0091	Train Contrastive Acc 0.933	
+Epoch: [10][1021/1531]	Per Sample Total Time 0.00716	Per Sample Data Time 0.00009	Per Sample DNN Time 0.00708	Train Total Loss 3.5689	Train MAE Loss Audio 2.2644	Train MAE Loss Visual 1.2973	Train Contrastive Loss 0.0072	Train Contrastive Acc 0.942	
+Epoch: [10][1121/1531]	Per Sample Total Time 0.00716	Per Sample Data Time 0.00008	Per Sample DNN Time 0.00708	Train Total Loss 3.7875	Train MAE Loss Audio 2.2778	Train MAE Loss Visual 1.4945	Train Contrastive Loss 0.0153	Train Contrastive Acc 0.883	
+Epoch: [10][1221/1531]	Per Sample Total Time 0.00716	Per Sample Data Time 0.00007	Per Sample DNN Time 0.00709	Train Total Loss 3.5362	Train MAE Loss Audio 2.2083	Train MAE Loss Visual 1.3110	Train Contrastive Loss 0.0170	Train Contrastive Acc 0.883	
+Epoch: [10][1321/1531]	Per Sample Total Time 0.00715	Per Sample Data Time 0.00007	Per Sample DNN Time 0.00709	Train Total Loss 3.8527	Train MAE Loss Audio 2.3088	Train MAE Loss Visual 1.5366	Train Contrastive Loss 0.0073	Train Contrastive Acc 0.958	
+Epoch: [10][1421/1531]	Per Sample Total Time 0.00716	Per Sample Data Time 0.00006	Per Sample DNN Time 0.00709	Train Total Loss 3.6115	Train MAE Loss Audio 2.1977	Train MAE Loss Visual 1.4063	Train Contrastive Loss 0.0075	Train Contrastive Acc 0.942	
+Epoch: [10][1521/1531]	Per Sample Total Time 0.00715	Per Sample Data Time 0.00006	Per Sample DNN Time 0.00709	Train Total Loss 3.6811	Train MAE Loss Audio 2.2754	Train MAE Loss Visual 1.3947	Train Contrastive Loss 0.0110	Train Contrastive Acc 0.917	
+frame 2IUileqD6qI_000010 6 does not exist
+frame 2IUileqD6qI_000010 5 does not exist
+frame 2IUileqD6qI_000010 4 does not exist
+frame 2IUileqD6qI_000010 3 does not exist
+frame 2IUileqD6qI_000010 2 does not exist
+frame 2IUileqD6qI_000010 1 does not exist
+there is an error in loading image
+frame Eb03vQmXqKg_000030 6 does not exist
+frame Eb03vQmXqKg_000030 5 does not exist
+frame Eb03vQmXqKg_000030 4 does not exist
+frame Eb03vQmXqKg_000030 3 does not exist
+frame Eb03vQmXqKg_000030 2 does not exist
+frame Eb03vQmXqKg_000030 1 does not exist
+there is an error in loading image
+frame KYwLCuV7VCU_000020 7 does not exist
+frame KYwLCuV7VCU_000020 6 does not exist
+frame -N0qJZkizOw_000030 4 does not exist
+frame -N0qJZkizOw_000030 3 does not exist
+frame -N0qJZkizOw_000030 2 does not exist
+frame -N0qJZkizOw_000030 1 does not exist
+there is an error in loading image
+frame BNegPkBeFgA_000140 5 does not exist
+frame BNegPkBeFgA_000140 4 does not exist
+frame BNegPkBeFgA_000140 3 does not exist
+frame BNegPkBeFgA_000140 2 does not exist
+frame BNegPkBeFgA_000140 1 does not exist
+there is an error in loading image
+frame H6LWbizxQeQ_000012 8 does not exist
+frame H6LWbizxQeQ_000012 7 does not exist
+frame H6LWbizxQeQ_000012 6 does not exist
+frame H6LWbizxQeQ_000012 5 does not exist
+frame H6LWbizxQeQ_000012 4 does not exist
+frame H6LWbizxQeQ_000012 3 does not exist
+frame H6LWbizxQeQ_000012 2 does not exist
+frame H6LWbizxQeQ_000012 1 does not exist
+there is an error in loading image
+frame 8II9NNK4yUM_000010 9 does not exist
+frame 8II9NNK4yUM_000010 8 does not exist
+frame 8II9NNK4yUM_000010 7 does not exist
+frame 8II9NNK4yUM_000010 6 does not exist
+frame 8II9NNK4yUM_000010 5 does not exist
+frame 8II9NNK4yUM_000010 4 does not exist
+frame 8II9NNK4yUM_000010 3 does not exist
+frame 8II9NNK4yUM_000010 2 does not exist
+frame 8II9NNK4yUM_000010 1 does not exist
+there is an error in loading image
+frame ljjUj5fQZgs_000450 5 does not exist
+frame ljjUj5fQZgs_000450 4 does not exist
+frame ljjUj5fQZgs_000450 3 does not exist
+frame ljjUj5fQZgs_000450 2 does not exist
+frame ljjUj5fQZgs_000450 1 does not exist
+frame PsXRzD-yBe4_000066 3 does not exist
+frame PsXRzD-yBe4_000066 2 does not exist
+frame PsXRzD-yBe4_000066 1 does not exist
+there is an error in loading image
+frame 5yyjz_8nz-0_000055 8 does not exist
+frame 5yyjz_8nz-0_000055 7 does not exist
+frame 5yyjz_8nz-0_000055 6 does not exist
+frame 5yyjz_8nz-0_000055 5 does not exist
+frame 5yyjz_8nz-0_000055 4 does not exist
+frame 5yyjz_8nz-0_000055 3 does not exist
+frame 5yyjz_8nz-0_000055 2 does not exist
+frame 5yyjz_8nz-0_000055 1 does not exist
+there is an error in loading image
+frame BsLgruLdjDI_000208 5 does not exist
+frame BsLgruLdjDI_000208 4 does not exist
+frame BsLgruLdjDI_000208 3 does not exist
+frame BsLgruLdjDI_000208 2 does not exist
+frame BsLgruLdjDI_000208 1 does not exist
+there is an error in loading image
+frame UOlAgFNy_HQ_000030 7 does not exist
+frame UOlAgFNy_HQ_000030 6 does not exist
+frame UOlAgFNy_HQ_000030 5 does not exist
+frame UOlAgFNy_HQ_000030 4 does not exist
+frame UOlAgFNy_HQ_000030 3 does not exist
+frame UOlAgFNy_HQ_000030 2 does not exist
+frame eWg3Z2LsQrk_000096 7 does not exist
+frame eWg3Z2LsQrk_000096 6 does not exist
+frame eWg3Z2LsQrk_000096 5 does not exist
+frame 5nCVaazCHaA_000090 1 does not exist
+there is an error in loading image
+frame bk9xgrw3dp8_000030 8 does not exist
+frame bk9xgrw3dp8_000030 7 does not exist
+frame bk9xgrw3dp8_000030 6 does not exist
+frame bk9xgrw3dp8_000030 5 does not exist
+frame bk9xgrw3dp8_000030 4 does not exist
+frame bk9xgrw3dp8_000030 3 does not exist
+frame bk9xgrw3dp8_000030 2 does not exist
+frame bk9xgrw3dp8_000030 1 does not exist
+there is an error in loading image
+frame NVQb73vzEpY_000003 5 does not exist
+frame NVQb73vzEpY_000003 4 does not exist
+frame NVQb73vzEpY_000003 3 does not exist
+frame NVQb73vzEpY_000003 2 does not exist
+frame NVQb73vzEpY_000003 1 does not exist
+there is an error in loading image
+start validation
+frame -w8maIWtnUk_000030 5 does not exist
+frame -w8maIWtnUk_000030 4 does not exist
+frame -w8maIWtnUk_000030 3 does not exist
+frame -w8maIWtnUk_000030 2 does not exist
+frame -w8maIWtnUk_000030 1 does not exist
+there is an error in loading image
+Eval Audio MAE Loss: 2.151619
+Eval Visual MAE Loss: 1.340687
+Eval Total MAE Loss: 3.492306
+Eval Contrastive Loss: 0.032543
+Eval Total Loss: 3.524849
+Eval Contrastive Accuracy: 0.753646
+Train Audio MAE Loss: 2.230269
+Train Visual MAE Loss: 1.365683
+Train Contrastive Loss: 0.011826
+Train Total Loss: 3.607779
+validation finished
+Epoch-10 lr: 2.5e-05
+epoch 10 training time: 1381.828

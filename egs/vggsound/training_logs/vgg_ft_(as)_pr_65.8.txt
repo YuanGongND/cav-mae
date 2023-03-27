@@ -1,0 +1,2127 @@
++ . /data/sls/scratch/share-201907/slstoolchainrc
+++ export TCROOT=/data/sls/scratch/share-201907
+++ TCROOT=/data/sls/scratch/share-201907
+++ export PATH=/data/sls/scratch/share-201907/bin:/data/sls/scratch/share-201907/opt/cuda/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games
+++ PATH=/data/sls/scratch/share-201907/bin:/data/sls/scratch/share-201907/opt/cuda/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games
+++ export LD_LIBRARY_PATH=/data/sls/scratch/share-201907/lib:/data/sls/scratch/share-201907/lib64:/data/sls/scratch/share-201907/opt/cuda/lib64:
+++ LD_LIBRARY_PATH=/data/sls/scratch/share-201907/lib:/data/sls/scratch/share-201907/lib64:/data/sls/scratch/share-201907/opt/cuda/lib64:
+++ export OMP_NUM_THREADS=1
+++ OMP_NUM_THREADS=1
++ source /data/sls/scratch/yuangong/avbyol/venv-a5/bin/activate
+++ deactivate nondestructive
+++ '[' -n '' ']'
+++ '[' -n '' ']'
+++ '[' -n /bin/bash -o -n '' ']'
+++ hash -r
+++ '[' -n '' ']'
+++ unset VIRTUAL_ENV
+++ '[' '!' nondestructive = nondestructive ']'
+++ VIRTUAL_ENV=/data/sls/scratch/yuangong/avbyol/venv-a5
+++ export VIRTUAL_ENV
+++ _OLD_VIRTUAL_PATH=/data/sls/scratch/share-201907/bin:/data/sls/scratch/share-201907/opt/cuda/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games
+++ PATH=/data/sls/scratch/yuangong/avbyol/venv-a5/bin:/data/sls/scratch/share-201907/bin:/data/sls/scratch/share-201907/opt/cuda/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games
+++ export PATH
+++ '[' -n '' ']'
+++ '[' -z '' ']'
+++ _OLD_VIRTUAL_PS1=
+++ '[' 'x(venv-a5) ' '!=' x ']'
+++ PS1='(venv-a5) '
+++ export PS1
+++ '[' -n /bin/bash -o -n '' ']'
+++ hash -r
++ export TORCH_HOME=../../pretrained_models
++ TORCH_HOME=../../pretrained_models
++ model=cav-mae-ft
++ ftmode=multimodal
+++ pwd
++ cur_dir=/data/sls/scratch/yuangong/cav-mae/egs/vggsound
++ wget -nc 'https://www.dropbox.com/s/l5t5geufdy3qvnv/audio_model.21.pth?dl=1' -O cav-mae-scale++.pth
+File ‘cav-mae-scale++.pth’ already there; not retrieving.
++ pretrain_path=/data/sls/scratch/yuangong/cav-mae/egs/vggsound/cav-mae-scale++.pth
++ freeze_base=False
++ head_lr=10
++ bal=bal
++ lr=1e-4
++ epoch=10
++ lrscheduler_start=2
++ lrscheduler_decay=0.5
++ lrscheduler_step=1
++ wa=True
++ wa_start=3
++ wa_end=10
++ lr_adapt=False
++ dataset_mean=-5.081
++ dataset_std=4.4849
++ target_length=1024
++ noise=True
++ freqm=48
++ timem=192
++ mixup=0.5
++ batch_size=48
++ label_smooth=0.1
++ dataset=vggsound
++ tr_data=/data/sls/scratch/yuangong/cav-mae/pretrained_model/datafiles/vggsound/vgg_train_cleaned.json
++ te_data=/data/sls/scratch/yuangong/cav-mae/pretrained_model/datafiles/vggsound/vgg_test_cleaned.json
++ exp_dir=./exp/testmae02-vggsound-cav-mae-ft-1e-4-2-0.5-1-bs48-ldaFalse-multimodal-fzFalse-h10-a5
++ mkdir -p ./exp/testmae02-vggsound-cav-mae-ft-1e-4-2-0.5-1-bs48-ldaFalse-multimodal-fzFalse-h10-a5
++ CUDA_CACHE_DISABLE=1
++ python -W ignore ../../src/run_cavmae_ft.py --model cav-mae-ft --dataset vggsound --data-train /data/sls/scratch/yuangong/cav-mae/pretrained_model/datafiles/vggsound/vgg_train_cleaned.json --data-val /data/sls/scratch/yuangong/cav-mae/pretrained_model/datafiles/vggsound/vgg_test_cleaned.json --exp-dir ./exp/testmae02-vggsound-cav-mae-ft-1e-4-2-0.5-1-bs48-ldaFalse-multimodal-fzFalse-h10-a5 --label-csv /data/sls/scratch/yuangong/cav-mae/pretrained_model/datafiles/vggsound/class_labels_indices_vgg.csv --n_class 309 --lr 1e-4 --n-epochs 10 --batch-size 48 --save_model True --freqm 48 --timem 192 --mixup 0.5 --bal bal --label_smooth 0.1 --lrscheduler_start 2 --lrscheduler_decay 0.5 --lrscheduler_step 1 --dataset_mean -5.081 --dataset_std 4.4849 --target_length 1024 --noise True --loss CE --metrics acc --warmup True --wa True --wa_start 3 --wa_end 10 --lr_adapt False --pretrain_path /data/sls/scratch/yuangong/cav-mae/egs/vggsound/cav-mae-scale++.pth --ftmode multimodal --freeze_base False --head_lr 10 --num-workers 32
+I am process 96936, running on sls-a5-3.csail.mit.edu: starting (Tue Mar 14 20:51:51 2023)
+balanced sampler is being used
+Dataset has 183727 samples
+Using Label Smoothing: 0.1
+now using following mask: 48 freq, 192 time
+now using mix-up with rate 0.500000
+now process vggsound
+use dataset mean -5.081 and std 4.485 to normalize the input.
+now use noise augmentation
+number of classes is 309
+now in train mode.
+now use frame -1 from total 10 frames
+now using 224 * 224 image input
+Dataset has 15446 samples
+Using Label Smoothing: 0.0
+now using following mask: 0 freq, 0 time
+now using mix-up with rate 0.000000
+now process vggsound
+use dataset mean -5.081 and std 4.485 to normalize the input.
+not use noise augmentation
+number of classes is 309
+now in eval mode.
+now use frame -1 from total 10 frames
+now using 224 * 224 image input
+finetune a cav-mae model with 11 modality-specific layers and 1 modality-sharing layers
+Use norm_pix_loss:  False
+Number of Audio Patches: 512, Visual Patches: 196
+Audio Positional Embedding Shape: torch.Size([1, 512, 768])
+Visual Positional Embedding Shape: torch.Size([1, 196, 768])
+now load cav-mae pretrained weights from  /data/sls/scratch/yuangong/cav-mae/egs/vggsound/cav-mae-scale++.pth
+['module.mlp_head.0.weight', 'module.mlp_head.0.bias', 'module.mlp_head.1.weight', 'module.mlp_head.1.bias'] ['module.mask_token', 'module.decoder_modality_a', 'module.decoder_modality_v', 'module.decoder_pos_embed_a', 'module.decoder_pos_embed_v', 'module.decoder_embed.weight', 'module.decoder_embed.bias', 'module.decoder_blocks.0.norm1.weight', 'module.decoder_blocks.0.norm1.bias', 'module.decoder_blocks.0.norm1_a.weight', 'module.decoder_blocks.0.norm1_a.bias', 'module.decoder_blocks.0.norm1_v.weight', 'module.decoder_blocks.0.norm1_v.bias', 'module.decoder_blocks.0.attn.qkv.weight', 'module.decoder_blocks.0.attn.qkv.bias', 'module.decoder_blocks.0.attn.proj.weight', 'module.decoder_blocks.0.attn.proj.bias', 'module.decoder_blocks.0.norm2.weight', 'module.decoder_blocks.0.norm2.bias', 'module.decoder_blocks.0.norm2_a.weight', 'module.decoder_blocks.0.norm2_a.bias', 'module.decoder_blocks.0.norm2_v.weight', 'module.decoder_blocks.0.norm2_v.bias', 'module.decoder_blocks.0.mlp.fc1.weight', 'module.decoder_blocks.0.mlp.fc1.bias', 'module.decoder_blocks.0.mlp.fc2.weight', 'module.decoder_blocks.0.mlp.fc2.bias', 'module.decoder_blocks.1.norm1.weight', 'module.decoder_blocks.1.norm1.bias', 'module.decoder_blocks.1.norm1_a.weight', 'module.decoder_blocks.1.norm1_a.bias', 'module.decoder_blocks.1.norm1_v.weight', 'module.decoder_blocks.1.norm1_v.bias', 'module.decoder_blocks.1.attn.qkv.weight', 'module.decoder_blocks.1.attn.qkv.bias', 'module.decoder_blocks.1.attn.proj.weight', 'module.decoder_blocks.1.attn.proj.bias', 'module.decoder_blocks.1.norm2.weight', 'module.decoder_blocks.1.norm2.bias', 'module.decoder_blocks.1.norm2_a.weight', 'module.decoder_blocks.1.norm2_a.bias', 'module.decoder_blocks.1.norm2_v.weight', 'module.decoder_blocks.1.norm2_v.bias', 'module.decoder_blocks.1.mlp.fc1.weight', 'module.decoder_blocks.1.mlp.fc1.bias', 'module.decoder_blocks.1.mlp.fc2.weight', 'module.decoder_blocks.1.mlp.fc2.bias', 'module.decoder_blocks.2.norm1.weight', 'module.decoder_blocks.2.norm1.bias', 'module.decoder_blocks.2.norm1_a.weight', 'module.decoder_blocks.2.norm1_a.bias', 'module.decoder_blocks.2.norm1_v.weight', 'module.decoder_blocks.2.norm1_v.bias', 'module.decoder_blocks.2.attn.qkv.weight', 'module.decoder_blocks.2.attn.qkv.bias', 'module.decoder_blocks.2.attn.proj.weight', 'module.decoder_blocks.2.attn.proj.bias', 'module.decoder_blocks.2.norm2.weight', 'module.decoder_blocks.2.norm2.bias', 'module.decoder_blocks.2.norm2_a.weight', 'module.decoder_blocks.2.norm2_a.bias', 'module.decoder_blocks.2.norm2_v.weight', 'module.decoder_blocks.2.norm2_v.bias', 'module.decoder_blocks.2.mlp.fc1.weight', 'module.decoder_blocks.2.mlp.fc1.bias', 'module.decoder_blocks.2.mlp.fc2.weight', 'module.decoder_blocks.2.mlp.fc2.bias', 'module.decoder_blocks.3.norm1.weight', 'module.decoder_blocks.3.norm1.bias', 'module.decoder_blocks.3.norm1_a.weight', 'module.decoder_blocks.3.norm1_a.bias', 'module.decoder_blocks.3.norm1_v.weight', 'module.decoder_blocks.3.norm1_v.bias', 'module.decoder_blocks.3.attn.qkv.weight', 'module.decoder_blocks.3.attn.qkv.bias', 'module.decoder_blocks.3.attn.proj.weight', 'module.decoder_blocks.3.attn.proj.bias', 'module.decoder_blocks.3.norm2.weight', 'module.decoder_blocks.3.norm2.bias', 'module.decoder_blocks.3.norm2_a.weight', 'module.decoder_blocks.3.norm2_a.bias', 'module.decoder_blocks.3.norm2_v.weight', 'module.decoder_blocks.3.norm2_v.bias', 'module.decoder_blocks.3.mlp.fc1.weight', 'module.decoder_blocks.3.mlp.fc1.bias', 'module.decoder_blocks.3.mlp.fc2.weight', 'module.decoder_blocks.3.mlp.fc2.bias', 'module.decoder_blocks.4.norm1.weight', 'module.decoder_blocks.4.norm1.bias', 'module.decoder_blocks.4.norm1_a.weight', 'module.decoder_blocks.4.norm1_a.bias', 'module.decoder_blocks.4.norm1_v.weight', 'module.decoder_blocks.4.norm1_v.bias', 'module.decoder_blocks.4.attn.qkv.weight', 'module.decoder_blocks.4.attn.qkv.bias', 'module.decoder_blocks.4.attn.proj.weight', 'module.decoder_blocks.4.attn.proj.bias', 'module.decoder_blocks.4.norm2.weight', 'module.decoder_blocks.4.norm2.bias', 'module.decoder_blocks.4.norm2_a.weight', 'module.decoder_blocks.4.norm2_a.bias', 'module.decoder_blocks.4.norm2_v.weight', 'module.decoder_blocks.4.norm2_v.bias', 'module.decoder_blocks.4.mlp.fc1.weight', 'module.decoder_blocks.4.mlp.fc1.bias', 'module.decoder_blocks.4.mlp.fc2.weight', 'module.decoder_blocks.4.mlp.fc2.bias', 'module.decoder_blocks.5.norm1.weight', 'module.decoder_blocks.5.norm1.bias', 'module.decoder_blocks.5.norm1_a.weight', 'module.decoder_blocks.5.norm1_a.bias', 'module.decoder_blocks.5.norm1_v.weight', 'module.decoder_blocks.5.norm1_v.bias', 'module.decoder_blocks.5.attn.qkv.weight', 'module.decoder_blocks.5.attn.qkv.bias', 'module.decoder_blocks.5.attn.proj.weight', 'module.decoder_blocks.5.attn.proj.bias', 'module.decoder_blocks.5.norm2.weight', 'module.decoder_blocks.5.norm2.bias', 'module.decoder_blocks.5.norm2_a.weight', 'module.decoder_blocks.5.norm2_a.bias', 'module.decoder_blocks.5.norm2_v.weight', 'module.decoder_blocks.5.norm2_v.bias', 'module.decoder_blocks.5.mlp.fc1.weight', 'module.decoder_blocks.5.mlp.fc1.bias', 'module.decoder_blocks.5.mlp.fc2.weight', 'module.decoder_blocks.5.mlp.fc2.bias', 'module.decoder_blocks.6.norm1.weight', 'module.decoder_blocks.6.norm1.bias', 'module.decoder_blocks.6.norm1_a.weight', 'module.decoder_blocks.6.norm1_a.bias', 'module.decoder_blocks.6.norm1_v.weight', 'module.decoder_blocks.6.norm1_v.bias', 'module.decoder_blocks.6.attn.qkv.weight', 'module.decoder_blocks.6.attn.qkv.bias', 'module.decoder_blocks.6.attn.proj.weight', 'module.decoder_blocks.6.attn.proj.bias', 'module.decoder_blocks.6.norm2.weight', 'module.decoder_blocks.6.norm2.bias', 'module.decoder_blocks.6.norm2_a.weight', 'module.decoder_blocks.6.norm2_a.bias', 'module.decoder_blocks.6.norm2_v.weight', 'module.decoder_blocks.6.norm2_v.bias', 'module.decoder_blocks.6.mlp.fc1.weight', 'module.decoder_blocks.6.mlp.fc1.bias', 'module.decoder_blocks.6.mlp.fc2.weight', 'module.decoder_blocks.6.mlp.fc2.bias', 'module.decoder_blocks.7.norm1.weight', 'module.decoder_blocks.7.norm1.bias', 'module.decoder_blocks.7.norm1_a.weight', 'module.decoder_blocks.7.norm1_a.bias', 'module.decoder_blocks.7.norm1_v.weight', 'module.decoder_blocks.7.norm1_v.bias', 'module.decoder_blocks.7.attn.qkv.weight', 'module.decoder_blocks.7.attn.qkv.bias', 'module.decoder_blocks.7.attn.proj.weight', 'module.decoder_blocks.7.attn.proj.bias', 'module.decoder_blocks.7.norm2.weight', 'module.decoder_blocks.7.norm2.bias', 'module.decoder_blocks.7.norm2_a.weight', 'module.decoder_blocks.7.norm2_a.bias', 'module.decoder_blocks.7.norm2_v.weight', 'module.decoder_blocks.7.norm2_v.bias', 'module.decoder_blocks.7.mlp.fc1.weight', 'module.decoder_blocks.7.mlp.fc1.bias', 'module.decoder_blocks.7.mlp.fc2.weight', 'module.decoder_blocks.7.mlp.fc2.bias', 'module.decoder_norm.weight', 'module.decoder_norm.bias', 'module.decoder_pred_a.weight', 'module.decoder_pred_a.bias', 'module.decoder_pred_v.weight', 'module.decoder_pred_v.bias']
+
+Creating experiment directory: ./exp/testmae02-vggsound-cav-mae-ft-1e-4-2-0.5-1-bs48-ldaFalse-multimodal-fzFalse-h10-a5
+Now starting training for 10 epochs.
+running on cuda
+Total parameter number is : 164.739 million
+Total trainable parameter number is : 164.739 million
+The newly initialized mlp layer uses 10.000 x larger lr
+base lr, mlp lr :  0.0001 0.001
+Total newly initialized MLP parameter number is : 0.239 million
+Total pretrained backbone parameter number is : 164.500 million
+The learning rate scheduler starts at 2 epoch with decay rate of 0.500 every 1 epoches
+now training with vggsound, main metrics: acc, loss function: CrossEntropyLoss(), learning rate scheduler: <torch.optim.lr_scheduler.MultiStepLR object at 0x7f0cef004290>
+current #steps=0, #epochs=1
+start training...
+---------------
+2023-03-14 20:52:18.252994
+current #epochs=1, #steps=0
+Epoch: [1][100/3827]	Per Sample Total Time 0.01784	Per Sample Data Time 0.00264	Per Sample DNN Time 0.01520	Train Loss 4.4363	
+Epoch: [1][200/3827]	Per Sample Total Time 0.01396	Per Sample Data Time 0.00133	Per Sample DNN Time 0.01263	Train Loss 3.6062	
+Epoch: [1][300/3827]	Per Sample Total Time 0.01262	Per Sample Data Time 0.00089	Per Sample DNN Time 0.01173	Train Loss 3.5683	
+Epoch: [1][400/3827]	Per Sample Total Time 0.01198	Per Sample Data Time 0.00067	Per Sample DNN Time 0.01131	Train Loss 3.1569	
+Epoch: [1][500/3827]	Per Sample Total Time 0.01163	Per Sample Data Time 0.00054	Per Sample DNN Time 0.01109	Train Loss 3.1207	
+Epoch: [1][600/3827]	Per Sample Total Time 0.01141	Per Sample Data Time 0.00045	Per Sample DNN Time 0.01096	Train Loss 3.3601	
+Epoch: [1][700/3827]	Per Sample Total Time 0.01119	Per Sample Data Time 0.00039	Per Sample DNN Time 0.01080	Train Loss 3.0311	
+Epoch: [1][800/3827]	Per Sample Total Time 0.01106	Per Sample Data Time 0.00034	Per Sample DNN Time 0.01072	Train Loss 2.6750	
+Epoch: [1][900/3827]	Per Sample Total Time 0.01094	Per Sample Data Time 0.00030	Per Sample DNN Time 0.01063	Train Loss 2.9174	
+Epoch: [1][1000/3827]	Per Sample Total Time 0.01084	Per Sample Data Time 0.00027	Per Sample DNN Time 0.01057	Train Loss 2.8510	
+Epoch: [1][1100/3827]	Per Sample Total Time 0.01077	Per Sample Data Time 0.00025	Per Sample DNN Time 0.01052	Train Loss 2.8138	
+Epoch: [1][1200/3827]	Per Sample Total Time 0.01073	Per Sample Data Time 0.00023	Per Sample DNN Time 0.01050	Train Loss 2.7063	
+Epoch: [1][1300/3827]	Per Sample Total Time 0.01065	Per Sample Data Time 0.00021	Per Sample DNN Time 0.01043	Train Loss 2.6599	
+Epoch: [1][1400/3827]	Per Sample Total Time 0.01062	Per Sample Data Time 0.00020	Per Sample DNN Time 0.01042	Train Loss 2.6993	
+Epoch: [1][1500/3827]	Per Sample Total Time 0.01058	Per Sample Data Time 0.00019	Per Sample DNN Time 0.01040	Train Loss 2.5008	
+Epoch: [1][1600/3827]	Per Sample Total Time 0.01055	Per Sample Data Time 0.00017	Per Sample DNN Time 0.01038	Train Loss 2.9569	
+Epoch: [1][1700/3827]	Per Sample Total Time 0.01051	Per Sample Data Time 0.00016	Per Sample DNN Time 0.01035	Train Loss 2.7409	
+Epoch: [1][1800/3827]	Per Sample Total Time 0.01049	Per Sample Data Time 0.00016	Per Sample DNN Time 0.01033	Train Loss 2.7241	
+Epoch: [1][1900/3827]	Per Sample Total Time 0.01045	Per Sample Data Time 0.00015	Per Sample DNN Time 0.01030	Train Loss 2.8315	
+Epoch: [1][2000/3827]	Per Sample Total Time 0.01043	Per Sample Data Time 0.00014	Per Sample DNN Time 0.01029	Train Loss 2.4670	
+Epoch: [1][2100/3827]	Per Sample Total Time 0.01043	Per Sample Data Time 0.00013	Per Sample DNN Time 0.01029	Train Loss 2.7471	
+Epoch: [1][2200/3827]	Per Sample Total Time 0.01041	Per Sample Data Time 0.00013	Per Sample DNN Time 0.01028	Train Loss 2.5676	
+Epoch: [1][2300/3827]	Per Sample Total Time 0.01039	Per Sample Data Time 0.00012	Per Sample DNN Time 0.01027	Train Loss 2.7290	
+Epoch: [1][2400/3827]	Per Sample Total Time 0.01038	Per Sample Data Time 0.00012	Per Sample DNN Time 0.01026	Train Loss 2.5092	
+Epoch: [1][2500/3827]	Per Sample Total Time 0.01038	Per Sample Data Time 0.00011	Per Sample DNN Time 0.01026	Train Loss 2.5024	
+Epoch: [1][2600/3827]	Per Sample Total Time 0.01036	Per Sample Data Time 0.00011	Per Sample DNN Time 0.01025	Train Loss 2.4036	
+Epoch: [1][2700/3827]	Per Sample Total Time 0.01035	Per Sample Data Time 0.00011	Per Sample DNN Time 0.01024	Train Loss 2.6625	
+Epoch: [1][2800/3827]	Per Sample Total Time 0.01034	Per Sample Data Time 0.00010	Per Sample DNN Time 0.01024	Train Loss 2.6808	
+Epoch: [1][2900/3827]	Per Sample Total Time 0.01034	Per Sample Data Time 0.00010	Per Sample DNN Time 0.01024	Train Loss 2.5404	
+Epoch: [1][3000/3827]	Per Sample Total Time 0.01034	Per Sample Data Time 0.00010	Per Sample DNN Time 0.01024	Train Loss 2.6545	
+Epoch: [1][3100/3827]	Per Sample Total Time 0.01034	Per Sample Data Time 0.00009	Per Sample DNN Time 0.01024	Train Loss 2.8780	
+Epoch: [1][3200/3827]	Per Sample Total Time 0.01034	Per Sample Data Time 0.00009	Per Sample DNN Time 0.01025	Train Loss 2.8829	
+Epoch: [1][3300/3827]	Per Sample Total Time 0.01034	Per Sample Data Time 0.00009	Per Sample DNN Time 0.01025	Train Loss 2.9429	
+Epoch: [1][3400/3827]	Per Sample Total Time 0.01033	Per Sample Data Time 0.00009	Per Sample DNN Time 0.01025	Train Loss 2.2803	
+Epoch: [1][3500/3827]	Per Sample Total Time 0.01033	Per Sample Data Time 0.00008	Per Sample DNN Time 0.01025	Train Loss 2.4511	
+Epoch: [1][3600/3827]	Per Sample Total Time 0.01033	Per Sample Data Time 0.00008	Per Sample DNN Time 0.01025	Train Loss 2.6666	
+Epoch: [1][3700/3827]	Per Sample Total Time 0.01032	Per Sample Data Time 0.00008	Per Sample DNN Time 0.01024	Train Loss 2.5553	
+Epoch: [1][3800/3827]	Per Sample Total Time 0.01032	Per Sample Data Time 0.00008	Per Sample DNN Time 0.01024	Train Loss 2.7041	
+frame PsXRzD-yBe4_000066 7 does not exist
+frame PsXRzD-yBe4_000066 6 does not exist
+frame PsXRzD-yBe4_000066 5 does not exist
+frame PsXRzD-yBe4_000066 4 does not exist
+frame PsXRzD-yBe4_000066 3 does not exist
+frame PsXRzD-yBe4_000066 2 does not exist
+frame PsXRzD-yBe4_000066 1 does not exist
+there is an error in loading image
+frame 5nCVaazCHaA_000090 1 does not exist
+there is an error in loading image
+frame leBIxqLUdjQ_000007 7 does not exist
+frame leBIxqLUdjQ_000007 6 does not exist
+frame 5yyjz_8nz-0_000055 7 does not exist
+frame 5yyjz_8nz-0_000055 6 does not exist
+frame 5yyjz_8nz-0_000055 5 does not exist
+frame 5yyjz_8nz-0_000055 4 does not exist
+frame 5yyjz_8nz-0_000055 3 does not exist
+frame 5yyjz_8nz-0_000055 2 does not exist
+frame 5yyjz_8nz-0_000055 1 does not exist
+there is an error in loading image
+frame eWg3Z2LsQrk_000096 8 does not exist
+frame eWg3Z2LsQrk_000096 7 does not exist
+frame eWg3Z2LsQrk_000096 6 does not exist
+frame eWg3Z2LsQrk_000096 5 does not exist
+frame 8II9NNK4yUM_000010 8 does not exist
+frame 8II9NNK4yUM_000010 7 does not exist
+frame 8II9NNK4yUM_000010 6 does not exist
+frame 8II9NNK4yUM_000010 5 does not exist
+frame 8II9NNK4yUM_000010 4 does not exist
+frame 8II9NNK4yUM_000010 3 does not exist
+frame 8II9NNK4yUM_000010 2 does not exist
+frame 8II9NNK4yUM_000010 1 does not exist
+there is an error in loading image
+frame leBIxqLUdjQ_000007 8 does not exist
+frame leBIxqLUdjQ_000007 7 does not exist
+frame leBIxqLUdjQ_000007 6 does not exist
+frame eWg3Z2LsQrk_000096 8 does not exist
+frame eWg3Z2LsQrk_000096 7 does not exist
+frame eWg3Z2LsQrk_000096 6 does not exist
+frame eWg3Z2LsQrk_000096 5 does not exist
+frame 2IUileqD6qI_000010 8 does not exist
+frame 2IUileqD6qI_000010 7 does not exist
+frame 2IUileqD6qI_000010 6 does not exist
+frame 2IUileqD6qI_000010 5 does not exist
+frame 2IUileqD6qI_000010 4 does not exist
+frame 2IUileqD6qI_000010 3 does not exist
+frame 2IUileqD6qI_000010 2 does not exist
+frame 2IUileqD6qI_000010 1 does not exist
+there is an error in loading image
+frame ws9EsgYpj2A_000025 9 does not exist
+frame 5yyjz_8nz-0_000055 2 does not exist
+frame 5yyjz_8nz-0_000055 1 does not exist
+there is an error in loading image
+frame 5yyjz_8nz-0_000055 4 does not exist
+frame 5yyjz_8nz-0_000055 3 does not exist
+frame 5yyjz_8nz-0_000055 2 does not exist
+frame 5yyjz_8nz-0_000055 1 does not exist
+there is an error in loading image
+frame ZYZgumdhE3g_000007 7 does not exist
+there is an error in loading image
+frame bk9xgrw3dp8_000030 7 does not exist
+frame bk9xgrw3dp8_000030 6 does not exist
+frame bk9xgrw3dp8_000030 5 does not exist
+frame bk9xgrw3dp8_000030 4 does not exist
+frame bk9xgrw3dp8_000030 3 does not exist
+frame bk9xgrw3dp8_000030 2 does not exist
+frame bk9xgrw3dp8_000030 1 does not exist
+there is an error in loading image
+frame 5yyjz_8nz-0_000055 7 does not exist
+frame 5yyjz_8nz-0_000055 6 does not exist
+frame 5yyjz_8nz-0_000055 5 does not exist
+frame 5yyjz_8nz-0_000055 4 does not exist
+frame 5yyjz_8nz-0_000055 3 does not exist
+frame 5yyjz_8nz-0_000055 2 does not exist
+frame 5yyjz_8nz-0_000055 1 does not exist
+there is an error in loading image
+frame BNegPkBeFgA_000140 9 does not exist
+frame BNegPkBeFgA_000140 8 does not exist
+frame BNegPkBeFgA_000140 7 does not exist
+frame BNegPkBeFgA_000140 6 does not exist
+frame BNegPkBeFgA_000140 5 does not exist
+frame BNegPkBeFgA_000140 4 does not exist
+frame BNegPkBeFgA_000140 3 does not exist
+frame BNegPkBeFgA_000140 2 does not exist
+frame BNegPkBeFgA_000140 1 does not exist
+there is an error in loading image
+frame BsLgruLdjDI_000208 5 does not exist
+frame BsLgruLdjDI_000208 4 does not exist
+frame BsLgruLdjDI_000208 3 does not exist
+frame BsLgruLdjDI_000208 2 does not exist
+frame BsLgruLdjDI_000208 1 does not exist
+there is an error in loading image
+frame eWg3Z2LsQrk_000096 7 does not exist
+frame eWg3Z2LsQrk_000096 6 does not exist
+frame eWg3Z2LsQrk_000096 5 does not exist
+frame BsLgruLdjDI_000208 4 does not exist
+frame BsLgruLdjDI_000208 3 does not exist
+frame BsLgruLdjDI_000208 2 does not exist
+frame BsLgruLdjDI_000208 1 does not exist
+there is an error in loading image
+there is an error in loading image
+frame kb2lC6P0bWo_000003 9 does not exist
+frame cKc0zgaLXCI_000104 8 does not exist
+frame NVQb73vzEpY_000003 3 does not exist
+frame NVQb73vzEpY_000003 2 does not exist
+frame NVQb73vzEpY_000003 1 does not exist
+there is an error in loading image
+frame 5yyjz_8nz-0_000055 4 does not exist
+frame 5yyjz_8nz-0_000055 3 does not exist
+frame 5yyjz_8nz-0_000055 2 does not exist
+frame 5yyjz_8nz-0_000055 1 does not exist
+there is an error in loading image
+frame 7BJPgsMXYbk_000010 9 does not exist
+frame bk9xgrw3dp8_000030 4 does not exist
+frame bk9xgrw3dp8_000030 3 does not exist
+frame bk9xgrw3dp8_000030 2 does not exist
+frame bk9xgrw3dp8_000030 1 does not exist
+there is an error in loading image
+there is an error in loading image
+frame bk9xgrw3dp8_000030 6 does not exist
+frame bk9xgrw3dp8_000030 5 does not exist
+frame bk9xgrw3dp8_000030 4 does not exist
+frame bk9xgrw3dp8_000030 3 does not exist
+frame bk9xgrw3dp8_000030 2 does not exist
+frame bk9xgrw3dp8_000030 1 does not exist
+there is an error in loading image
+frame eWg3Z2LsQrk_000096 8 does not exist
+frame eWg3Z2LsQrk_000096 7 does not exist
+frame eWg3Z2LsQrk_000096 6 does not exist
+frame eWg3Z2LsQrk_000096 5 does not exist
+frame BNegPkBeFgA_000140 7 does not exist
+frame BNegPkBeFgA_000140 6 does not exist
+frame BNegPkBeFgA_000140 5 does not exist
+frame BNegPkBeFgA_000140 4 does not exist
+frame BNegPkBeFgA_000140 3 does not exist
+frame BNegPkBeFgA_000140 2 does not exist
+frame BNegPkBeFgA_000140 1 does not exist
+there is an error in loading image
+frame Eb03vQmXqKg_000030 5 does not exist
+frame Eb03vQmXqKg_000030 4 does not exist
+frame Eb03vQmXqKg_000030 3 does not exist
+frame Eb03vQmXqKg_000030 2 does not exist
+frame Eb03vQmXqKg_000030 1 does not exist
+there is an error in loading image
+frame BsLgruLdjDI_000208 5 does not exist
+frame BsLgruLdjDI_000208 4 does not exist
+frame BsLgruLdjDI_000208 3 does not exist
+frame BsLgruLdjDI_000208 2 does not exist
+frame BsLgruLdjDI_000208 1 does not exist
+there is an error in loading image
+frame 5yyjz_8nz-0_000055 8 does not exist
+frame 5yyjz_8nz-0_000055 7 does not exist
+frame 5yyjz_8nz-0_000055 6 does not exist
+frame 5yyjz_8nz-0_000055 5 does not exist
+frame 5yyjz_8nz-0_000055 4 does not exist
+frame 5yyjz_8nz-0_000055 3 does not exist
+frame 5yyjz_8nz-0_000055 2 does not exist
+frame 5yyjz_8nz-0_000055 1 does not exist
+there is an error in loading image
+frame h1YC8Cb5QWI_000323 7 does not exist
+frame cKc0zgaLXCI_000104 8 does not exist
+frame h1YC8Cb5QWI_000323 9 does not exist
+frame h1YC8Cb5QWI_000323 8 does not exist
+frame h1YC8Cb5QWI_000323 7 does not exist
+frame kb2lC6P0bWo_000003 9 does not exist
+start validation
+frame -w8maIWtnUk_000030 5 does not exist
+frame -w8maIWtnUk_000030 4 does not exist
+frame -w8maIWtnUk_000030 3 does not exist
+frame -w8maIWtnUk_000030 2 does not exist
+frame -w8maIWtnUk_000030 1 does not exist
+there is an error in loading image
+acc: 0.570742
+AUC: 0.979746
+d_prime: 2.897055
+train_loss: 2.863114
+valid_loss: 1.786183
+validation finished
+Epoch-1 lr: 0.0001
+epoch 1 training time: 2039.038
+---------------
+2023-03-14 21:26:17.292170
+current #epochs=2, #steps=3827
+Epoch: [2][73/3827]	Per Sample Total Time 0.01354	Per Sample Data Time 0.00286	Per Sample DNN Time 0.01068	Train Loss 2.3236	
+Epoch: [2][173/3827]	Per Sample Total Time 0.01166	Per Sample Data Time 0.00122	Per Sample DNN Time 0.01044	Train Loss 2.3299	
+Epoch: [2][273/3827]	Per Sample Total Time 0.01129	Per Sample Data Time 0.00078	Per Sample DNN Time 0.01051	Train Loss 2.6063	
+Epoch: [2][373/3827]	Per Sample Total Time 0.01107	Per Sample Data Time 0.00057	Per Sample DNN Time 0.01050	Train Loss 2.4664	
+Epoch: [2][473/3827]	Per Sample Total Time 0.01093	Per Sample Data Time 0.00045	Per Sample DNN Time 0.01048	Train Loss 2.5056	
+Epoch: [2][573/3827]	Per Sample Total Time 0.01088	Per Sample Data Time 0.00037	Per Sample DNN Time 0.01050	Train Loss 2.4673	
+Epoch: [2][673/3827]	Per Sample Total Time 0.01083	Per Sample Data Time 0.00032	Per Sample DNN Time 0.01051	Train Loss 2.7535	
+Epoch: [2][773/3827]	Per Sample Total Time 0.01076	Per Sample Data Time 0.00028	Per Sample DNN Time 0.01048	Train Loss 2.1480	
+Epoch: [2][873/3827]	Per Sample Total Time 0.01074	Per Sample Data Time 0.00025	Per Sample DNN Time 0.01049	Train Loss 2.4500	
+Epoch: [2][973/3827]	Per Sample Total Time 0.01069	Per Sample Data Time 0.00022	Per Sample DNN Time 0.01047	Train Loss 2.8460	
+Epoch: [2][1073/3827]	Per Sample Total Time 0.01065	Per Sample Data Time 0.00020	Per Sample DNN Time 0.01045	Train Loss 2.0052	
+Epoch: [2][1173/3827]	Per Sample Total Time 0.01064	Per Sample Data Time 0.00019	Per Sample DNN Time 0.01045	Train Loss 2.6592	
+Epoch: [2][1273/3827]	Per Sample Total Time 0.01060	Per Sample Data Time 0.00017	Per Sample DNN Time 0.01043	Train Loss 2.0849	
+Epoch: [2][1373/3827]	Per Sample Total Time 0.01060	Per Sample Data Time 0.00016	Per Sample DNN Time 0.01044	Train Loss 2.5959	
+Epoch: [2][1473/3827]	Per Sample Total Time 0.01057	Per Sample Data Time 0.00015	Per Sample DNN Time 0.01042	Train Loss 2.5380	
+Epoch: [2][1573/3827]	Per Sample Total Time 0.01057	Per Sample Data Time 0.00014	Per Sample DNN Time 0.01043	Train Loss 2.2135	
+Epoch: [2][1673/3827]	Per Sample Total Time 0.01057	Per Sample Data Time 0.00013	Per Sample DNN Time 0.01044	Train Loss 2.4992	
+Epoch: [2][1773/3827]	Per Sample Total Time 0.01057	Per Sample Data Time 0.00013	Per Sample DNN Time 0.01044	Train Loss 2.4690	
+Epoch: [2][1873/3827]	Per Sample Total Time 0.01057	Per Sample Data Time 0.00012	Per Sample DNN Time 0.01045	Train Loss 2.2912	
+Epoch: [2][1973/3827]	Per Sample Total Time 0.01056	Per Sample Data Time 0.00011	Per Sample DNN Time 0.01045	Train Loss 2.4819	
+Epoch: [2][2073/3827]	Per Sample Total Time 0.01055	Per Sample Data Time 0.00011	Per Sample DNN Time 0.01044	Train Loss 2.6748	
+Epoch: [2][2173/3827]	Per Sample Total Time 0.01054	Per Sample Data Time 0.00010	Per Sample DNN Time 0.01044	Train Loss 2.4390	
+Epoch: [2][2273/3827]	Per Sample Total Time 0.01053	Per Sample Data Time 0.00010	Per Sample DNN Time 0.01043	Train Loss 2.6712	
+Epoch: [2][2373/3827]	Per Sample Total Time 0.01053	Per Sample Data Time 0.00010	Per Sample DNN Time 0.01044	Train Loss 2.6661	
+Epoch: [2][2473/3827]	Per Sample Total Time 0.01052	Per Sample Data Time 0.00009	Per Sample DNN Time 0.01043	Train Loss 2.2243	
+Epoch: [2][2573/3827]	Per Sample Total Time 0.01051	Per Sample Data Time 0.00009	Per Sample DNN Time 0.01042	Train Loss 2.5441	
+Epoch: [2][2673/3827]	Per Sample Total Time 0.01050	Per Sample Data Time 0.00009	Per Sample DNN Time 0.01042	Train Loss 2.2300	
+Epoch: [2][2773/3827]	Per Sample Total Time 0.01050	Per Sample Data Time 0.00008	Per Sample DNN Time 0.01042	Train Loss 2.1889	
+Epoch: [2][2873/3827]	Per Sample Total Time 0.01050	Per Sample Data Time 0.00008	Per Sample DNN Time 0.01042	Train Loss 2.4730	
+Epoch: [2][2973/3827]	Per Sample Total Time 0.01049	Per Sample Data Time 0.00008	Per Sample DNN Time 0.01042	Train Loss 2.5131	
+Epoch: [2][3073/3827]	Per Sample Total Time 0.01049	Per Sample Data Time 0.00008	Per Sample DNN Time 0.01042	Train Loss 2.5720	
+Epoch: [2][3173/3827]	Per Sample Total Time 0.01048	Per Sample Data Time 0.00007	Per Sample DNN Time 0.01041	Train Loss 2.6107	
+Epoch: [2][3273/3827]	Per Sample Total Time 0.01048	Per Sample Data Time 0.00007	Per Sample DNN Time 0.01041	Train Loss 2.4388	
+Epoch: [2][3373/3827]	Per Sample Total Time 0.01048	Per Sample Data Time 0.00007	Per Sample DNN Time 0.01041	Train Loss 2.2033	
+Epoch: [2][3473/3827]	Per Sample Total Time 0.01048	Per Sample Data Time 0.00007	Per Sample DNN Time 0.01041	Train Loss 2.2663	
+Epoch: [2][3573/3827]	Per Sample Total Time 0.01048	Per Sample Data Time 0.00007	Per Sample DNN Time 0.01041	Train Loss 2.3386	
+Epoch: [2][3673/3827]	Per Sample Total Time 0.01047	Per Sample Data Time 0.00006	Per Sample DNN Time 0.01041	Train Loss 2.3889	
+Epoch: [2][3773/3827]	Per Sample Total Time 0.01047	Per Sample Data Time 0.00006	Per Sample DNN Time 0.01041	Train Loss 2.3552	
+frame NVQb73vzEpY_000003 5 does not exist
+frame NVQb73vzEpY_000003 4 does not exist
+frame NVQb73vzEpY_000003 3 does not exist
+frame NVQb73vzEpY_000003 2 does not exist
+frame NVQb73vzEpY_000003 1 does not exist
+there is an error in loading image
+frame NVQb73vzEpY_000003 1 does not exist
+there is an error in loading image
+frame -N0qJZkizOw_000030 2 does not exist
+frame -N0qJZkizOw_000030 1 does not exist
+there is an error in loading image
+there is an error in loading image
+frame -N0qJZkizOw_000030 3 does not exist
+frame -N0qJZkizOw_000030 2 does not exist
+frame -N0qJZkizOw_000030 1 does not exist
+there is an error in loading image
+frame kb2lC6P0bWo_000003 9 does not exist
+frame 2IUileqD6qI_000010 9 does not exist
+frame 2IUileqD6qI_000010 8 does not exist
+frame 2IUileqD6qI_000010 7 does not exist
+frame 2IUileqD6qI_000010 6 does not exist
+frame 2IUileqD6qI_000010 5 does not exist
+frame 2IUileqD6qI_000010 4 does not exist
+frame 2IUileqD6qI_000010 3 does not exist
+frame 2IUileqD6qI_000010 2 does not exist
+frame 2IUileqD6qI_000010 1 does not exist
+there is an error in loading image
+frame Eb03vQmXqKg_000030 9 does not exist
+frame Eb03vQmXqKg_000030 8 does not exist
+frame Eb03vQmXqKg_000030 7 does not exist
+frame Eb03vQmXqKg_000030 6 does not exist
+frame Eb03vQmXqKg_000030 5 does not exist
+frame Eb03vQmXqKg_000030 4 does not exist
+frame Eb03vQmXqKg_000030 3 does not exist
+frame Eb03vQmXqKg_000030 2 does not exist
+frame Eb03vQmXqKg_000030 1 does not exist
+there is an error in loading image
+frame Eb03vQmXqKg_000030 2 does not exist
+frame Eb03vQmXqKg_000030 1 does not exist
+there is an error in loading image
+frame leBIxqLUdjQ_000007 8 does not exist
+frame leBIxqLUdjQ_000007 7 does not exist
+frame leBIxqLUdjQ_000007 6 does not exist
+there is an error in loading image
+frame NVQb73vzEpY_000003 9 does not exist
+frame NVQb73vzEpY_000003 8 does not exist
+frame NVQb73vzEpY_000003 7 does not exist
+frame NVQb73vzEpY_000003 6 does not exist
+frame NVQb73vzEpY_000003 5 does not exist
+frame NVQb73vzEpY_000003 4 does not exist
+frame NVQb73vzEpY_000003 3 does not exist
+frame NVQb73vzEpY_000003 2 does not exist
+frame NVQb73vzEpY_000003 1 does not exist
+there is an error in loading image
+frame 5nCVaazCHaA_000090 8 does not exist
+frame 5nCVaazCHaA_000090 7 does not exist
+frame 5nCVaazCHaA_000090 6 does not exist
+frame 5nCVaazCHaA_000090 5 does not exist
+frame 5nCVaazCHaA_000090 4 does not exist
+frame 5nCVaazCHaA_000090 3 does not exist
+frame 5nCVaazCHaA_000090 2 does not exist
+frame 5nCVaazCHaA_000090 1 does not exist
+there is an error in loading image
+frame 5yyjz_8nz-0_000055 9 does not exist
+frame 5yyjz_8nz-0_000055 8 does not exist
+frame 5yyjz_8nz-0_000055 7 does not exist
+frame 5yyjz_8nz-0_000055 6 does not exist
+frame 5yyjz_8nz-0_000055 5 does not exist
+frame 5yyjz_8nz-0_000055 4 does not exist
+frame 5yyjz_8nz-0_000055 3 does not exist
+frame 5yyjz_8nz-0_000055 2 does not exist
+frame 5yyjz_8nz-0_000055 1 does not exist
+there is an error in loading image
+frame dZp53187l9U_000063 7 does not exist
+frame ljjUj5fQZgs_000450 8 does not exist
+frame ljjUj5fQZgs_000450 7 does not exist
+frame ljjUj5fQZgs_000450 6 does not exist
+frame ljjUj5fQZgs_000450 5 does not exist
+frame ljjUj5fQZgs_000450 4 does not exist
+frame ljjUj5fQZgs_000450 3 does not exist
+frame ljjUj5fQZgs_000450 2 does not exist
+frame ljjUj5fQZgs_000450 1 does not exist
+frame leBIxqLUdjQ_000007 7 does not exist
+frame leBIxqLUdjQ_000007 6 does not exist
+frame ljjUj5fQZgs_000450 1 does not exist
+frame BNegPkBeFgA_000140 6 does not exist
+frame BNegPkBeFgA_000140 5 does not exist
+frame BNegPkBeFgA_000140 4 does not exist
+frame BNegPkBeFgA_000140 3 does not exist
+frame BNegPkBeFgA_000140 2 does not exist
+frame BNegPkBeFgA_000140 1 does not exist
+there is an error in loading image
+frame 5nCVaazCHaA_000090 8 does not exist
+frame 5nCVaazCHaA_000090 7 does not exist
+frame 5nCVaazCHaA_000090 6 does not exist
+frame 5nCVaazCHaA_000090 5 does not exist
+frame 5nCVaazCHaA_000090 4 does not exist
+frame 5nCVaazCHaA_000090 3 does not exist
+frame 5nCVaazCHaA_000090 2 does not exist
+frame 5nCVaazCHaA_000090 1 does not exist
+there is an error in loading image
+frame 5nCVaazCHaA_000090 9 does not exist
+frame 5nCVaazCHaA_000090 8 does not exist
+frame 5nCVaazCHaA_000090 7 does not exist
+frame 5nCVaazCHaA_000090 6 does not exist
+frame 5nCVaazCHaA_000090 5 does not exist
+frame 5nCVaazCHaA_000090 4 does not exist
+frame 5nCVaazCHaA_000090 3 does not exist
+frame 5nCVaazCHaA_000090 2 does not exist
+frame 5nCVaazCHaA_000090 1 does not exist
+there is an error in loading image
+frame 8II9NNK4yUM_000010 7 does not exist
+frame 8II9NNK4yUM_000010 6 does not exist
+frame 8II9NNK4yUM_000010 5 does not exist
+frame 8II9NNK4yUM_000010 4 does not exist
+frame 8II9NNK4yUM_000010 3 does not exist
+frame 8II9NNK4yUM_000010 2 does not exist
+frame 8II9NNK4yUM_000010 1 does not exist
+there is an error in loading image
+frame 5nCVaazCHaA_000090 2 does not exist
+frame 5nCVaazCHaA_000090 1 does not exist
+there is an error in loading image
+frame 5nCVaazCHaA_000090 3 does not exist
+frame 5nCVaazCHaA_000090 2 does not exist
+frame 5nCVaazCHaA_000090 1 does not exist
+there is an error in loading image
+frame kb2lC6P0bWo_000003 9 does not exist
+frame 8II9NNK4yUM_000010 8 does not exist
+frame 8II9NNK4yUM_000010 7 does not exist
+frame 8II9NNK4yUM_000010 6 does not exist
+frame 8II9NNK4yUM_000010 5 does not exist
+frame 8II9NNK4yUM_000010 4 does not exist
+frame 8II9NNK4yUM_000010 3 does not exist
+frame 8II9NNK4yUM_000010 2 does not exist
+frame 8II9NNK4yUM_000010 1 does not exist
+there is an error in loading image
+frame Eb03vQmXqKg_000030 2 does not exist
+frame Eb03vQmXqKg_000030 1 does not exist
+there is an error in loading image
+frame NVQb73vzEpY_000003 4 does not exist
+frame NVQb73vzEpY_000003 3 does not exist
+frame NVQb73vzEpY_000003 2 does not exist
+frame NVQb73vzEpY_000003 1 does not exist
+there is an error in loading image
+start validation
+frame -w8maIWtnUk_000030 5 does not exist
+frame -w8maIWtnUk_000030 4 does not exist
+frame -w8maIWtnUk_000030 3 does not exist
+frame -w8maIWtnUk_000030 2 does not exist
+frame -w8maIWtnUk_000030 1 does not exist
+there is an error in loading image
+acc: 0.594886
+AUC: 0.981051
+d_prime: 2.935835
+train_loss: 2.435560
+valid_loss: 1.719498
+validation finished
+Epoch-2 lr: 5e-05
+epoch 2 training time: 2063.057
+---------------
+2023-03-14 22:00:40.350546
+current #epochs=3, #steps=7654
+Epoch: [3][46/3827]	Per Sample Total Time 0.01400	Per Sample Data Time 0.00334	Per Sample DNN Time 0.01066	Train Loss 2.3782	
+Epoch: [3][146/3827]	Per Sample Total Time 0.01161	Per Sample Data Time 0.00107	Per Sample DNN Time 0.01054	Train Loss 2.2375	
+Epoch: [3][246/3827]	Per Sample Total Time 0.01120	Per Sample Data Time 0.00064	Per Sample DNN Time 0.01056	Train Loss 2.3218	
+Epoch: [3][346/3827]	Per Sample Total Time 0.01105	Per Sample Data Time 0.00046	Per Sample DNN Time 0.01059	Train Loss 2.3970	
+Epoch: [3][446/3827]	Per Sample Total Time 0.01099	Per Sample Data Time 0.00036	Per Sample DNN Time 0.01063	Train Loss 2.1329	
+Epoch: [3][546/3827]	Per Sample Total Time 0.01094	Per Sample Data Time 0.00030	Per Sample DNN Time 0.01065	Train Loss 2.0225	
+Epoch: [3][646/3827]	Per Sample Total Time 0.01084	Per Sample Data Time 0.00025	Per Sample DNN Time 0.01059	Train Loss 2.1353	
+Epoch: [3][746/3827]	Per Sample Total Time 0.01081	Per Sample Data Time 0.00022	Per Sample DNN Time 0.01059	Train Loss 2.2122	
+Epoch: [3][846/3827]	Per Sample Total Time 0.01079	Per Sample Data Time 0.00019	Per Sample DNN Time 0.01060	Train Loss 2.3642	
+Epoch: [3][946/3827]	Per Sample Total Time 0.01075	Per Sample Data Time 0.00017	Per Sample DNN Time 0.01058	Train Loss 2.1456	
+Epoch: [3][1046/3827]	Per Sample Total Time 0.01071	Per Sample Data Time 0.00016	Per Sample DNN Time 0.01055	Train Loss 2.2498	
+Epoch: [3][1146/3827]	Per Sample Total Time 0.01067	Per Sample Data Time 0.00015	Per Sample DNN Time 0.01052	Train Loss 2.4448	
+Epoch: [3][1246/3827]	Per Sample Total Time 0.01064	Per Sample Data Time 0.00013	Per Sample DNN Time 0.01050	Train Loss 2.4045	
+Epoch: [3][1346/3827]	Per Sample Total Time 0.01063	Per Sample Data Time 0.00013	Per Sample DNN Time 0.01051	Train Loss 2.3182	
+Epoch: [3][1446/3827]	Per Sample Total Time 0.01062	Per Sample Data Time 0.00012	Per Sample DNN Time 0.01051	Train Loss 2.4452	
+Epoch: [3][1546/3827]	Per Sample Total Time 0.01062	Per Sample Data Time 0.00011	Per Sample DNN Time 0.01051	Train Loss 2.0949	
+Epoch: [3][1646/3827]	Per Sample Total Time 0.01058	Per Sample Data Time 0.00010	Per Sample DNN Time 0.01048	Train Loss 2.4840	
+Epoch: [3][1746/3827]	Per Sample Total Time 0.01058	Per Sample Data Time 0.00010	Per Sample DNN Time 0.01048	Train Loss 1.8970	
+Epoch: [3][1846/3827]	Per Sample Total Time 0.01057	Per Sample Data Time 0.00009	Per Sample DNN Time 0.01047	Train Loss 2.3560	
+Epoch: [3][1946/3827]	Per Sample Total Time 0.01057	Per Sample Data Time 0.00009	Per Sample DNN Time 0.01048	Train Loss 2.1817	
+Epoch: [3][2046/3827]	Per Sample Total Time 0.01056	Per Sample Data Time 0.00009	Per Sample DNN Time 0.01047	Train Loss 2.2341	
+Epoch: [3][2146/3827]	Per Sample Total Time 0.01057	Per Sample Data Time 0.00008	Per Sample DNN Time 0.01048	Train Loss 1.9439	
+Epoch: [3][2246/3827]	Per Sample Total Time 0.01057	Per Sample Data Time 0.00008	Per Sample DNN Time 0.01050	Train Loss 2.2670	
+Epoch: [3][2346/3827]	Per Sample Total Time 0.01058	Per Sample Data Time 0.00008	Per Sample DNN Time 0.01050	Train Loss 2.1045	
+Epoch: [3][2446/3827]	Per Sample Total Time 0.01058	Per Sample Data Time 0.00007	Per Sample DNN Time 0.01051	Train Loss 2.0949	
+Epoch: [3][2546/3827]	Per Sample Total Time 0.01058	Per Sample Data Time 0.00007	Per Sample DNN Time 0.01051	Train Loss 2.3271	
+Epoch: [3][2646/3827]	Per Sample Total Time 0.01059	Per Sample Data Time 0.00007	Per Sample DNN Time 0.01052	Train Loss 2.1598	
+Epoch: [3][2746/3827]	Per Sample Total Time 0.01059	Per Sample Data Time 0.00007	Per Sample DNN Time 0.01052	Train Loss 1.7301	
+Epoch: [3][2846/3827]	Per Sample Total Time 0.01059	Per Sample Data Time 0.00006	Per Sample DNN Time 0.01053	Train Loss 2.1349	
+Epoch: [3][2946/3827]	Per Sample Total Time 0.01059	Per Sample Data Time 0.00006	Per Sample DNN Time 0.01053	Train Loss 2.5306	
+Epoch: [3][3046/3827]	Per Sample Total Time 0.01058	Per Sample Data Time 0.00006	Per Sample DNN Time 0.01052	Train Loss 2.0325	
+Epoch: [3][3146/3827]	Per Sample Total Time 0.01058	Per Sample Data Time 0.00006	Per Sample DNN Time 0.01052	Train Loss 2.0219	
+Epoch: [3][3246/3827]	Per Sample Total Time 0.01057	Per Sample Data Time 0.00006	Per Sample DNN Time 0.01051	Train Loss 2.2662	
+Epoch: [3][3346/3827]	Per Sample Total Time 0.01058	Per Sample Data Time 0.00006	Per Sample DNN Time 0.01052	Train Loss 2.1104	
+Epoch: [3][3446/3827]	Per Sample Total Time 0.01057	Per Sample Data Time 0.00005	Per Sample DNN Time 0.01052	Train Loss 2.3465	
+Epoch: [3][3546/3827]	Per Sample Total Time 0.01057	Per Sample Data Time 0.00005	Per Sample DNN Time 0.01051	Train Loss 1.8941	
+Epoch: [3][3646/3827]	Per Sample Total Time 0.01055	Per Sample Data Time 0.00005	Per Sample DNN Time 0.01050	Train Loss 1.9202	
+Epoch: [3][3746/3827]	Per Sample Total Time 0.01054	Per Sample Data Time 0.00005	Per Sample DNN Time 0.01049	Train Loss 1.9695	
+frame NVQb73vzEpY_000003 6 does not exist
+frame NVQb73vzEpY_000003 5 does not exist
+frame NVQb73vzEpY_000003 4 does not exist
+frame NVQb73vzEpY_000003 3 does not exist
+frame NVQb73vzEpY_000003 2 does not exist
+frame NVQb73vzEpY_000003 1 does not exist
+there is an error in loading image
+frame 5nCVaazCHaA_000090 8 does not exist
+frame 5nCVaazCHaA_000090 7 does not exist
+frame 5nCVaazCHaA_000090 6 does not exist
+frame 5nCVaazCHaA_000090 5 does not exist
+frame 5nCVaazCHaA_000090 4 does not exist
+frame 5nCVaazCHaA_000090 3 does not exist
+frame 5nCVaazCHaA_000090 2 does not exist
+frame 5nCVaazCHaA_000090 1 does not exist
+there is an error in loading image
+frame -N0qJZkizOw_000030 6 does not exist
+frame -N0qJZkizOw_000030 5 does not exist
+frame -N0qJZkizOw_000030 4 does not exist
+frame -N0qJZkizOw_000030 3 does not exist
+frame -N0qJZkizOw_000030 2 does not exist
+frame -N0qJZkizOw_000030 1 does not exist
+there is an error in loading image
+frame NVQb73vzEpY_000003 3 does not exist
+frame NVQb73vzEpY_000003 2 does not exist
+frame NVQb73vzEpY_000003 1 does not exist
+there is an error in loading image
+frame ZYZgumdhE3g_000007 8 does not exist
+frame ZYZgumdhE3g_000007 7 does not exist
+frame 5yyjz_8nz-0_000055 5 does not exist
+frame 5yyjz_8nz-0_000055 4 does not exist
+frame 5yyjz_8nz-0_000055 3 does not exist
+frame 5yyjz_8nz-0_000055 2 does not exist
+frame 5yyjz_8nz-0_000055 1 does not exist
+there is an error in loading image
+frame Eb03vQmXqKg_000030 8 does not exist
+frame Eb03vQmXqKg_000030 7 does not exist
+frame Eb03vQmXqKg_000030 6 does not exist
+frame Eb03vQmXqKg_000030 5 does not exist
+frame Eb03vQmXqKg_000030 4 does not exist
+frame Eb03vQmXqKg_000030 3 does not exist
+frame Eb03vQmXqKg_000030 2 does not exist
+frame Eb03vQmXqKg_000030 1 does not exist
+there is an error in loading image
+frame NVQb73vzEpY_000003 9 does not exist
+frame NVQb73vzEpY_000003 8 does not exist
+frame NVQb73vzEpY_000003 7 does not exist
+frame NVQb73vzEpY_000003 6 does not exist
+frame NVQb73vzEpY_000003 5 does not exist
+frame NVQb73vzEpY_000003 4 does not exist
+frame NVQb73vzEpY_000003 3 does not exist
+frame NVQb73vzEpY_000003 2 does not exist
+frame NVQb73vzEpY_000003 1 does not exist
+there is an error in loading image
+frame dZp53187l9U_000063 9 does not exist
+frame dZp53187l9U_000063 8 does not exist
+frame dZp53187l9U_000063 7 does not exist
+frame NB8CqMH9NvE_000120 9 does not exist
+frame 5yyjz_8nz-0_000055 3 does not exist
+frame 5yyjz_8nz-0_000055 2 does not exist
+frame 5yyjz_8nz-0_000055 1 does not exist
+there is an error in loading image
+frame 5yyjz_8nz-0_000055 7 does not exist
+frame 5yyjz_8nz-0_000055 6 does not exist
+frame 5yyjz_8nz-0_000055 5 does not exist
+frame 5yyjz_8nz-0_000055 4 does not exist
+frame 5yyjz_8nz-0_000055 3 does not exist
+frame 5yyjz_8nz-0_000055 2 does not exist
+frame 5yyjz_8nz-0_000055 1 does not exist
+there is an error in loading image
+frame 5nCVaazCHaA_000090 7 does not exist
+frame 5nCVaazCHaA_000090 6 does not exist
+frame 5nCVaazCHaA_000090 5 does not exist
+frame 5nCVaazCHaA_000090 4 does not exist
+frame 5nCVaazCHaA_000090 3 does not exist
+frame 5nCVaazCHaA_000090 2 does not exist
+frame 5nCVaazCHaA_000090 1 does not exist
+there is an error in loading image
+frame Uu8TTrcODQo_000014 9 does not exist
+frame Uu8TTrcODQo_000014 8 does not exist
+frame C_HzWDFy4zo_000014 9 does not exist
+frame H6LWbizxQeQ_000012 4 does not exist
+frame H6LWbizxQeQ_000012 3 does not exist
+frame H6LWbizxQeQ_000012 2 does not exist
+frame H6LWbizxQeQ_000012 1 does not exist
+there is an error in loading image
+frame bk9xgrw3dp8_000030 9 does not exist
+frame bk9xgrw3dp8_000030 8 does not exist
+frame bk9xgrw3dp8_000030 7 does not exist
+frame bk9xgrw3dp8_000030 6 does not exist
+frame bk9xgrw3dp8_000030 5 does not exist
+frame bk9xgrw3dp8_000030 4 does not exist
+frame bk9xgrw3dp8_000030 3 does not exist
+frame bk9xgrw3dp8_000030 2 does not exist
+frame bk9xgrw3dp8_000030 1 does not exist
+there is an error in loading image
+frame h1YC8Cb5QWI_000323 7 does not exist
+frame H6LWbizxQeQ_000012 1 does not exist
+there is an error in loading image
+frame 2IUileqD6qI_000010 5 does not exist
+frame 2IUileqD6qI_000010 4 does not exist
+frame 2IUileqD6qI_000010 3 does not exist
+frame 2IUileqD6qI_000010 2 does not exist
+frame 2IUileqD6qI_000010 1 does not exist
+there is an error in loading image
+frame 5yyjz_8nz-0_000055 8 does not exist
+frame 5yyjz_8nz-0_000055 7 does not exist
+frame 5yyjz_8nz-0_000055 6 does not exist
+frame 5yyjz_8nz-0_000055 5 does not exist
+frame 5yyjz_8nz-0_000055 4 does not exist
+frame 5yyjz_8nz-0_000055 3 does not exist
+frame 5yyjz_8nz-0_000055 2 does not exist
+frame 5yyjz_8nz-0_000055 1 does not exist
+there is an error in loading image
+start validation
+frame -w8maIWtnUk_000030 5 does not exist
+frame -w8maIWtnUk_000030 4 does not exist
+frame -w8maIWtnUk_000030 3 does not exist
+frame -w8maIWtnUk_000030 2 does not exist
+frame -w8maIWtnUk_000030 1 does not exist
+there is an error in loading image
+acc: 0.625454
+AUC: 0.980125
+d_prime: 2.908108
+train_loss: 2.175000
+valid_loss: 1.615813
+validation finished
+Epoch-3 lr: 2.5e-05
+epoch 3 training time: 2071.591
+---------------
+2023-03-14 22:35:11.940527
+current #epochs=4, #steps=11481
+Epoch: [4][19/3827]	Per Sample Total Time 0.01891	Per Sample Data Time 0.00748	Per Sample DNN Time 0.01143	Train Loss 2.2569	
+Epoch: [4][119/3827]	Per Sample Total Time 0.01204	Per Sample Data Time 0.00125	Per Sample DNN Time 0.01079	Train Loss 2.0078	
+Epoch: [4][219/3827]	Per Sample Total Time 0.01132	Per Sample Data Time 0.00069	Per Sample DNN Time 0.01063	Train Loss 1.9519	
+Epoch: [4][319/3827]	Per Sample Total Time 0.01103	Per Sample Data Time 0.00047	Per Sample DNN Time 0.01056	Train Loss 1.9664	
+Epoch: [4][419/3827]	Per Sample Total Time 0.01093	Per Sample Data Time 0.00036	Per Sample DNN Time 0.01057	Train Loss 1.7874	
+Epoch: [4][519/3827]	Per Sample Total Time 0.01080	Per Sample Data Time 0.00029	Per Sample DNN Time 0.01051	Train Loss 1.8948	
+Epoch: [4][619/3827]	Per Sample Total Time 0.01077	Per Sample Data Time 0.00025	Per Sample DNN Time 0.01052	Train Loss 2.3431	
+Epoch: [4][719/3827]	Per Sample Total Time 0.01074	Per Sample Data Time 0.00021	Per Sample DNN Time 0.01053	Train Loss 2.0963	
+Epoch: [4][819/3827]	Per Sample Total Time 0.01071	Per Sample Data Time 0.00019	Per Sample DNN Time 0.01052	Train Loss 1.9746	
+Epoch: [4][919/3827]	Per Sample Total Time 0.01069	Per Sample Data Time 0.00017	Per Sample DNN Time 0.01052	Train Loss 1.9623	
+Epoch: [4][1019/3827]	Per Sample Total Time 0.01069	Per Sample Data Time 0.00015	Per Sample DNN Time 0.01053	Train Loss 2.1051	
+Epoch: [4][1119/3827]	Per Sample Total Time 0.01067	Per Sample Data Time 0.00014	Per Sample DNN Time 0.01053	Train Loss 2.1797	
+Epoch: [4][1219/3827]	Per Sample Total Time 0.01066	Per Sample Data Time 0.00013	Per Sample DNN Time 0.01053	Train Loss 1.9597	
+Epoch: [4][1319/3827]	Per Sample Total Time 0.01063	Per Sample Data Time 0.00012	Per Sample DNN Time 0.01051	Train Loss 1.8924	
+Epoch: [4][1419/3827]	Per Sample Total Time 0.01064	Per Sample Data Time 0.00011	Per Sample DNN Time 0.01052	Train Loss 2.4450	
+Epoch: [4][1519/3827]	Per Sample Total Time 0.01064	Per Sample Data Time 0.00011	Per Sample DNN Time 0.01053	Train Loss 2.0401	
+Epoch: [4][1619/3827]	Per Sample Total Time 0.01061	Per Sample Data Time 0.00010	Per Sample DNN Time 0.01051	Train Loss 1.8880	
+Epoch: [4][1719/3827]	Per Sample Total Time 0.01060	Per Sample Data Time 0.00009	Per Sample DNN Time 0.01051	Train Loss 1.9122	
+Epoch: [4][1819/3827]	Per Sample Total Time 0.01059	Per Sample Data Time 0.00009	Per Sample DNN Time 0.01050	Train Loss 2.0520	
+Epoch: [4][1919/3827]	Per Sample Total Time 0.01059	Per Sample Data Time 0.00009	Per Sample DNN Time 0.01050	Train Loss 1.9823	
+Epoch: [4][2019/3827]	Per Sample Total Time 0.01059	Per Sample Data Time 0.00008	Per Sample DNN Time 0.01051	Train Loss 2.0355	
+Epoch: [4][2119/3827]	Per Sample Total Time 0.01059	Per Sample Data Time 0.00008	Per Sample DNN Time 0.01052	Train Loss 1.9552	
+Epoch: [4][2219/3827]	Per Sample Total Time 0.01058	Per Sample Data Time 0.00007	Per Sample DNN Time 0.01051	Train Loss 1.8931	
+Epoch: [4][2319/3827]	Per Sample Total Time 0.01059	Per Sample Data Time 0.00007	Per Sample DNN Time 0.01051	Train Loss 2.2376	
+Epoch: [4][2419/3827]	Per Sample Total Time 0.01058	Per Sample Data Time 0.00007	Per Sample DNN Time 0.01051	Train Loss 2.1332	
+Epoch: [4][2519/3827]	Per Sample Total Time 0.01058	Per Sample Data Time 0.00007	Per Sample DNN Time 0.01052	Train Loss 1.9102	
+Epoch: [4][2619/3827]	Per Sample Total Time 0.01058	Per Sample Data Time 0.00006	Per Sample DNN Time 0.01051	Train Loss 2.1060	
+Epoch: [4][2719/3827]	Per Sample Total Time 0.01058	Per Sample Data Time 0.00006	Per Sample DNN Time 0.01052	Train Loss 1.7736	
+Epoch: [4][2819/3827]	Per Sample Total Time 0.01058	Per Sample Data Time 0.00006	Per Sample DNN Time 0.01052	Train Loss 2.0001	
+Epoch: [4][2919/3827]	Per Sample Total Time 0.01057	Per Sample Data Time 0.00006	Per Sample DNN Time 0.01052	Train Loss 1.7482	
+Epoch: [4][3019/3827]	Per Sample Total Time 0.01058	Per Sample Data Time 0.00006	Per Sample DNN Time 0.01053	Train Loss 2.0523	
+Epoch: [4][3119/3827]	Per Sample Total Time 0.01058	Per Sample Data Time 0.00006	Per Sample DNN Time 0.01052	Train Loss 2.2334	
+Epoch: [4][3219/3827]	Per Sample Total Time 0.01058	Per Sample Data Time 0.00005	Per Sample DNN Time 0.01053	Train Loss 2.1339	
+Epoch: [4][3319/3827]	Per Sample Total Time 0.01058	Per Sample Data Time 0.00005	Per Sample DNN Time 0.01053	Train Loss 1.9683	
+Epoch: [4][3419/3827]	Per Sample Total Time 0.01059	Per Sample Data Time 0.00005	Per Sample DNN Time 0.01054	Train Loss 2.1531	
+Epoch: [4][3519/3827]	Per Sample Total Time 0.01058	Per Sample Data Time 0.00005	Per Sample DNN Time 0.01053	Train Loss 1.7008	
+Epoch: [4][3619/3827]	Per Sample Total Time 0.01059	Per Sample Data Time 0.00005	Per Sample DNN Time 0.01054	Train Loss 2.2620	
+Epoch: [4][3719/3827]	Per Sample Total Time 0.01059	Per Sample Data Time 0.00005	Per Sample DNN Time 0.01054	Train Loss 1.9649	
+Epoch: [4][3819/3827]	Per Sample Total Time 0.01058	Per Sample Data Time 0.00005	Per Sample DNN Time 0.01053	Train Loss 2.1401	
+frame H6LWbizxQeQ_000012 3 does not exist
+frame H6LWbizxQeQ_000012 2 does not exist
+frame H6LWbizxQeQ_000012 1 does not exist
+there is an error in loading image
+frame 5yyjz_8nz-0_000055 8 does not exist
+frame 5yyjz_8nz-0_000055 7 does not exist
+frame 5yyjz_8nz-0_000055 6 does not exist
+frame 5yyjz_8nz-0_000055 5 does not exist
+frame 5yyjz_8nz-0_000055 4 does not exist
+frame 5yyjz_8nz-0_000055 3 does not exist
+frame 5yyjz_8nz-0_000055 2 does not exist
+frame 5yyjz_8nz-0_000055 1 does not exist
+there is an error in loading image
+frame KYwLCuV7VCU_000020 9 does not exist
+frame KYwLCuV7VCU_000020 8 does not exist
+frame KYwLCuV7VCU_000020 7 does not exist
+frame KYwLCuV7VCU_000020 6 does not exist
+frame BsLgruLdjDI_000208 3 does not exist
+frame BsLgruLdjDI_000208 2 does not exist
+frame BsLgruLdjDI_000208 1 does not exist
+there is an error in loading image
+there is an error in loading image
+frame 2IUileqD6qI_000010 2 does not exist
+frame 2IUileqD6qI_000010 1 does not exist
+there is an error in loading image
+frame eWg3Z2LsQrk_000096 9 does not exist
+frame eWg3Z2LsQrk_000096 8 does not exist
+frame eWg3Z2LsQrk_000096 7 does not exist
+frame eWg3Z2LsQrk_000096 6 does not exist
+frame eWg3Z2LsQrk_000096 5 does not exist
+there is an error in loading image
+frame -N0qJZkizOw_000030 9 does not exist
+frame -N0qJZkizOw_000030 8 does not exist
+frame -N0qJZkizOw_000030 7 does not exist
+frame -N0qJZkizOw_000030 6 does not exist
+frame -N0qJZkizOw_000030 5 does not exist
+frame -N0qJZkizOw_000030 4 does not exist
+frame -N0qJZkizOw_000030 3 does not exist
+frame -N0qJZkizOw_000030 2 does not exist
+frame -N0qJZkizOw_000030 1 does not exist
+there is an error in loading image
+frame 5nCVaazCHaA_000090 2 does not exist
+frame 5nCVaazCHaA_000090 1 does not exist
+there is an error in loading image
+there is an error in loading image
+frame eWg3Z2LsQrk_000096 9 does not exist
+frame eWg3Z2LsQrk_000096 8 does not exist
+frame eWg3Z2LsQrk_000096 7 does not exist
+frame eWg3Z2LsQrk_000096 6 does not exist
+frame eWg3Z2LsQrk_000096 5 does not exist
+frame KYwLCuV7VCU_000020 6 does not exist
+frame NVQb73vzEpY_000003 9 does not exist
+frame NVQb73vzEpY_000003 8 does not exist
+frame NVQb73vzEpY_000003 7 does not exist
+frame NVQb73vzEpY_000003 6 does not exist
+frame NVQb73vzEpY_000003 5 does not exist
+frame NVQb73vzEpY_000003 4 does not exist
+frame NVQb73vzEpY_000003 3 does not exist
+frame NVQb73vzEpY_000003 2 does not exist
+frame NVQb73vzEpY_000003 1 does not exist
+there is an error in loading image
+frame 5yyjz_8nz-0_000055 1 does not exist
+there is an error in loading image
+frame PsXRzD-yBe4_000066 2 does not exist
+frame PsXRzD-yBe4_000066 1 does not exist
+there is an error in loading image
+there is an error in loading image
+frame 5nCVaazCHaA_000090 7 does not exist
+frame 5nCVaazCHaA_000090 6 does not exist
+frame 5nCVaazCHaA_000090 5 does not exist
+frame 5nCVaazCHaA_000090 4 does not exist
+frame 5nCVaazCHaA_000090 3 does not exist
+frame 5nCVaazCHaA_000090 2 does not exist
+frame 5nCVaazCHaA_000090 1 does not exist
+there is an error in loading image
+frame 5yyjz_8nz-0_000055 4 does not exist
+frame 5yyjz_8nz-0_000055 3 does not exist
+frame 5yyjz_8nz-0_000055 2 does not exist
+frame 5yyjz_8nz-0_000055 1 does not exist
+there is an error in loading image
+frame 8II9NNK4yUM_000010 4 does not exist
+frame 8II9NNK4yUM_000010 3 does not exist
+frame 8II9NNK4yUM_000010 2 does not exist
+frame 8II9NNK4yUM_000010 1 does not exist
+there is an error in loading image
+frame BsLgruLdjDI_000208 1 does not exist
+there is an error in loading image
+frame KYwLCuV7VCU_000020 7 does not exist
+frame KYwLCuV7VCU_000020 6 does not exist
+frame 5yyjz_8nz-0_000055 4 does not exist
+frame 5yyjz_8nz-0_000055 3 does not exist
+frame 5yyjz_8nz-0_000055 2 does not exist
+frame 5yyjz_8nz-0_000055 1 does not exist
+there is an error in loading image
+frame -N0qJZkizOw_000030 8 does not exist
+frame -N0qJZkizOw_000030 7 does not exist
+frame -N0qJZkizOw_000030 6 does not exist
+frame -N0qJZkizOw_000030 5 does not exist
+frame -N0qJZkizOw_000030 4 does not exist
+frame -N0qJZkizOw_000030 3 does not exist
+frame -N0qJZkizOw_000030 2 does not exist
+frame -N0qJZkizOw_000030 1 does not exist
+there is an error in loading image
+frame NVQb73vzEpY_000003 8 does not exist
+frame NVQb73vzEpY_000003 7 does not exist
+frame NVQb73vzEpY_000003 6 does not exist
+frame NVQb73vzEpY_000003 5 does not exist
+frame NVQb73vzEpY_000003 4 does not exist
+frame NVQb73vzEpY_000003 3 does not exist
+frame NVQb73vzEpY_000003 2 does not exist
+frame NVQb73vzEpY_000003 1 does not exist
+there is an error in loading image
+frame ljjUj5fQZgs_000450 5 does not exist
+frame ljjUj5fQZgs_000450 4 does not exist
+frame ljjUj5fQZgs_000450 3 does not exist
+frame ljjUj5fQZgs_000450 2 does not exist
+frame ljjUj5fQZgs_000450 1 does not exist
+frame h1YC8Cb5QWI_000323 8 does not exist
+frame h1YC8Cb5QWI_000323 7 does not exist
+frame UOlAgFNy_HQ_000030 9 does not exist
+frame UOlAgFNy_HQ_000030 8 does not exist
+frame UOlAgFNy_HQ_000030 7 does not exist
+frame UOlAgFNy_HQ_000030 6 does not exist
+frame UOlAgFNy_HQ_000030 5 does not exist
+frame UOlAgFNy_HQ_000030 4 does not exist
+frame UOlAgFNy_HQ_000030 3 does not exist
+frame UOlAgFNy_HQ_000030 2 does not exist
+frame 2IUileqD6qI_000010 2 does not exist
+frame 2IUileqD6qI_000010 1 does not exist
+there is an error in loading image
+frame 5yyjz_8nz-0_000055 3 does not exist
+frame 5yyjz_8nz-0_000055 2 does not exist
+frame 5yyjz_8nz-0_000055 1 does not exist
+there is an error in loading image
+frame UOlAgFNy_HQ_000030 9 does not exist
+frame UOlAgFNy_HQ_000030 8 does not exist
+frame UOlAgFNy_HQ_000030 7 does not exist
+frame UOlAgFNy_HQ_000030 6 does not exist
+frame UOlAgFNy_HQ_000030 5 does not exist
+frame UOlAgFNy_HQ_000030 4 does not exist
+frame UOlAgFNy_HQ_000030 3 does not exist
+frame UOlAgFNy_HQ_000030 2 does not exist
+start validation
+frame -w8maIWtnUk_000030 5 does not exist
+frame -w8maIWtnUk_000030 4 does not exist
+frame -w8maIWtnUk_000030 3 does not exist
+frame -w8maIWtnUk_000030 2 does not exist
+frame -w8maIWtnUk_000030 1 does not exist
+there is an error in loading image
+acc: 0.638435
+AUC: 0.980489
+d_prime: 2.918867
+train_loss: 2.033622
+valid_loss: 1.567123
+validation finished
+Epoch-4 lr: 1.25e-05
+epoch 4 training time: 2082.997
+---------------
+2023-03-14 23:09:54.938687
+current #epochs=5, #steps=15308
+Epoch: [5][92/3827]	Per Sample Total Time 0.01226	Per Sample Data Time 0.00150	Per Sample DNN Time 0.01076	Train Loss 1.9435	
+Epoch: [5][192/3827]	Per Sample Total Time 0.01149	Per Sample Data Time 0.00073	Per Sample DNN Time 0.01077	Train Loss 1.9800	
+Epoch: [5][292/3827]	Per Sample Total Time 0.01118	Per Sample Data Time 0.00048	Per Sample DNN Time 0.01070	Train Loss 2.0611	
+Epoch: [5][392/3827]	Per Sample Total Time 0.01103	Per Sample Data Time 0.00036	Per Sample DNN Time 0.01067	Train Loss 1.9204	
+Epoch: [5][492/3827]	Per Sample Total Time 0.01097	Per Sample Data Time 0.00029	Per Sample DNN Time 0.01068	Train Loss 1.7550	
+Epoch: [5][592/3827]	Per Sample Total Time 0.01089	Per Sample Data Time 0.00024	Per Sample DNN Time 0.01065	Train Loss 2.0015	
+Epoch: [5][692/3827]	Per Sample Total Time 0.01085	Per Sample Data Time 0.00021	Per Sample DNN Time 0.01064	Train Loss 2.0336	
+Epoch: [5][792/3827]	Per Sample Total Time 0.01079	Per Sample Data Time 0.00018	Per Sample DNN Time 0.01061	Train Loss 1.9677	
+Epoch: [5][892/3827]	Per Sample Total Time 0.01074	Per Sample Data Time 0.00016	Per Sample DNN Time 0.01058	Train Loss 1.9563	
+Epoch: [5][992/3827]	Per Sample Total Time 0.01071	Per Sample Data Time 0.00015	Per Sample DNN Time 0.01057	Train Loss 1.9386	
+Epoch: [5][1092/3827]	Per Sample Total Time 0.01067	Per Sample Data Time 0.00013	Per Sample DNN Time 0.01053	Train Loss 1.8056	
+Epoch: [5][1192/3827]	Per Sample Total Time 0.01064	Per Sample Data Time 0.00012	Per Sample DNN Time 0.01052	Train Loss 2.0472	
+Epoch: [5][1292/3827]	Per Sample Total Time 0.01064	Per Sample Data Time 0.00011	Per Sample DNN Time 0.01053	Train Loss 1.9644	
+Epoch: [5][1392/3827]	Per Sample Total Time 0.01064	Per Sample Data Time 0.00011	Per Sample DNN Time 0.01053	Train Loss 2.1482	
+Epoch: [5][1492/3827]	Per Sample Total Time 0.01063	Per Sample Data Time 0.00010	Per Sample DNN Time 0.01053	Train Loss 1.6784	
+Epoch: [5][1592/3827]	Per Sample Total Time 0.01060	Per Sample Data Time 0.00009	Per Sample DNN Time 0.01051	Train Loss 1.8555	
+Epoch: [5][1692/3827]	Per Sample Total Time 0.01061	Per Sample Data Time 0.00009	Per Sample DNN Time 0.01052	Train Loss 1.6284	
+Epoch: [5][1792/3827]	Per Sample Total Time 0.01061	Per Sample Data Time 0.00008	Per Sample DNN Time 0.01053	Train Loss 1.8094	
+Epoch: [5][1892/3827]	Per Sample Total Time 0.01061	Per Sample Data Time 0.00008	Per Sample DNN Time 0.01053	Train Loss 1.8397	
+Epoch: [5][1992/3827]	Per Sample Total Time 0.01061	Per Sample Data Time 0.00008	Per Sample DNN Time 0.01053	Train Loss 2.0228	
+Epoch: [5][2092/3827]	Per Sample Total Time 0.01061	Per Sample Data Time 0.00007	Per Sample DNN Time 0.01054	Train Loss 2.0088	
+Epoch: [5][2192/3827]	Per Sample Total Time 0.01061	Per Sample Data Time 0.00007	Per Sample DNN Time 0.01054	Train Loss 2.0906	
+Epoch: [5][2292/3827]	Per Sample Total Time 0.01060	Per Sample Data Time 0.00007	Per Sample DNN Time 0.01054	Train Loss 1.7967	
+Epoch: [5][2392/3827]	Per Sample Total Time 0.01060	Per Sample Data Time 0.00007	Per Sample DNN Time 0.01054	Train Loss 1.8932	
+Epoch: [5][2492/3827]	Per Sample Total Time 0.01060	Per Sample Data Time 0.00006	Per Sample DNN Time 0.01054	Train Loss 2.0502	
+Epoch: [5][2592/3827]	Per Sample Total Time 0.01060	Per Sample Data Time 0.00006	Per Sample DNN Time 0.01054	Train Loss 1.8544	
+Epoch: [5][2692/3827]	Per Sample Total Time 0.01060	Per Sample Data Time 0.00006	Per Sample DNN Time 0.01054	Train Loss 1.9222	
+Epoch: [5][2792/3827]	Per Sample Total Time 0.01060	Per Sample Data Time 0.00006	Per Sample DNN Time 0.01055	Train Loss 1.9430	
+Epoch: [5][2892/3827]	Per Sample Total Time 0.01059	Per Sample Data Time 0.00006	Per Sample DNN Time 0.01054	Train Loss 1.9335	
+Epoch: [5][2992/3827]	Per Sample Total Time 0.01059	Per Sample Data Time 0.00005	Per Sample DNN Time 0.01054	Train Loss 1.9599	
+Epoch: [5][3092/3827]	Per Sample Total Time 0.01059	Per Sample Data Time 0.00005	Per Sample DNN Time 0.01054	Train Loss 1.9793	
+Epoch: [5][3192/3827]	Per Sample Total Time 0.01059	Per Sample Data Time 0.00005	Per Sample DNN Time 0.01054	Train Loss 1.8879	
+Epoch: [5][3292/3827]	Per Sample Total Time 0.01060	Per Sample Data Time 0.00005	Per Sample DNN Time 0.01055	Train Loss 1.9347	
+Epoch: [5][3392/3827]	Per Sample Total Time 0.01060	Per Sample Data Time 0.00005	Per Sample DNN Time 0.01055	Train Loss 2.1063	
+Epoch: [5][3492/3827]	Per Sample Total Time 0.01060	Per Sample Data Time 0.00005	Per Sample DNN Time 0.01055	Train Loss 2.1510	
+Epoch: [5][3592/3827]	Per Sample Total Time 0.01060	Per Sample Data Time 0.00005	Per Sample DNN Time 0.01055	Train Loss 1.9295	
+Epoch: [5][3692/3827]	Per Sample Total Time 0.01060	Per Sample Data Time 0.00004	Per Sample DNN Time 0.01056	Train Loss 1.6475	
+Epoch: [5][3792/3827]	Per Sample Total Time 0.01059	Per Sample Data Time 0.00004	Per Sample DNN Time 0.01055	Train Loss 1.8484	
+frame leBIxqLUdjQ_000007 9 does not exist
+frame leBIxqLUdjQ_000007 8 does not exist
+frame leBIxqLUdjQ_000007 7 does not exist
+frame leBIxqLUdjQ_000007 6 does not exist
+frame 2IUileqD6qI_000010 5 does not exist
+frame 2IUileqD6qI_000010 4 does not exist
+frame 2IUileqD6qI_000010 3 does not exist
+frame 2IUileqD6qI_000010 2 does not exist
+frame 2IUileqD6qI_000010 1 does not exist
+there is an error in loading image
+there is an error in loading image
+frame NVQb73vzEpY_000003 1 does not exist
+there is an error in loading image
+frame bk9xgrw3dp8_000030 1 does not exist
+there is an error in loading image
+there is an error in loading image
+frame KYwLCuV7VCU_000020 8 does not exist
+frame KYwLCuV7VCU_000020 7 does not exist
+frame KYwLCuV7VCU_000020 6 does not exist
+frame PsXRzD-yBe4_000066 8 does not exist
+frame PsXRzD-yBe4_000066 7 does not exist
+frame PsXRzD-yBe4_000066 6 does not exist
+frame PsXRzD-yBe4_000066 5 does not exist
+frame PsXRzD-yBe4_000066 4 does not exist
+frame PsXRzD-yBe4_000066 3 does not exist
+frame PsXRzD-yBe4_000066 2 does not exist
+frame PsXRzD-yBe4_000066 1 does not exist
+there is an error in loading image
+frame ZYZgumdhE3g_000007 9 does not exist
+frame ZYZgumdhE3g_000007 8 does not exist
+frame ZYZgumdhE3g_000007 7 does not exist
+frame ZYZgumdhE3g_000007 9 does not exist
+frame ZYZgumdhE3g_000007 8 does not exist
+frame ZYZgumdhE3g_000007 7 does not exist
+frame Eb03vQmXqKg_000030 7 does not exist
+frame Eb03vQmXqKg_000030 6 does not exist
+frame Eb03vQmXqKg_000030 5 does not exist
+frame Eb03vQmXqKg_000030 4 does not exist
+frame Eb03vQmXqKg_000030 3 does not exist
+frame Eb03vQmXqKg_000030 2 does not exist
+frame Eb03vQmXqKg_000030 1 does not exist
+there is an error in loading image
+frame H6LWbizxQeQ_000012 4 does not exist
+frame H6LWbizxQeQ_000012 3 does not exist
+frame H6LWbizxQeQ_000012 2 does not exist
+frame H6LWbizxQeQ_000012 1 does not exist
+there is an error in loading image
+frame H6LWbizxQeQ_000012 8 does not exist
+frame H6LWbizxQeQ_000012 7 does not exist
+frame H6LWbizxQeQ_000012 6 does not exist
+frame H6LWbizxQeQ_000012 5 does not exist
+frame H6LWbizxQeQ_000012 4 does not exist
+frame H6LWbizxQeQ_000012 3 does not exist
+frame H6LWbizxQeQ_000012 2 does not exist
+frame H6LWbizxQeQ_000012 1 does not exist
+there is an error in loading image
+frame ljjUj5fQZgs_000450 6 does not exist
+frame ljjUj5fQZgs_000450 5 does not exist
+frame ljjUj5fQZgs_000450 4 does not exist
+frame ljjUj5fQZgs_000450 3 does not exist
+frame ljjUj5fQZgs_000450 2 does not exist
+frame ljjUj5fQZgs_000450 1 does not exist
+frame 5nCVaazCHaA_000090 3 does not exist
+frame 5nCVaazCHaA_000090 2 does not exist
+frame 5nCVaazCHaA_000090 1 does not exist
+there is an error in loading image
+frame BNegPkBeFgA_000140 9 does not exist
+frame BNegPkBeFgA_000140 8 does not exist
+frame BNegPkBeFgA_000140 7 does not exist
+frame BNegPkBeFgA_000140 6 does not exist
+frame BNegPkBeFgA_000140 5 does not exist
+frame BNegPkBeFgA_000140 4 does not exist
+frame BNegPkBeFgA_000140 3 does not exist
+frame BNegPkBeFgA_000140 2 does not exist
+frame BNegPkBeFgA_000140 1 does not exist
+there is an error in loading image
+frame ZYZgumdhE3g_000007 8 does not exist
+frame ZYZgumdhE3g_000007 7 does not exist
+frame 5yyjz_8nz-0_000055 4 does not exist
+frame 5yyjz_8nz-0_000055 3 does not exist
+frame 5yyjz_8nz-0_000055 2 does not exist
+frame 5yyjz_8nz-0_000055 1 does not exist
+there is an error in loading image
+frame NVQb73vzEpY_000003 3 does not exist
+frame NVQb73vzEpY_000003 2 does not exist
+frame NVQb73vzEpY_000003 1 does not exist
+there is an error in loading image
+frame 7BJPgsMXYbk_000010 9 does not exist
+frame BsLgruLdjDI_000208 1 does not exist
+there is an error in loading image
+frame KYwLCuV7VCU_000020 9 does not exist
+frame KYwLCuV7VCU_000020 8 does not exist
+frame KYwLCuV7VCU_000020 7 does not exist
+frame KYwLCuV7VCU_000020 6 does not exist
+frame 5nCVaazCHaA_000090 7 does not exist
+frame 5nCVaazCHaA_000090 6 does not exist
+frame 5nCVaazCHaA_000090 5 does not exist
+frame 5nCVaazCHaA_000090 4 does not exist
+frame 5nCVaazCHaA_000090 3 does not exist
+frame 5nCVaazCHaA_000090 2 does not exist
+frame 5nCVaazCHaA_000090 1 does not exist
+there is an error in loading image
+frame KYwLCuV7VCU_000020 7 does not exist
+frame KYwLCuV7VCU_000020 6 does not exist
+frame h1YC8Cb5QWI_000323 9 does not exist
+frame h1YC8Cb5QWI_000323 8 does not exist
+frame h1YC8Cb5QWI_000323 7 does not exist
+frame bk9xgrw3dp8_000030 2 does not exist
+frame bk9xgrw3dp8_000030 1 does not exist
+there is an error in loading image
+frame Eb03vQmXqKg_000030 6 does not exist
+frame Eb03vQmXqKg_000030 5 does not exist
+frame Eb03vQmXqKg_000030 4 does not exist
+frame Eb03vQmXqKg_000030 3 does not exist
+frame Eb03vQmXqKg_000030 2 does not exist
+frame Eb03vQmXqKg_000030 1 does not exist
+there is an error in loading image
+frame ljjUj5fQZgs_000450 1 does not exist
+frame NVQb73vzEpY_000003 6 does not exist
+frame NVQb73vzEpY_000003 5 does not exist
+frame NVQb73vzEpY_000003 4 does not exist
+frame NVQb73vzEpY_000003 3 does not exist
+frame NVQb73vzEpY_000003 2 does not exist
+frame NVQb73vzEpY_000003 1 does not exist
+there is an error in loading image
+frame kb2lC6P0bWo_000003 9 does not exist
+start validation
+frame -w8maIWtnUk_000030 5 does not exist
+frame -w8maIWtnUk_000030 4 does not exist
+frame -w8maIWtnUk_000030 3 does not exist
+frame -w8maIWtnUk_000030 2 does not exist
+frame -w8maIWtnUk_000030 1 does not exist
+there is an error in loading image
+acc: 0.645444
+AUC: 0.980235
+d_prime: 2.911352
+train_loss: 1.957627
+valid_loss: 1.558050
+validation finished
+Epoch-5 lr: 6.25e-06
+epoch 5 training time: 2085.442
+---------------
+2023-03-14 23:44:40.377470
+current #epochs=6, #steps=19135
+Epoch: [6][65/3827]	Per Sample Total Time 0.01272	Per Sample Data Time 0.00220	Per Sample DNN Time 0.01053	Train Loss 1.9749	
+Epoch: [6][165/3827]	Per Sample Total Time 0.01149	Per Sample Data Time 0.00088	Per Sample DNN Time 0.01061	Train Loss 1.8241	
+Epoch: [6][265/3827]	Per Sample Total Time 0.01120	Per Sample Data Time 0.00055	Per Sample DNN Time 0.01065	Train Loss 1.9315	
+Epoch: [6][365/3827]	Per Sample Total Time 0.01092	Per Sample Data Time 0.00040	Per Sample DNN Time 0.01052	Train Loss 2.0408	
+Epoch: [6][465/3827]	Per Sample Total Time 0.01082	Per Sample Data Time 0.00032	Per Sample DNN Time 0.01050	Train Loss 1.6543	
+Epoch: [6][565/3827]	Per Sample Total Time 0.01080	Per Sample Data Time 0.00026	Per Sample DNN Time 0.01053	Train Loss 1.8879	
+Epoch: [6][665/3827]	Per Sample Total Time 0.01076	Per Sample Data Time 0.00022	Per Sample DNN Time 0.01053	Train Loss 1.5827	
+Epoch: [6][765/3827]	Per Sample Total Time 0.01073	Per Sample Data Time 0.00020	Per Sample DNN Time 0.01053	Train Loss 1.8134	
+Epoch: [6][865/3827]	Per Sample Total Time 0.01070	Per Sample Data Time 0.00017	Per Sample DNN Time 0.01053	Train Loss 2.0101	
+Epoch: [6][965/3827]	Per Sample Total Time 0.01069	Per Sample Data Time 0.00016	Per Sample DNN Time 0.01053	Train Loss 2.1708	
+Epoch: [6][1065/3827]	Per Sample Total Time 0.01066	Per Sample Data Time 0.00014	Per Sample DNN Time 0.01052	Train Loss 1.9867	
+Epoch: [6][1165/3827]	Per Sample Total Time 0.01063	Per Sample Data Time 0.00013	Per Sample DNN Time 0.01050	Train Loss 1.7401	
+Epoch: [6][1265/3827]	Per Sample Total Time 0.01061	Per Sample Data Time 0.00012	Per Sample DNN Time 0.01049	Train Loss 1.9617	
+Epoch: [6][1365/3827]	Per Sample Total Time 0.01061	Per Sample Data Time 0.00011	Per Sample DNN Time 0.01050	Train Loss 1.9386	
+Epoch: [6][1465/3827]	Per Sample Total Time 0.01060	Per Sample Data Time 0.00011	Per Sample DNN Time 0.01050	Train Loss 2.1625	
+Epoch: [6][1565/3827]	Per Sample Total Time 0.01060	Per Sample Data Time 0.00010	Per Sample DNN Time 0.01050	Train Loss 1.9770	
+Epoch: [6][1665/3827]	Per Sample Total Time 0.01059	Per Sample Data Time 0.00009	Per Sample DNN Time 0.01049	Train Loss 2.1344	
+Epoch: [6][1765/3827]	Per Sample Total Time 0.01058	Per Sample Data Time 0.00009	Per Sample DNN Time 0.01049	Train Loss 1.9013	
+Epoch: [6][1865/3827]	Per Sample Total Time 0.01058	Per Sample Data Time 0.00009	Per Sample DNN Time 0.01049	Train Loss 1.7681	
+Epoch: [6][1965/3827]	Per Sample Total Time 0.01057	Per Sample Data Time 0.00008	Per Sample DNN Time 0.01049	Train Loss 1.7819	
+Epoch: [6][2065/3827]	Per Sample Total Time 0.01056	Per Sample Data Time 0.00008	Per Sample DNN Time 0.01049	Train Loss 1.7973	
+Epoch: [6][2165/3827]	Per Sample Total Time 0.01056	Per Sample Data Time 0.00007	Per Sample DNN Time 0.01048	Train Loss 1.7955	
+Epoch: [6][2265/3827]	Per Sample Total Time 0.01055	Per Sample Data Time 0.00007	Per Sample DNN Time 0.01048	Train Loss 1.7620	
+Epoch: [6][2365/3827]	Per Sample Total Time 0.01055	Per Sample Data Time 0.00007	Per Sample DNN Time 0.01048	Train Loss 1.6729	
+Epoch: [6][2465/3827]	Per Sample Total Time 0.01055	Per Sample Data Time 0.00007	Per Sample DNN Time 0.01049	Train Loss 1.9711	
+Epoch: [6][2565/3827]	Per Sample Total Time 0.01055	Per Sample Data Time 0.00006	Per Sample DNN Time 0.01049	Train Loss 2.0591	
+Epoch: [6][2665/3827]	Per Sample Total Time 0.01056	Per Sample Data Time 0.00006	Per Sample DNN Time 0.01049	Train Loss 2.1589	
+Epoch: [6][2765/3827]	Per Sample Total Time 0.01056	Per Sample Data Time 0.00006	Per Sample DNN Time 0.01050	Train Loss 1.8795	
+Epoch: [6][2865/3827]	Per Sample Total Time 0.01056	Per Sample Data Time 0.00006	Per Sample DNN Time 0.01050	Train Loss 1.9525	
+Epoch: [6][2965/3827]	Per Sample Total Time 0.01056	Per Sample Data Time 0.00006	Per Sample DNN Time 0.01050	Train Loss 2.1330	
+Epoch: [6][3065/3827]	Per Sample Total Time 0.01056	Per Sample Data Time 0.00005	Per Sample DNN Time 0.01050	Train Loss 1.9510	
+Epoch: [6][3165/3827]	Per Sample Total Time 0.01056	Per Sample Data Time 0.00005	Per Sample DNN Time 0.01051	Train Loss 1.6640	
+Epoch: [6][3265/3827]	Per Sample Total Time 0.01056	Per Sample Data Time 0.00005	Per Sample DNN Time 0.01051	Train Loss 2.0945	
+Epoch: [6][3365/3827]	Per Sample Total Time 0.01056	Per Sample Data Time 0.00005	Per Sample DNN Time 0.01051	Train Loss 1.7343	
+Epoch: [6][3465/3827]	Per Sample Total Time 0.01056	Per Sample Data Time 0.00005	Per Sample DNN Time 0.01051	Train Loss 2.0531	
+Epoch: [6][3565/3827]	Per Sample Total Time 0.01056	Per Sample Data Time 0.00005	Per Sample DNN Time 0.01051	Train Loss 1.9901	
+Epoch: [6][3665/3827]	Per Sample Total Time 0.01057	Per Sample Data Time 0.00005	Per Sample DNN Time 0.01052	Train Loss 1.7634	
+Epoch: [6][3765/3827]	Per Sample Total Time 0.01056	Per Sample Data Time 0.00005	Per Sample DNN Time 0.01052	Train Loss 1.9342	
+frame Uu8TTrcODQo_000014 8 does not exist
+frame BsLgruLdjDI_000208 9 does not exist
+frame BsLgruLdjDI_000208 8 does not exist
+frame BsLgruLdjDI_000208 7 does not exist
+frame BsLgruLdjDI_000208 6 does not exist
+frame BsLgruLdjDI_000208 5 does not exist
+frame BsLgruLdjDI_000208 4 does not exist
+frame BsLgruLdjDI_000208 3 does not exist
+frame BsLgruLdjDI_000208 2 does not exist
+frame BsLgruLdjDI_000208 1 does not exist
+there is an error in loading image
+frame 8II9NNK4yUM_000010 2 does not exist
+frame 8II9NNK4yUM_000010 1 does not exist
+there is an error in loading image
+frame Eb03vQmXqKg_000030 6 does not exist
+frame Eb03vQmXqKg_000030 5 does not exist
+frame Eb03vQmXqKg_000030 4 does not exist
+frame Eb03vQmXqKg_000030 3 does not exist
+frame Eb03vQmXqKg_000030 2 does not exist
+frame Eb03vQmXqKg_000030 1 does not exist
+there is an error in loading image
+frame UOlAgFNy_HQ_000030 6 does not exist
+frame UOlAgFNy_HQ_000030 5 does not exist
+frame UOlAgFNy_HQ_000030 4 does not exist
+frame UOlAgFNy_HQ_000030 3 does not exist
+frame UOlAgFNy_HQ_000030 2 does not exist
+frame NVQb73vzEpY_000003 3 does not exist
+frame NVQb73vzEpY_000003 2 does not exist
+frame NVQb73vzEpY_000003 1 does not exist
+there is an error in loading image
+frame ljjUj5fQZgs_000450 4 does not exist
+frame ljjUj5fQZgs_000450 3 does not exist
+frame ljjUj5fQZgs_000450 2 does not exist
+frame ljjUj5fQZgs_000450 1 does not exist
+frame 5nCVaazCHaA_000090 4 does not exist
+frame 5nCVaazCHaA_000090 3 does not exist
+frame 5nCVaazCHaA_000090 2 does not exist
+frame 5nCVaazCHaA_000090 1 does not exist
+there is an error in loading image
+frame BsLgruLdjDI_000208 3 does not exist
+frame BsLgruLdjDI_000208 2 does not exist
+frame BsLgruLdjDI_000208 1 does not exist
+there is an error in loading image
+frame kR2wJWiH-5I_000012 9 does not exist
+frame NVQb73vzEpY_000003 4 does not exist
+frame NVQb73vzEpY_000003 3 does not exist
+frame NVQb73vzEpY_000003 2 does not exist
+frame NVQb73vzEpY_000003 1 does not exist
+there is an error in loading image
+frame NVQb73vzEpY_000003 4 does not exist
+frame NVQb73vzEpY_000003 3 does not exist
+frame NVQb73vzEpY_000003 2 does not exist
+frame NVQb73vzEpY_000003 1 does not exist
+there is an error in loading image
+frame KYwLCuV7VCU_000020 9 does not exist
+frame KYwLCuV7VCU_000020 8 does not exist
+frame KYwLCuV7VCU_000020 7 does not exist
+frame KYwLCuV7VCU_000020 6 does not exist
+frame bk9xgrw3dp8_000030 4 does not exist
+frame bk9xgrw3dp8_000030 3 does not exist
+frame bk9xgrw3dp8_000030 2 does not exist
+frame bk9xgrw3dp8_000030 1 does not exist
+there is an error in loading image
+there is an error in loading image
+frame BsLgruLdjDI_000208 5 does not exist
+frame BsLgruLdjDI_000208 4 does not exist
+frame BsLgruLdjDI_000208 3 does not exist
+frame BsLgruLdjDI_000208 2 does not exist
+frame BsLgruLdjDI_000208 1 does not exist
+there is an error in loading image
+frame 2IUileqD6qI_000010 5 does not exist
+frame 2IUileqD6qI_000010 4 does not exist
+frame 2IUileqD6qI_000010 3 does not exist
+frame 2IUileqD6qI_000010 2 does not exist
+frame 2IUileqD6qI_000010 1 does not exist
+there is an error in loading image
+frame BNegPkBeFgA_000140 8 does not exist
+frame BNegPkBeFgA_000140 7 does not exist
+frame BNegPkBeFgA_000140 6 does not exist
+frame BNegPkBeFgA_000140 5 does not exist
+frame BNegPkBeFgA_000140 4 does not exist
+frame BNegPkBeFgA_000140 3 does not exist
+frame BNegPkBeFgA_000140 2 does not exist
+frame BNegPkBeFgA_000140 1 does not exist
+there is an error in loading image
+there is an error in loading image
+frame kb2lC6P0bWo_000003 9 does not exist
+frame ljjUj5fQZgs_000450 3 does not exist
+frame ljjUj5fQZgs_000450 2 does not exist
+frame ljjUj5fQZgs_000450 1 does not exist
+frame BsLgruLdjDI_000208 4 does not exist
+frame BsLgruLdjDI_000208 3 does not exist
+frame BsLgruLdjDI_000208 2 does not exist
+frame BsLgruLdjDI_000208 1 does not exist
+there is an error in loading image
+frame 2IUileqD6qI_000010 5 does not exist
+frame 2IUileqD6qI_000010 4 does not exist
+frame 2IUileqD6qI_000010 3 does not exist
+frame 2IUileqD6qI_000010 2 does not exist
+frame 2IUileqD6qI_000010 1 does not exist
+there is an error in loading image
+start validation
+frame -w8maIWtnUk_000030 5 does not exist
+frame -w8maIWtnUk_000030 4 does not exist
+frame -w8maIWtnUk_000030 3 does not exist
+frame -w8maIWtnUk_000030 2 does not exist
+frame -w8maIWtnUk_000030 1 does not exist
+there is an error in loading image
+acc: 0.646677
+AUC: 0.980055
+d_prime: 2.906061
+train_loss: 1.918050
+valid_loss: 1.554680
+validation finished
+Epoch-6 lr: 3.125e-06
+epoch 6 training time: 2073.754
+---------------
+2023-03-15 00:19:14.132732
+current #epochs=7, #steps=22962
+Epoch: [7][38/3827]	Per Sample Total Time 0.01457	Per Sample Data Time 0.00334	Per Sample DNN Time 0.01123	Train Loss 1.8102	
+Epoch: [7][138/3827]	Per Sample Total Time 0.01119	Per Sample Data Time 0.00094	Per Sample DNN Time 0.01025	Train Loss 2.1400	
+Epoch: [7][238/3827]	Per Sample Total Time 0.01049	Per Sample Data Time 0.00055	Per Sample DNN Time 0.00993	Train Loss 2.1936	
+Epoch: [7][338/3827]	Per Sample Total Time 0.01056	Per Sample Data Time 0.00039	Per Sample DNN Time 0.01017	Train Loss 1.8633	
+Epoch: [7][438/3827]	Per Sample Total Time 0.01054	Per Sample Data Time 0.00031	Per Sample DNN Time 0.01023	Train Loss 1.9567	
+Epoch: [7][538/3827]	Per Sample Total Time 0.01049	Per Sample Data Time 0.00025	Per Sample DNN Time 0.01024	Train Loss 1.9318	
+Epoch: [7][638/3827]	Per Sample Total Time 0.01051	Per Sample Data Time 0.00021	Per Sample DNN Time 0.01029	Train Loss 1.9083	
+Epoch: [7][738/3827]	Per Sample Total Time 0.01053	Per Sample Data Time 0.00019	Per Sample DNN Time 0.01035	Train Loss 1.8879	
+Epoch: [7][838/3827]	Per Sample Total Time 0.01042	Per Sample Data Time 0.00016	Per Sample DNN Time 0.01025	Train Loss 1.6546	
+Epoch: [7][938/3827]	Per Sample Total Time 0.01023	Per Sample Data Time 0.00015	Per Sample DNN Time 0.01009	Train Loss 1.8694	
+Epoch: [7][1038/3827]	Per Sample Total Time 0.01022	Per Sample Data Time 0.00013	Per Sample DNN Time 0.01008	Train Loss 2.0725	
+Epoch: [7][1138/3827]	Per Sample Total Time 0.01025	Per Sample Data Time 0.00012	Per Sample DNN Time 0.01013	Train Loss 2.1031	
+Epoch: [7][1238/3827]	Per Sample Total Time 0.01014	Per Sample Data Time 0.00011	Per Sample DNN Time 0.01002	Train Loss 1.7043	
+Epoch: [7][1338/3827]	Per Sample Total Time 0.00996	Per Sample Data Time 0.00011	Per Sample DNN Time 0.00985	Train Loss 1.8398	
+Epoch: [7][1438/3827]	Per Sample Total Time 0.00989	Per Sample Data Time 0.00010	Per Sample DNN Time 0.00979	Train Loss 1.8860	
+Epoch: [7][1538/3827]	Per Sample Total Time 0.00987	Per Sample Data Time 0.00009	Per Sample DNN Time 0.00978	Train Loss 1.9629	
+Epoch: [7][1638/3827]	Per Sample Total Time 0.00975	Per Sample Data Time 0.00009	Per Sample DNN Time 0.00967	Train Loss 1.8949	
+Epoch: [7][1738/3827]	Per Sample Total Time 0.00975	Per Sample Data Time 0.00008	Per Sample DNN Time 0.00966	Train Loss 1.9807	
+Epoch: [7][1838/3827]	Per Sample Total Time 0.00964	Per Sample Data Time 0.00008	Per Sample DNN Time 0.00956	Train Loss 2.1578	
+Epoch: [7][1938/3827]	Per Sample Total Time 0.00955	Per Sample Data Time 0.00008	Per Sample DNN Time 0.00948	Train Loss 2.1083	
+Epoch: [7][2038/3827]	Per Sample Total Time 0.00950	Per Sample Data Time 0.00007	Per Sample DNN Time 0.00943	Train Loss 1.8534	
+Epoch: [7][2138/3827]	Per Sample Total Time 0.00952	Per Sample Data Time 0.00007	Per Sample DNN Time 0.00945	Train Loss 2.1623	
+Epoch: [7][2238/3827]	Per Sample Total Time 0.00948	Per Sample Data Time 0.00007	Per Sample DNN Time 0.00941	Train Loss 1.9740	
+Epoch: [7][2338/3827]	Per Sample Total Time 0.00952	Per Sample Data Time 0.00006	Per Sample DNN Time 0.00945	Train Loss 1.7961	
+Epoch: [7][2438/3827]	Per Sample Total Time 0.00953	Per Sample Data Time 0.00006	Per Sample DNN Time 0.00947	Train Loss 1.9385	
+Epoch: [7][2538/3827]	Per Sample Total Time 0.00957	Per Sample Data Time 0.00006	Per Sample DNN Time 0.00951	Train Loss 1.6265	
+Epoch: [7][2638/3827]	Per Sample Total Time 0.00961	Per Sample Data Time 0.00006	Per Sample DNN Time 0.00955	Train Loss 1.9840	
+Epoch: [7][2738/3827]	Per Sample Total Time 0.00965	Per Sample Data Time 0.00006	Per Sample DNN Time 0.00959	Train Loss 1.8419	
+Epoch: [7][2838/3827]	Per Sample Total Time 0.00968	Per Sample Data Time 0.00005	Per Sample DNN Time 0.00963	Train Loss 1.7073	
+Epoch: [7][2938/3827]	Per Sample Total Time 0.00971	Per Sample Data Time 0.00005	Per Sample DNN Time 0.00966	Train Loss 1.7129	
+Epoch: [7][3038/3827]	Per Sample Total Time 0.00975	Per Sample Data Time 0.00005	Per Sample DNN Time 0.00970	Train Loss 1.9796	
+Epoch: [7][3138/3827]	Per Sample Total Time 0.00978	Per Sample Data Time 0.00005	Per Sample DNN Time 0.00973	Train Loss 1.9040	
+Epoch: [7][3238/3827]	Per Sample Total Time 0.00980	Per Sample Data Time 0.00005	Per Sample DNN Time 0.00976	Train Loss 1.8209	
+Epoch: [7][3338/3827]	Per Sample Total Time 0.00983	Per Sample Data Time 0.00005	Per Sample DNN Time 0.00978	Train Loss 1.8807	
+Epoch: [7][3438/3827]	Per Sample Total Time 0.00984	Per Sample Data Time 0.00005	Per Sample DNN Time 0.00980	Train Loss 2.1212	
+Epoch: [7][3538/3827]	Per Sample Total Time 0.00979	Per Sample Data Time 0.00005	Per Sample DNN Time 0.00974	Train Loss 1.8500	
+Epoch: [7][3638/3827]	Per Sample Total Time 0.00973	Per Sample Data Time 0.00004	Per Sample DNN Time 0.00969	Train Loss 1.9548	
+Epoch: [7][3738/3827]	Per Sample Total Time 0.00968	Per Sample Data Time 0.00004	Per Sample DNN Time 0.00963	Train Loss 1.8188	
+there is an error in loading image
+frame NVQb73vzEpY_000003 2 does not exist
+frame NVQb73vzEpY_000003 1 does not exist
+there is an error in loading image
+frame PsXRzD-yBe4_000066 9 does not exist
+frame PsXRzD-yBe4_000066 8 does not exist
+frame PsXRzD-yBe4_000066 7 does not exist
+frame PsXRzD-yBe4_000066 6 does not exist
+frame PsXRzD-yBe4_000066 5 does not exist
+frame PsXRzD-yBe4_000066 4 does not exist
+frame PsXRzD-yBe4_000066 3 does not exist
+frame PsXRzD-yBe4_000066 2 does not exist
+frame PsXRzD-yBe4_000066 1 does not exist
+there is an error in loading image
+there is an error in loading image
+frame KYwLCuV7VCU_000020 9 does not exist
+frame KYwLCuV7VCU_000020 8 does not exist
+frame KYwLCuV7VCU_000020 7 does not exist
+frame KYwLCuV7VCU_000020 6 does not exist
+there is an error in loading image
+frame NVQb73vzEpY_000003 5 does not exist
+frame NVQb73vzEpY_000003 4 does not exist
+frame NVQb73vzEpY_000003 3 does not exist
+frame NVQb73vzEpY_000003 2 does not exist
+frame NVQb73vzEpY_000003 1 does not exist
+there is an error in loading image
+frame KYwLCuV7VCU_000020 8 does not exist
+frame KYwLCuV7VCU_000020 7 does not exist
+frame KYwLCuV7VCU_000020 6 does not exist
+frame NVQb73vzEpY_000003 3 does not exist
+frame NVQb73vzEpY_000003 2 does not exist
+frame NVQb73vzEpY_000003 1 does not exist
+there is an error in loading image
+frame 5nCVaazCHaA_000090 4 does not exist
+frame 5nCVaazCHaA_000090 3 does not exist
+frame 5nCVaazCHaA_000090 2 does not exist
+frame 5nCVaazCHaA_000090 1 does not exist
+there is an error in loading image
+frame Eb03vQmXqKg_000030 7 does not exist
+frame Eb03vQmXqKg_000030 6 does not exist
+frame Eb03vQmXqKg_000030 5 does not exist
+frame Eb03vQmXqKg_000030 4 does not exist
+frame Eb03vQmXqKg_000030 3 does not exist
+frame Eb03vQmXqKg_000030 2 does not exist
+frame Eb03vQmXqKg_000030 1 does not exist
+there is an error in loading image
+frame KYwLCuV7VCU_000020 6 does not exist
+frame cKc0zgaLXCI_000104 8 does not exist
+frame 5nCVaazCHaA_000090 9 does not exist
+frame 5nCVaazCHaA_000090 8 does not exist
+frame 5nCVaazCHaA_000090 7 does not exist
+frame 5nCVaazCHaA_000090 6 does not exist
+frame 5nCVaazCHaA_000090 5 does not exist
+frame 5nCVaazCHaA_000090 4 does not exist
+frame 5nCVaazCHaA_000090 3 does not exist
+frame 5nCVaazCHaA_000090 2 does not exist
+frame 5nCVaazCHaA_000090 1 does not exist
+there is an error in loading image
+frame PsXRzD-yBe4_000066 7 does not exist
+frame PsXRzD-yBe4_000066 6 does not exist
+frame PsXRzD-yBe4_000066 5 does not exist
+frame PsXRzD-yBe4_000066 4 does not exist
+frame PsXRzD-yBe4_000066 3 does not exist
+frame PsXRzD-yBe4_000066 2 does not exist
+frame PsXRzD-yBe4_000066 1 does not exist
+there is an error in loading image
+there is an error in loading image
+frame NVQb73vzEpY_000003 6 does not exist
+frame NVQb73vzEpY_000003 5 does not exist
+frame NVQb73vzEpY_000003 4 does not exist
+frame NVQb73vzEpY_000003 3 does not exist
+frame NVQb73vzEpY_000003 2 does not exist
+frame NVQb73vzEpY_000003 1 does not exist
+there is an error in loading image
+frame NVQb73vzEpY_000003 9 does not exist
+frame NVQb73vzEpY_000003 8 does not exist
+frame NVQb73vzEpY_000003 7 does not exist
+frame NVQb73vzEpY_000003 6 does not exist
+frame NVQb73vzEpY_000003 5 does not exist
+frame NVQb73vzEpY_000003 4 does not exist
+frame NVQb73vzEpY_000003 3 does not exist
+frame NVQb73vzEpY_000003 2 does not exist
+frame NVQb73vzEpY_000003 1 does not exist
+there is an error in loading image
+frame 8II9NNK4yUM_000010 7 does not exist
+frame 8II9NNK4yUM_000010 6 does not exist
+frame 8II9NNK4yUM_000010 5 does not exist
+frame 8II9NNK4yUM_000010 4 does not exist
+frame 8II9NNK4yUM_000010 3 does not exist
+frame 8II9NNK4yUM_000010 2 does not exist
+frame 8II9NNK4yUM_000010 1 does not exist
+there is an error in loading image
+frame 5yyjz_8nz-0_000055 6 does not exist
+frame 5yyjz_8nz-0_000055 5 does not exist
+frame 5yyjz_8nz-0_000055 4 does not exist
+frame 5yyjz_8nz-0_000055 3 does not exist
+frame 5yyjz_8nz-0_000055 2 does not exist
+frame 5yyjz_8nz-0_000055 1 does not exist
+there is an error in loading image
+frame H6LWbizxQeQ_000012 3 does not exist
+frame H6LWbizxQeQ_000012 2 does not exist
+frame H6LWbizxQeQ_000012 1 does not exist
+there is an error in loading image
+frame bk9xgrw3dp8_000030 3 does not exist
+frame bk9xgrw3dp8_000030 2 does not exist
+frame bk9xgrw3dp8_000030 1 does not exist
+there is an error in loading image
+frame Eb03vQmXqKg_000030 9 does not exist
+frame Eb03vQmXqKg_000030 8 does not exist
+frame Eb03vQmXqKg_000030 7 does not exist
+frame Eb03vQmXqKg_000030 6 does not exist
+frame Eb03vQmXqKg_000030 5 does not exist
+frame Eb03vQmXqKg_000030 4 does not exist
+frame Eb03vQmXqKg_000030 3 does not exist
+frame Eb03vQmXqKg_000030 2 does not exist
+frame Eb03vQmXqKg_000030 1 does not exist
+there is an error in loading image
+start validation
+frame -w8maIWtnUk_000030 5 does not exist
+frame -w8maIWtnUk_000030 4 does not exist
+frame -w8maIWtnUk_000030 3 does not exist
+frame -w8maIWtnUk_000030 2 does not exist
+frame -w8maIWtnUk_000030 1 does not exist
+there is an error in loading image
+acc: 0.648559
+AUC: 0.979817
+d_prime: 2.899109
+train_loss: 1.898153
+valid_loss: 1.554415
+validation finished
+Epoch-7 lr: 1.5625e-06
+epoch 7 training time: 1912.163
+---------------
+2023-03-15 00:51:06.295899
+current #epochs=8, #steps=26789
+Epoch: [8][11/3827]	Per Sample Total Time 0.02116	Per Sample Data Time 0.01150	Per Sample DNN Time 0.00965	Train Loss 2.1817	
+Epoch: [8][111/3827]	Per Sample Total Time 0.01056	Per Sample Data Time 0.00124	Per Sample DNN Time 0.00932	Train Loss 2.0863	
+Epoch: [8][211/3827]	Per Sample Total Time 0.01020	Per Sample Data Time 0.00066	Per Sample DNN Time 0.00954	Train Loss 1.9241	
+Epoch: [8][311/3827]	Per Sample Total Time 0.00966	Per Sample Data Time 0.00045	Per Sample DNN Time 0.00921	Train Loss 2.0095	
+Epoch: [8][411/3827]	Per Sample Total Time 0.00930	Per Sample Data Time 0.00034	Per Sample DNN Time 0.00896	Train Loss 1.8421	
+Epoch: [8][511/3827]	Per Sample Total Time 0.00916	Per Sample Data Time 0.00028	Per Sample DNN Time 0.00888	Train Loss 1.8778	
+Epoch: [8][611/3827]	Per Sample Total Time 0.00921	Per Sample Data Time 0.00024	Per Sample DNN Time 0.00898	Train Loss 1.8763	
+Epoch: [8][711/3827]	Per Sample Total Time 0.00916	Per Sample Data Time 0.00020	Per Sample DNN Time 0.00896	Train Loss 1.9295	
+Epoch: [8][811/3827]	Per Sample Total Time 0.00917	Per Sample Data Time 0.00018	Per Sample DNN Time 0.00899	Train Loss 1.7483	
+Epoch: [8][911/3827]	Per Sample Total Time 0.00926	Per Sample Data Time 0.00016	Per Sample DNN Time 0.00909	Train Loss 1.7052	
+Epoch: [8][1011/3827]	Per Sample Total Time 0.00930	Per Sample Data Time 0.00015	Per Sample DNN Time 0.00915	Train Loss 2.0429	
+Epoch: [8][1111/3827]	Per Sample Total Time 0.00944	Per Sample Data Time 0.00013	Per Sample DNN Time 0.00931	Train Loss 1.7729	
+Epoch: [8][1211/3827]	Per Sample Total Time 0.00956	Per Sample Data Time 0.00012	Per Sample DNN Time 0.00944	Train Loss 1.8952	
+Epoch: [8][1311/3827]	Per Sample Total Time 0.00954	Per Sample Data Time 0.00011	Per Sample DNN Time 0.00943	Train Loss 1.9181	
+Epoch: [8][1411/3827]	Per Sample Total Time 0.00952	Per Sample Data Time 0.00011	Per Sample DNN Time 0.00941	Train Loss 1.8062	
+Epoch: [8][1511/3827]	Per Sample Total Time 0.00953	Per Sample Data Time 0.00010	Per Sample DNN Time 0.00943	Train Loss 1.7944	
+Epoch: [8][1611/3827]	Per Sample Total Time 0.00957	Per Sample Data Time 0.00010	Per Sample DNN Time 0.00947	Train Loss 1.8980	
+Epoch: [8][1711/3827]	Per Sample Total Time 0.00959	Per Sample Data Time 0.00009	Per Sample DNN Time 0.00950	Train Loss 1.7722	
+Epoch: [8][1811/3827]	Per Sample Total Time 0.00957	Per Sample Data Time 0.00009	Per Sample DNN Time 0.00949	Train Loss 1.8687	
+Epoch: [8][1911/3827]	Per Sample Total Time 0.00964	Per Sample Data Time 0.00008	Per Sample DNN Time 0.00955	Train Loss 1.9118	
+Epoch: [8][2011/3827]	Per Sample Total Time 0.00964	Per Sample Data Time 0.00008	Per Sample DNN Time 0.00956	Train Loss 1.6393	
+Epoch: [8][2111/3827]	Per Sample Total Time 0.00959	Per Sample Data Time 0.00007	Per Sample DNN Time 0.00951	Train Loss 1.9071	
+Epoch: [8][2211/3827]	Per Sample Total Time 0.00953	Per Sample Data Time 0.00007	Per Sample DNN Time 0.00946	Train Loss 1.9434	
+Epoch: [8][2311/3827]	Per Sample Total Time 0.00957	Per Sample Data Time 0.00007	Per Sample DNN Time 0.00950	Train Loss 1.7792	
+Epoch: [8][2411/3827]	Per Sample Total Time 0.00952	Per Sample Data Time 0.00007	Per Sample DNN Time 0.00946	Train Loss 1.8431	
+Epoch: [8][2511/3827]	Per Sample Total Time 0.00947	Per Sample Data Time 0.00006	Per Sample DNN Time 0.00940	Train Loss 1.7136	
+Epoch: [8][2611/3827]	Per Sample Total Time 0.00942	Per Sample Data Time 0.00006	Per Sample DNN Time 0.00936	Train Loss 1.8773	
+Epoch: [8][2711/3827]	Per Sample Total Time 0.00941	Per Sample Data Time 0.00006	Per Sample DNN Time 0.00935	Train Loss 1.7617	
+Epoch: [8][2811/3827]	Per Sample Total Time 0.00941	Per Sample Data Time 0.00006	Per Sample DNN Time 0.00935	Train Loss 1.8724	
+Epoch: [8][2911/3827]	Per Sample Total Time 0.00942	Per Sample Data Time 0.00006	Per Sample DNN Time 0.00936	Train Loss 1.8370	
+Epoch: [8][3011/3827]	Per Sample Total Time 0.00945	Per Sample Data Time 0.00006	Per Sample DNN Time 0.00939	Train Loss 1.8879	
+Epoch: [8][3111/3827]	Per Sample Total Time 0.00947	Per Sample Data Time 0.00005	Per Sample DNN Time 0.00941	Train Loss 1.9311	
+Epoch: [8][3211/3827]	Per Sample Total Time 0.00946	Per Sample Data Time 0.00005	Per Sample DNN Time 0.00941	Train Loss 1.6635	
+Epoch: [8][3311/3827]	Per Sample Total Time 0.00948	Per Sample Data Time 0.00005	Per Sample DNN Time 0.00943	Train Loss 1.9036	
+Epoch: [8][3411/3827]	Per Sample Total Time 0.00943	Per Sample Data Time 0.00005	Per Sample DNN Time 0.00938	Train Loss 1.9789	
+Epoch: [8][3511/3827]	Per Sample Total Time 0.00940	Per Sample Data Time 0.00005	Per Sample DNN Time 0.00935	Train Loss 2.0770	
+Epoch: [8][3611/3827]	Per Sample Total Time 0.00943	Per Sample Data Time 0.00005	Per Sample DNN Time 0.00938	Train Loss 1.7560	
+Epoch: [8][3711/3827]	Per Sample Total Time 0.00942	Per Sample Data Time 0.00005	Per Sample DNN Time 0.00937	Train Loss 1.9738	
+Epoch: [8][3811/3827]	Per Sample Total Time 0.00944	Per Sample Data Time 0.00005	Per Sample DNN Time 0.00940	Train Loss 1.9097	
+frame 5yyjz_8nz-0_000055 8 does not exist
+frame 5yyjz_8nz-0_000055 7 does not exist
+frame 5yyjz_8nz-0_000055 6 does not exist
+frame 5yyjz_8nz-0_000055 5 does not exist
+frame 5yyjz_8nz-0_000055 4 does not exist
+frame 5yyjz_8nz-0_000055 3 does not exist
+frame 5yyjz_8nz-0_000055 2 does not exist
+frame 5yyjz_8nz-0_000055 1 does not exist
+there is an error in loading image
+frame 8II9NNK4yUM_000010 1 does not exist
+there is an error in loading image
+frame 5yyjz_8nz-0_000055 4 does not exist
+frame 5yyjz_8nz-0_000055 3 does not exist
+frame 5yyjz_8nz-0_000055 2 does not exist
+frame 5yyjz_8nz-0_000055 1 does not exist
+there is an error in loading image
+frame -N0qJZkizOw_000030 2 does not exist
+frame -N0qJZkizOw_000030 1 does not exist
+there is an error in loading image
+frame -N0qJZkizOw_000030 2 does not exist
+frame -N0qJZkizOw_000030 1 does not exist
+there is an error in loading image
+frame bk9xgrw3dp8_000030 4 does not exist
+frame bk9xgrw3dp8_000030 3 does not exist
+frame bk9xgrw3dp8_000030 2 does not exist
+frame bk9xgrw3dp8_000030 1 does not exist
+there is an error in loading image
+frame Cof4NHnIRFA_000004 9 does not exist
+frame NB8CqMH9NvE_000120 9 does not exist
+frame UOlAgFNy_HQ_000030 6 does not exist
+frame UOlAgFNy_HQ_000030 5 does not exist
+frame UOlAgFNy_HQ_000030 4 does not exist
+frame UOlAgFNy_HQ_000030 3 does not exist
+frame UOlAgFNy_HQ_000030 2 does not exist
+frame 8II9NNK4yUM_000010 9 does not exist
+frame 8II9NNK4yUM_000010 8 does not exist
+frame 8II9NNK4yUM_000010 7 does not exist
+frame 8II9NNK4yUM_000010 6 does not exist
+frame 8II9NNK4yUM_000010 5 does not exist
+frame 8II9NNK4yUM_000010 4 does not exist
+frame 8II9NNK4yUM_000010 3 does not exist
+frame 8II9NNK4yUM_000010 2 does not exist
+frame 8II9NNK4yUM_000010 1 does not exist
+there is an error in loading image
+frame UOlAgFNy_HQ_000030 7 does not exist
+frame UOlAgFNy_HQ_000030 6 does not exist
+frame UOlAgFNy_HQ_000030 5 does not exist
+frame UOlAgFNy_HQ_000030 4 does not exist
+frame UOlAgFNy_HQ_000030 3 does not exist
+frame UOlAgFNy_HQ_000030 2 does not exist
+frame BsLgruLdjDI_000208 7 does not exist
+frame BsLgruLdjDI_000208 6 does not exist
+frame BsLgruLdjDI_000208 5 does not exist
+frame BsLgruLdjDI_000208 4 does not exist
+frame BsLgruLdjDI_000208 3 does not exist
+frame BsLgruLdjDI_000208 2 does not exist
+frame BsLgruLdjDI_000208 1 does not exist
+there is an error in loading image
+frame 8II9NNK4yUM_000010 2 does not exist
+frame 8II9NNK4yUM_000010 1 does not exist
+there is an error in loading image
+frame BsLgruLdjDI_000208 1 does not exist
+there is an error in loading image
+frame leBIxqLUdjQ_000007 9 does not exist
+frame leBIxqLUdjQ_000007 8 does not exist
+frame leBIxqLUdjQ_000007 7 does not exist
+frame leBIxqLUdjQ_000007 6 does not exist
+start validation
+frame -w8maIWtnUk_000030 5 does not exist
+frame -w8maIWtnUk_000030 4 does not exist
+frame -w8maIWtnUk_000030 3 does not exist
+frame -w8maIWtnUk_000030 2 does not exist
+frame -w8maIWtnUk_000030 1 does not exist
+there is an error in loading image
+acc: 0.647780
+AUC: 0.979677
+d_prime: 2.895056
+train_loss: 1.892141
+valid_loss: 1.558825
+validation finished
+Epoch-8 lr: 7.8125e-07
+epoch 8 training time: 1853.132
+---------------
+2023-03-15 01:21:59.428643
+current #epochs=9, #steps=30616
+Epoch: [9][84/3827]	Per Sample Total Time 0.01000	Per Sample Data Time 0.00158	Per Sample DNN Time 0.00842	Train Loss 1.7989	
+Epoch: [9][184/3827]	Per Sample Total Time 0.00928	Per Sample Data Time 0.00073	Per Sample DNN Time 0.00855	Train Loss 1.8646	
+Epoch: [9][284/3827]	Per Sample Total Time 0.00934	Per Sample Data Time 0.00048	Per Sample DNN Time 0.00886	Train Loss 1.8866	
+Epoch: [9][384/3827]	Per Sample Total Time 0.00967	Per Sample Data Time 0.00036	Per Sample DNN Time 0.00931	Train Loss 1.8026	
+Epoch: [9][484/3827]	Per Sample Total Time 0.00986	Per Sample Data Time 0.00029	Per Sample DNN Time 0.00957	Train Loss 1.8369	
+Epoch: [9][584/3827]	Per Sample Total Time 0.00998	Per Sample Data Time 0.00024	Per Sample DNN Time 0.00974	Train Loss 1.9011	
+Epoch: [9][684/3827]	Per Sample Total Time 0.01009	Per Sample Data Time 0.00020	Per Sample DNN Time 0.00988	Train Loss 1.8086	
+Epoch: [9][784/3827]	Per Sample Total Time 0.01014	Per Sample Data Time 0.00018	Per Sample DNN Time 0.00996	Train Loss 1.8191	
+Epoch: [9][884/3827]	Per Sample Total Time 0.01020	Per Sample Data Time 0.00016	Per Sample DNN Time 0.01004	Train Loss 2.0105	
+Epoch: [9][984/3827]	Per Sample Total Time 0.01024	Per Sample Data Time 0.00015	Per Sample DNN Time 0.01010	Train Loss 1.7395	
+Epoch: [9][1084/3827]	Per Sample Total Time 0.01020	Per Sample Data Time 0.00013	Per Sample DNN Time 0.01007	Train Loss 1.6469	
+Epoch: [9][1184/3827]	Per Sample Total Time 0.01009	Per Sample Data Time 0.00012	Per Sample DNN Time 0.00997	Train Loss 1.7441	
+Epoch: [9][1284/3827]	Per Sample Total Time 0.01013	Per Sample Data Time 0.00011	Per Sample DNN Time 0.01002	Train Loss 1.6959	
+Epoch: [9][1384/3827]	Per Sample Total Time 0.01013	Per Sample Data Time 0.00011	Per Sample DNN Time 0.01002	Train Loss 2.0108	
+Epoch: [9][1484/3827]	Per Sample Total Time 0.01012	Per Sample Data Time 0.00010	Per Sample DNN Time 0.01003	Train Loss 1.6456	
+Epoch: [9][1584/3827]	Per Sample Total Time 0.01014	Per Sample Data Time 0.00009	Per Sample DNN Time 0.01005	Train Loss 2.0572	
+Epoch: [9][1684/3827]	Per Sample Total Time 0.01002	Per Sample Data Time 0.00009	Per Sample DNN Time 0.00993	Train Loss 1.6750	
+Epoch: [9][1784/3827]	Per Sample Total Time 0.01000	Per Sample Data Time 0.00008	Per Sample DNN Time 0.00992	Train Loss 1.8243	
+Epoch: [9][1884/3827]	Per Sample Total Time 0.01003	Per Sample Data Time 0.00008	Per Sample DNN Time 0.00995	Train Loss 2.1199	
+Epoch: [9][1984/3827]	Per Sample Total Time 0.01003	Per Sample Data Time 0.00008	Per Sample DNN Time 0.00995	Train Loss 1.7623	
+Epoch: [9][2084/3827]	Per Sample Total Time 0.01001	Per Sample Data Time 0.00007	Per Sample DNN Time 0.00993	Train Loss 1.9622	
+Epoch: [9][2184/3827]	Per Sample Total Time 0.00995	Per Sample Data Time 0.00007	Per Sample DNN Time 0.00988	Train Loss 1.7895	
+Epoch: [9][2284/3827]	Per Sample Total Time 0.00993	Per Sample Data Time 0.00007	Per Sample DNN Time 0.00986	Train Loss 1.9549	
+Epoch: [9][2384/3827]	Per Sample Total Time 0.00994	Per Sample Data Time 0.00007	Per Sample DNN Time 0.00988	Train Loss 2.1082	
+Epoch: [9][2484/3827]	Per Sample Total Time 0.00996	Per Sample Data Time 0.00006	Per Sample DNN Time 0.00989	Train Loss 2.0628	
+Epoch: [9][2584/3827]	Per Sample Total Time 0.00999	Per Sample Data Time 0.00006	Per Sample DNN Time 0.00993	Train Loss 1.9311	
+Epoch: [9][2684/3827]	Per Sample Total Time 0.00998	Per Sample Data Time 0.00006	Per Sample DNN Time 0.00992	Train Loss 1.8236	
+Epoch: [9][2784/3827]	Per Sample Total Time 0.01001	Per Sample Data Time 0.00006	Per Sample DNN Time 0.00995	Train Loss 1.8586	
+Epoch: [9][2884/3827]	Per Sample Total Time 0.01003	Per Sample Data Time 0.00006	Per Sample DNN Time 0.00998	Train Loss 1.7889	
+Epoch: [9][2984/3827]	Per Sample Total Time 0.01006	Per Sample Data Time 0.00005	Per Sample DNN Time 0.01001	Train Loss 1.8615	
+Epoch: [9][3084/3827]	Per Sample Total Time 0.01008	Per Sample Data Time 0.00005	Per Sample DNN Time 0.01003	Train Loss 1.8975	
+Epoch: [9][3184/3827]	Per Sample Total Time 0.01009	Per Sample Data Time 0.00005	Per Sample DNN Time 0.01004	Train Loss 1.8058	
+Epoch: [9][3284/3827]	Per Sample Total Time 0.01002	Per Sample Data Time 0.00005	Per Sample DNN Time 0.00997	Train Loss 1.7843	
+Epoch: [9][3384/3827]	Per Sample Total Time 0.00996	Per Sample Data Time 0.00005	Per Sample DNN Time 0.00991	Train Loss 1.7055	
+Epoch: [9][3484/3827]	Per Sample Total Time 0.00996	Per Sample Data Time 0.00005	Per Sample DNN Time 0.00991	Train Loss 2.0142	
+Epoch: [9][3584/3827]	Per Sample Total Time 0.00997	Per Sample Data Time 0.00005	Per Sample DNN Time 0.00992	Train Loss 1.9063	
+Epoch: [9][3684/3827]	Per Sample Total Time 0.00999	Per Sample Data Time 0.00005	Per Sample DNN Time 0.00994	Train Loss 2.0394	
+Epoch: [9][3784/3827]	Per Sample Total Time 0.00998	Per Sample Data Time 0.00004	Per Sample DNN Time 0.00993	Train Loss 1.8817	
+frame BNegPkBeFgA_000140 4 does not exist
+frame BNegPkBeFgA_000140 3 does not exist
+frame BNegPkBeFgA_000140 2 does not exist
+frame BNegPkBeFgA_000140 1 does not exist
+there is an error in loading image
+frame bk9xgrw3dp8_000030 1 does not exist
+there is an error in loading image
+frame KYwLCuV7VCU_000020 6 does not exist
+frame KYwLCuV7VCU_000020 8 does not exist
+frame KYwLCuV7VCU_000020 7 does not exist
+frame KYwLCuV7VCU_000020 6 does not exist
+frame 5yyjz_8nz-0_000055 4 does not exist
+frame 5yyjz_8nz-0_000055 3 does not exist
+frame 5yyjz_8nz-0_000055 2 does not exist
+frame 5yyjz_8nz-0_000055 1 does not exist
+there is an error in loading image
+frame UOlAgFNy_HQ_000030 7 does not exist
+frame UOlAgFNy_HQ_000030 6 does not exist
+frame UOlAgFNy_HQ_000030 5 does not exist
+frame UOlAgFNy_HQ_000030 4 does not exist
+frame UOlAgFNy_HQ_000030 3 does not exist
+frame UOlAgFNy_HQ_000030 2 does not exist
+frame h1YC8Cb5QWI_000323 7 does not exist
+frame NB8CqMH9NvE_000120 9 does not exist
+frame 5yyjz_8nz-0_000055 6 does not exist
+frame 5yyjz_8nz-0_000055 5 does not exist
+frame 5yyjz_8nz-0_000055 4 does not exist
+frame 5yyjz_8nz-0_000055 3 does not exist
+frame 5yyjz_8nz-0_000055 2 does not exist
+frame 5yyjz_8nz-0_000055 1 does not exist
+there is an error in loading image
+frame PsXRzD-yBe4_000066 8 does not exist
+frame PsXRzD-yBe4_000066 7 does not exist
+frame PsXRzD-yBe4_000066 6 does not exist
+frame PsXRzD-yBe4_000066 5 does not exist
+frame PsXRzD-yBe4_000066 4 does not exist
+frame PsXRzD-yBe4_000066 3 does not exist
+frame PsXRzD-yBe4_000066 2 does not exist
+frame PsXRzD-yBe4_000066 1 does not exist
+there is an error in loading image
+frame 5yyjz_8nz-0_000055 5 does not exist
+frame 5yyjz_8nz-0_000055 4 does not exist
+frame 5yyjz_8nz-0_000055 3 does not exist
+frame 5yyjz_8nz-0_000055 2 does not exist
+frame 5yyjz_8nz-0_000055 1 does not exist
+there is an error in loading image
+there is an error in loading image
+frame NVQb73vzEpY_000003 5 does not exist
+frame NVQb73vzEpY_000003 4 does not exist
+frame NVQb73vzEpY_000003 3 does not exist
+frame NVQb73vzEpY_000003 2 does not exist
+frame NVQb73vzEpY_000003 1 does not exist
+there is an error in loading image
+frame 5yyjz_8nz-0_000055 4 does not exist
+frame 5yyjz_8nz-0_000055 3 does not exist
+frame 5yyjz_8nz-0_000055 2 does not exist
+frame 5yyjz_8nz-0_000055 1 does not exist
+there is an error in loading image
+frame ljjUj5fQZgs_000450 1 does not exist
+frame 5yyjz_8nz-0_000055 9 does not exist
+frame 5yyjz_8nz-0_000055 8 does not exist
+frame 5yyjz_8nz-0_000055 7 does not exist
+frame 5yyjz_8nz-0_000055 6 does not exist
+frame 5yyjz_8nz-0_000055 5 does not exist
+frame 5yyjz_8nz-0_000055 4 does not exist
+frame 5yyjz_8nz-0_000055 3 does not exist
+frame 5yyjz_8nz-0_000055 2 does not exist
+frame 5yyjz_8nz-0_000055 1 does not exist
+there is an error in loading image
+frame BsLgruLdjDI_000208 6 does not exist
+frame BsLgruLdjDI_000208 5 does not exist
+frame BsLgruLdjDI_000208 4 does not exist
+frame BsLgruLdjDI_000208 3 does not exist
+frame BsLgruLdjDI_000208 2 does not exist
+frame BsLgruLdjDI_000208 1 does not exist
+there is an error in loading image
+frame 5nCVaazCHaA_000090 5 does not exist
+frame 5nCVaazCHaA_000090 4 does not exist
+frame 5nCVaazCHaA_000090 3 does not exist
+frame 5nCVaazCHaA_000090 2 does not exist
+frame 5nCVaazCHaA_000090 1 does not exist
+there is an error in loading image
+frame 5nCVaazCHaA_000090 7 does not exist
+frame 5nCVaazCHaA_000090 6 does not exist
+frame 5nCVaazCHaA_000090 5 does not exist
+frame 5nCVaazCHaA_000090 4 does not exist
+frame 5nCVaazCHaA_000090 3 does not exist
+frame 5nCVaazCHaA_000090 2 does not exist
+frame 5nCVaazCHaA_000090 1 does not exist
+there is an error in loading image
+frame PsXRzD-yBe4_000066 1 does not exist
+there is an error in loading image
+frame BNegPkBeFgA_000140 7 does not exist
+frame BNegPkBeFgA_000140 6 does not exist
+frame BNegPkBeFgA_000140 5 does not exist
+frame BNegPkBeFgA_000140 4 does not exist
+frame BNegPkBeFgA_000140 3 does not exist
+frame BNegPkBeFgA_000140 2 does not exist
+frame BNegPkBeFgA_000140 1 does not exist
+there is an error in loading image
+frame PsXRzD-yBe4_000066 8 does not exist
+frame PsXRzD-yBe4_000066 7 does not exist
+frame PsXRzD-yBe4_000066 6 does not exist
+frame PsXRzD-yBe4_000066 5 does not exist
+frame PsXRzD-yBe4_000066 4 does not exist
+frame PsXRzD-yBe4_000066 3 does not exist
+frame PsXRzD-yBe4_000066 2 does not exist
+frame PsXRzD-yBe4_000066 1 does not exist
+there is an error in loading image
+start validation
+frame -w8maIWtnUk_000030 5 does not exist
+frame -w8maIWtnUk_000030 4 does not exist
+frame -w8maIWtnUk_000030 3 does not exist
+frame -w8maIWtnUk_000030 2 does not exist
+frame -w8maIWtnUk_000030 1 does not exist
+there is an error in loading image
+acc: 0.648819
+AUC: 0.979713
+d_prime: 2.896094
+train_loss: 1.884217
+valid_loss: 1.558000
+validation finished
+Epoch-9 lr: 3.90625e-07
+epoch 9 training time: 1970.542
+---------------
+2023-03-15 01:54:49.971162
+current #epochs=10, #steps=34443
+Epoch: [10][57/3827]	Per Sample Total Time 0.01101	Per Sample Data Time 0.00225	Per Sample DNN Time 0.00876	Train Loss 1.9355	
+Epoch: [10][157/3827]	Per Sample Total Time 0.00963	Per Sample Data Time 0.00083	Per Sample DNN Time 0.00880	Train Loss 1.8137	
+Epoch: [10][257/3827]	Per Sample Total Time 0.00984	Per Sample Data Time 0.00051	Per Sample DNN Time 0.00933	Train Loss 1.8648	
+Epoch: [10][357/3827]	Per Sample Total Time 0.00988	Per Sample Data Time 0.00037	Per Sample DNN Time 0.00950	Train Loss 1.8735	
+Epoch: [10][457/3827]	Per Sample Total Time 0.00976	Per Sample Data Time 0.00029	Per Sample DNN Time 0.00946	Train Loss 1.7560	
+Epoch: [10][557/3827]	Per Sample Total Time 0.00985	Per Sample Data Time 0.00024	Per Sample DNN Time 0.00961	Train Loss 1.9614	
+Epoch: [10][657/3827]	Per Sample Total Time 0.00987	Per Sample Data Time 0.00021	Per Sample DNN Time 0.00966	Train Loss 1.9374	
+Epoch: [10][757/3827]	Per Sample Total Time 0.00999	Per Sample Data Time 0.00018	Per Sample DNN Time 0.00981	Train Loss 1.9212	
+Epoch: [10][857/3827]	Per Sample Total Time 0.00994	Per Sample Data Time 0.00016	Per Sample DNN Time 0.00978	Train Loss 1.9709	
+Epoch: [10][957/3827]	Per Sample Total Time 0.00992	Per Sample Data Time 0.00015	Per Sample DNN Time 0.00977	Train Loss 1.9714	
+Epoch: [10][1057/3827]	Per Sample Total Time 0.00992	Per Sample Data Time 0.00013	Per Sample DNN Time 0.00979	Train Loss 1.7217	
+Epoch: [10][1157/3827]	Per Sample Total Time 0.00984	Per Sample Data Time 0.00012	Per Sample DNN Time 0.00972	Train Loss 1.8944	
+Epoch: [10][1257/3827]	Per Sample Total Time 0.00977	Per Sample Data Time 0.00011	Per Sample DNN Time 0.00966	Train Loss 1.9171	
+Epoch: [10][1357/3827]	Per Sample Total Time 0.00974	Per Sample Data Time 0.00011	Per Sample DNN Time 0.00963	Train Loss 2.1031	
+Epoch: [10][1457/3827]	Per Sample Total Time 0.00973	Per Sample Data Time 0.00010	Per Sample DNN Time 0.00963	Train Loss 1.7047	
+Epoch: [10][1557/3827]	Per Sample Total Time 0.00978	Per Sample Data Time 0.00009	Per Sample DNN Time 0.00969	Train Loss 1.7873	
+Epoch: [10][1657/3827]	Per Sample Total Time 0.00971	Per Sample Data Time 0.00009	Per Sample DNN Time 0.00963	Train Loss 1.8533	
+Epoch: [10][1757/3827]	Per Sample Total Time 0.00966	Per Sample Data Time 0.00008	Per Sample DNN Time 0.00957	Train Loss 1.8310	
+Epoch: [10][1857/3827]	Per Sample Total Time 0.00967	Per Sample Data Time 0.00008	Per Sample DNN Time 0.00959	Train Loss 1.8762	
+Epoch: [10][1957/3827]	Per Sample Total Time 0.00973	Per Sample Data Time 0.00008	Per Sample DNN Time 0.00965	Train Loss 1.7734	
+Epoch: [10][2057/3827]	Per Sample Total Time 0.00977	Per Sample Data Time 0.00007	Per Sample DNN Time 0.00970	Train Loss 1.9618	
+Epoch: [10][2157/3827]	Per Sample Total Time 0.00974	Per Sample Data Time 0.00007	Per Sample DNN Time 0.00967	Train Loss 1.8751	
+Epoch: [10][2257/3827]	Per Sample Total Time 0.00966	Per Sample Data Time 0.00007	Per Sample DNN Time 0.00959	Train Loss 1.9101	
+Epoch: [10][2357/3827]	Per Sample Total Time 0.00958	Per Sample Data Time 0.00006	Per Sample DNN Time 0.00952	Train Loss 1.7083	
+Epoch: [10][2457/3827]	Per Sample Total Time 0.00963	Per Sample Data Time 0.00006	Per Sample DNN Time 0.00957	Train Loss 1.6664	
+Epoch: [10][2557/3827]	Per Sample Total Time 0.00968	Per Sample Data Time 0.00006	Per Sample DNN Time 0.00962	Train Loss 2.1790	
+Epoch: [10][2657/3827]	Per Sample Total Time 0.00971	Per Sample Data Time 0.00006	Per Sample DNN Time 0.00965	Train Loss 1.9551	
+Epoch: [10][2757/3827]	Per Sample Total Time 0.00973	Per Sample Data Time 0.00006	Per Sample DNN Time 0.00967	Train Loss 1.9841	
+Epoch: [10][2857/3827]	Per Sample Total Time 0.00970	Per Sample Data Time 0.00006	Per Sample DNN Time 0.00964	Train Loss 1.7473	
+Epoch: [10][2957/3827]	Per Sample Total Time 0.00969	Per Sample Data Time 0.00005	Per Sample DNN Time 0.00964	Train Loss 1.8526	
+Epoch: [10][3057/3827]	Per Sample Total Time 0.00963	Per Sample Data Time 0.00005	Per Sample DNN Time 0.00958	Train Loss 2.0415	
+Epoch: [10][3157/3827]	Per Sample Total Time 0.00961	Per Sample Data Time 0.00005	Per Sample DNN Time 0.00956	Train Loss 2.0160	
+Epoch: [10][3257/3827]	Per Sample Total Time 0.00957	Per Sample Data Time 0.00005	Per Sample DNN Time 0.00952	Train Loss 1.8368	
+Epoch: [10][3357/3827]	Per Sample Total Time 0.00955	Per Sample Data Time 0.00005	Per Sample DNN Time 0.00950	Train Loss 1.9112	
+Epoch: [10][3457/3827]	Per Sample Total Time 0.00958	Per Sample Data Time 0.00005	Per Sample DNN Time 0.00953	Train Loss 1.9380	
+Epoch: [10][3557/3827]	Per Sample Total Time 0.00959	Per Sample Data Time 0.00005	Per Sample DNN Time 0.00954	Train Loss 1.9246	
+Epoch: [10][3657/3827]	Per Sample Total Time 0.00955	Per Sample Data Time 0.00005	Per Sample DNN Time 0.00951	Train Loss 2.2431	
+Epoch: [10][3757/3827]	Per Sample Total Time 0.00954	Per Sample Data Time 0.00004	Per Sample DNN Time 0.00950	Train Loss 2.0804	
+there is an error in loading image
+frame -N0qJZkizOw_000030 9 does not exist
+frame -N0qJZkizOw_000030 8 does not exist
+frame -N0qJZkizOw_000030 7 does not exist
+frame -N0qJZkizOw_000030 6 does not exist
+frame -N0qJZkizOw_000030 5 does not exist
+frame -N0qJZkizOw_000030 4 does not exist
+frame -N0qJZkizOw_000030 3 does not exist
+frame -N0qJZkizOw_000030 2 does not exist
+frame -N0qJZkizOw_000030 1 does not exist
+there is an error in loading image
+frame 5nCVaazCHaA_000090 8 does not exist
+frame 5nCVaazCHaA_000090 7 does not exist
+frame 5nCVaazCHaA_000090 6 does not exist
+frame 5nCVaazCHaA_000090 5 does not exist
+frame 5nCVaazCHaA_000090 4 does not exist
+frame 5nCVaazCHaA_000090 3 does not exist
+frame 5nCVaazCHaA_000090 2 does not exist
+frame 5nCVaazCHaA_000090 1 does not exist
+there is an error in loading image
+frame Cof4NHnIRFA_000004 9 does not exist
+frame 2IUileqD6qI_000010 7 does not exist
+frame 2IUileqD6qI_000010 6 does not exist
+frame 2IUileqD6qI_000010 5 does not exist
+frame 2IUileqD6qI_000010 4 does not exist
+frame 2IUileqD6qI_000010 3 does not exist
+frame 2IUileqD6qI_000010 2 does not exist
+frame 2IUileqD6qI_000010 1 does not exist
+there is an error in loading image
+frame UOlAgFNy_HQ_000030 5 does not exist
+frame UOlAgFNy_HQ_000030 4 does not exist
+frame UOlAgFNy_HQ_000030 3 does not exist
+frame UOlAgFNy_HQ_000030 2 does not exist
+frame KYwLCuV7VCU_000020 6 does not exist
+frame ljjUj5fQZgs_000450 9 does not exist
+frame ljjUj5fQZgs_000450 8 does not exist
+frame ljjUj5fQZgs_000450 7 does not exist
+frame ljjUj5fQZgs_000450 6 does not exist
+frame ljjUj5fQZgs_000450 5 does not exist
+frame ljjUj5fQZgs_000450 4 does not exist
+frame ljjUj5fQZgs_000450 3 does not exist
+frame ljjUj5fQZgs_000450 2 does not exist
+frame ljjUj5fQZgs_000450 1 does not exist
+frame ZYZgumdhE3g_000007 7 does not exist
+frame BsLgruLdjDI_000208 4 does not exist
+frame BsLgruLdjDI_000208 3 does not exist
+frame BsLgruLdjDI_000208 2 does not exist
+frame BsLgruLdjDI_000208 1 does not exist
+there is an error in loading image
+frame Eb03vQmXqKg_000030 7 does not exist
+frame Eb03vQmXqKg_000030 6 does not exist
+frame Eb03vQmXqKg_000030 5 does not exist
+frame Eb03vQmXqKg_000030 4 does not exist
+frame Eb03vQmXqKg_000030 3 does not exist
+frame Eb03vQmXqKg_000030 2 does not exist
+frame Eb03vQmXqKg_000030 1 does not exist
+there is an error in loading image
+frame eWg3Z2LsQrk_000096 9 does not exist
+frame eWg3Z2LsQrk_000096 8 does not exist
+frame eWg3Z2LsQrk_000096 7 does not exist
+frame eWg3Z2LsQrk_000096 6 does not exist
+frame eWg3Z2LsQrk_000096 5 does not exist
+frame 5yyjz_8nz-0_000055 6 does not exist
+frame 5yyjz_8nz-0_000055 5 does not exist
+frame 5yyjz_8nz-0_000055 4 does not exist
+frame 5yyjz_8nz-0_000055 3 does not exist
+frame 5yyjz_8nz-0_000055 2 does not exist
+frame 5yyjz_8nz-0_000055 1 does not exist
+there is an error in loading image
+frame 5yyjz_8nz-0_000055 6 does not exist
+frame 5yyjz_8nz-0_000055 5 does not exist
+frame 5yyjz_8nz-0_000055 4 does not exist
+frame 5yyjz_8nz-0_000055 3 does not exist
+frame 5yyjz_8nz-0_000055 2 does not exist
+frame 5yyjz_8nz-0_000055 1 does not exist
+there is an error in loading image
+frame NVQb73vzEpY_000003 7 does not exist
+frame NVQb73vzEpY_000003 6 does not exist
+frame NVQb73vzEpY_000003 5 does not exist
+frame NVQb73vzEpY_000003 4 does not exist
+frame NVQb73vzEpY_000003 3 does not exist
+frame NVQb73vzEpY_000003 2 does not exist
+frame NVQb73vzEpY_000003 1 does not exist
+there is an error in loading image
+frame h1YC8Cb5QWI_000323 9 does not exist
+frame h1YC8Cb5QWI_000323 8 does not exist
+frame h1YC8Cb5QWI_000323 7 does not exist
+frame bk9xgrw3dp8_000030 4 does not exist
+frame bk9xgrw3dp8_000030 3 does not exist
+frame bk9xgrw3dp8_000030 2 does not exist
+frame bk9xgrw3dp8_000030 1 does not exist
+there is an error in loading image
+frame 8II9NNK4yUM_000010 4 does not exist
+frame 8II9NNK4yUM_000010 3 does not exist
+frame 8II9NNK4yUM_000010 2 does not exist
+frame 8II9NNK4yUM_000010 1 does not exist
+there is an error in loading image
+frame H6LWbizxQeQ_000012 2 does not exist
+frame H6LWbizxQeQ_000012 1 does not exist
+there is an error in loading image
+frame 5yyjz_8nz-0_000055 7 does not exist
+frame 5yyjz_8nz-0_000055 6 does not exist
+frame 5yyjz_8nz-0_000055 5 does not exist
+frame 5yyjz_8nz-0_000055 4 does not exist
+frame 5yyjz_8nz-0_000055 3 does not exist
+frame 5yyjz_8nz-0_000055 2 does not exist
+frame 5yyjz_8nz-0_000055 1 does not exist
+there is an error in loading image
+frame -N0qJZkizOw_000030 9 does not exist
+frame -N0qJZkizOw_000030 8 does not exist
+frame -N0qJZkizOw_000030 7 does not exist
+frame -N0qJZkizOw_000030 6 does not exist
+frame -N0qJZkizOw_000030 5 does not exist
+frame -N0qJZkizOw_000030 4 does not exist
+frame -N0qJZkizOw_000030 3 does not exist
+frame -N0qJZkizOw_000030 2 does not exist
+frame -N0qJZkizOw_000030 1 does not exist
+there is an error in loading image
+frame eWg3Z2LsQrk_000096 8 does not exist
+frame eWg3Z2LsQrk_000096 7 does not exist
+frame eWg3Z2LsQrk_000096 6 does not exist
+frame eWg3Z2LsQrk_000096 5 does not exist
+frame -N0qJZkizOw_000030 5 does not exist
+frame -N0qJZkizOw_000030 4 does not exist
+frame -N0qJZkizOw_000030 3 does not exist
+frame -N0qJZkizOw_000030 2 does not exist
+frame -N0qJZkizOw_000030 1 does not exist
+there is an error in loading image
+frame ljjUj5fQZgs_000450 5 does not exist
+frame ljjUj5fQZgs_000450 4 does not exist
+frame ljjUj5fQZgs_000450 3 does not exist
+frame ljjUj5fQZgs_000450 2 does not exist
+frame ljjUj5fQZgs_000450 1 does not exist
+frame NVQb73vzEpY_000003 9 does not exist
+frame NVQb73vzEpY_000003 8 does not exist
+frame NVQb73vzEpY_000003 7 does not exist
+frame NVQb73vzEpY_000003 6 does not exist
+frame NVQb73vzEpY_000003 5 does not exist
+frame NVQb73vzEpY_000003 4 does not exist
+frame NVQb73vzEpY_000003 3 does not exist
+frame NVQb73vzEpY_000003 2 does not exist
+frame NVQb73vzEpY_000003 1 does not exist
+there is an error in loading image
+there is an error in loading image
+frame 2IUileqD6qI_000010 5 does not exist
+frame 2IUileqD6qI_000010 4 does not exist
+frame 2IUileqD6qI_000010 3 does not exist
+frame 2IUileqD6qI_000010 2 does not exist
+frame 2IUileqD6qI_000010 1 does not exist
+there is an error in loading image
+frame H6LWbizxQeQ_000012 9 does not exist
+frame H6LWbizxQeQ_000012 8 does not exist
+frame H6LWbizxQeQ_000012 7 does not exist
+frame H6LWbizxQeQ_000012 6 does not exist
+frame H6LWbizxQeQ_000012 5 does not exist
+frame H6LWbizxQeQ_000012 4 does not exist
+frame H6LWbizxQeQ_000012 3 does not exist
+frame H6LWbizxQeQ_000012 2 does not exist
+frame H6LWbizxQeQ_000012 1 does not exist
+there is an error in loading image
+frame H6LWbizxQeQ_000012 8 does not exist
+frame H6LWbizxQeQ_000012 7 does not exist
+frame H6LWbizxQeQ_000012 6 does not exist
+frame H6LWbizxQeQ_000012 5 does not exist
+frame H6LWbizxQeQ_000012 4 does not exist
+frame H6LWbizxQeQ_000012 3 does not exist
+frame H6LWbizxQeQ_000012 2 does not exist
+frame H6LWbizxQeQ_000012 1 does not exist
+there is an error in loading image
+start validation
+frame -w8maIWtnUk_000030 5 does not exist
+frame -w8maIWtnUk_000030 4 does not exist
+frame -w8maIWtnUk_000030 3 does not exist
+frame -w8maIWtnUk_000030 2 does not exist
+frame -w8maIWtnUk_000030 1 does not exist
+there is an error in loading image
+acc: 0.649727
+AUC: 0.979697
+d_prime: 2.895655
+train_loss: 1.882135
+valid_loss: 1.557467
+validation finished
+Epoch-10 lr: 1.953125e-07
+epoch 10 training time: 1894.746
+wa 8 models from 3 to 10
+<All keys matched successfully>
+Dataset has 15446 samples
+Using Label Smoothing: 0.0
+now using following mask: 0 freq, 0 time
+now using mix-up with rate 0.000000
+now process vggsound
+use dataset mean -5.081 and std 4.485 to normalize the input.
+not use noise augmentation
+number of classes is 309
+now in eval mode.
+now use frame 0 from total 10 frames
+now using 224 * 224 image input
+there is an error in loading image
+torch.Size([15446, 309])
+acc of frame 0 is 0.6439
+Dataset has 15446 samples
+Using Label Smoothing: 0.0
+now using following mask: 0 freq, 0 time
+now using mix-up with rate 0.000000
+now process vggsound
+use dataset mean -5.081 and std 4.485 to normalize the input.
+not use noise augmentation
+number of classes is 309
+now in eval mode.
+now use frame 1 from total 10 frames
+now using 224 * 224 image input
+frame -w8maIWtnUk_000030 1 does not exist
+there is an error in loading image
+torch.Size([15446, 309])
+acc of frame 1 is 0.6452
+Dataset has 15446 samples
+Using Label Smoothing: 0.0
+now using following mask: 0 freq, 0 time
+now using mix-up with rate 0.000000
+now process vggsound
+use dataset mean -5.081 and std 4.485 to normalize the input.
+not use noise augmentation
+number of classes is 309
+now in eval mode.
+now use frame 2 from total 10 frames
+now using 224 * 224 image input
+frame -w8maIWtnUk_000030 2 does not exist
+frame -w8maIWtnUk_000030 1 does not exist
+there is an error in loading image
+torch.Size([15446, 309])
+acc of frame 2 is 0.6442
+Dataset has 15446 samples
+Using Label Smoothing: 0.0
+now using following mask: 0 freq, 0 time
+now using mix-up with rate 0.000000
+now process vggsound
+use dataset mean -5.081 and std 4.485 to normalize the input.
+not use noise augmentation
+number of classes is 309
+now in eval mode.
+now use frame 3 from total 10 frames
+now using 224 * 224 image input
+frame -w8maIWtnUk_000030 3 does not exist
+frame -w8maIWtnUk_000030 2 does not exist
+frame -w8maIWtnUk_000030 1 does not exist
+there is an error in loading image
+torch.Size([15446, 309])
+acc of frame 3 is 0.6456
+Dataset has 15446 samples
+Using Label Smoothing: 0.0
+now using following mask: 0 freq, 0 time
+now using mix-up with rate 0.000000
+now process vggsound
+use dataset mean -5.081 and std 4.485 to normalize the input.
+not use noise augmentation
+number of classes is 309
+now in eval mode.
+now use frame 4 from total 10 frames
+now using 224 * 224 image input
+frame -w8maIWtnUk_000030 4 does not exist
+frame -w8maIWtnUk_000030 3 does not exist
+frame -w8maIWtnUk_000030 2 does not exist
+frame -w8maIWtnUk_000030 1 does not exist
+there is an error in loading image
+torch.Size([15446, 309])
+acc of frame 4 is 0.6474
+Dataset has 15446 samples
+Using Label Smoothing: 0.0
+now using following mask: 0 freq, 0 time
+now using mix-up with rate 0.000000
+now process vggsound
+use dataset mean -5.081 and std 4.485 to normalize the input.
+not use noise augmentation
+number of classes is 309
+now in eval mode.
+now use frame 5 from total 10 frames
+now using 224 * 224 image input
+frame -w8maIWtnUk_000030 5 does not exist
+frame -w8maIWtnUk_000030 4 does not exist
+frame -w8maIWtnUk_000030 3 does not exist
+frame -w8maIWtnUk_000030 2 does not exist
+frame -w8maIWtnUk_000030 1 does not exist
+there is an error in loading image
+torch.Size([15446, 309])
+acc of frame 5 is 0.6500
+Dataset has 15446 samples
+Using Label Smoothing: 0.0
+now using following mask: 0 freq, 0 time
+now using mix-up with rate 0.000000
+now process vggsound
+use dataset mean -5.081 and std 4.485 to normalize the input.
+not use noise augmentation
+number of classes is 309
+now in eval mode.
+now use frame 6 from total 10 frames
+now using 224 * 224 image input
+frame -w8maIWtnUk_000030 6 does not exist
+frame -w8maIWtnUk_000030 5 does not exist
+frame -w8maIWtnUk_000030 4 does not exist
+frame -w8maIWtnUk_000030 3 does not exist
+frame -w8maIWtnUk_000030 2 does not exist
+frame -w8maIWtnUk_000030 1 does not exist
+there is an error in loading image
+frame h6NMBTwaOss_000000 6 does not exist
+torch.Size([15446, 309])
+acc of frame 6 is 0.6520
+Dataset has 15446 samples
+Using Label Smoothing: 0.0
+now using following mask: 0 freq, 0 time
+now using mix-up with rate 0.000000
+now process vggsound
+use dataset mean -5.081 and std 4.485 to normalize the input.
+not use noise augmentation
+number of classes is 309
+now in eval mode.
+now use frame 7 from total 10 frames
+now using 224 * 224 image input
+frame h6NMBTwaOss_000000 7 does not exist
+frame h6NMBTwaOss_000000 6 does not exist
+frame -w8maIWtnUk_000030 7 does not exist
+frame -w8maIWtnUk_000030 6 does not exist
+frame -w8maIWtnUk_000030 5 does not exist
+frame -w8maIWtnUk_000030 4 does not exist
+frame -w8maIWtnUk_000030 3 does not exist
+frame -w8maIWtnUk_000030 2 does not exist
+frame -w8maIWtnUk_000030 1 does not exist
+there is an error in loading image
+torch.Size([15446, 309])
+acc of frame 7 is 0.6481
+Dataset has 15446 samples
+Using Label Smoothing: 0.0
+now using following mask: 0 freq, 0 time
+now using mix-up with rate 0.000000
+now process vggsound
+use dataset mean -5.081 and std 4.485 to normalize the input.
+not use noise augmentation
+number of classes is 309
+now in eval mode.
+now use frame 8 from total 10 frames
+now using 224 * 224 image input
+frame h6NMBTwaOss_000000 8 does not exist
+frame h6NMBTwaOss_000000 7 does not exist
+frame h6NMBTwaOss_000000 6 does not exist
+frame -w8maIWtnUk_000030 8 does not exist
+frame -w8maIWtnUk_000030 7 does not exist
+frame -w8maIWtnUk_000030 6 does not exist
+frame -w8maIWtnUk_000030 5 does not exist
+frame -w8maIWtnUk_000030 4 does not exist
+frame -w8maIWtnUk_000030 3 does not exist
+frame -w8maIWtnUk_000030 2 does not exist
+frame -w8maIWtnUk_000030 1 does not exist
+there is an error in loading image
+torch.Size([15446, 309])
+acc of frame 8 is 0.6453
+Dataset has 15446 samples
+Using Label Smoothing: 0.0
+now using following mask: 0 freq, 0 time
+now using mix-up with rate 0.000000
+now process vggsound
+use dataset mean -5.081 and std 4.485 to normalize the input.
+not use noise augmentation
+number of classes is 309
+now in eval mode.
+now use frame 9 from total 10 frames
+now using 224 * 224 image input
+frame -w8maIWtnUk_000030 9 does not exist
+frame -w8maIWtnUk_000030 8 does not exist
+frame -w8maIWtnUk_000030 7 does not exist
+frame -w8maIWtnUk_000030 6 does not exist
+frame -w8maIWtnUk_000030 5 does not exist
+frame -w8maIWtnUk_000030 4 does not exist
+frame -w8maIWtnUk_000030 3 does not exist
+frame -w8maIWtnUk_000030 2 does not exist
+frame -w8maIWtnUk_000030 1 does not exist
+there is an error in loading image
+frame h6NMBTwaOss_000000 9 does not exist
+frame h6NMBTwaOss_000000 8 does not exist
+frame h6NMBTwaOss_000000 7 does not exist
+frame h6NMBTwaOss_000000 6 does not exist
+torch.Size([15446, 309])
+acc of frame 9 is 0.6470
+multi-frame acc is 0.658099
