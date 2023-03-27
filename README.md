@@ -34,6 +34,9 @@ CAV-MAE achieves a new SOTA accuracy of 65.9% on VGGSound, and is comparable wit
 
 **Reviews:** The reviews of this paper and our responses are on [OpenReview](https://openreview.net/forum?id=QPtMRyk5rb), we thank the chair and anonymous reviewers' invaluable comments.
 
+[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/contrastive-audio-visual-masked-autoencoder/multi-modal-classification-on-audioset)](https://paperswithcode.com/sota/multi-modal-classification-on-audioset?p=contrastive-audio-visual-masked-autoencoder)
+[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/contrastive-audio-visual-masked-autoencoder/multi-modal-classification-on-vgg-sound)](https://paperswithcode.com/sota/multi-modal-classification-on-vgg-sound?p=contrastive-audio-visual-masked-autoencoder)
+
 ## Citing  
 Please cite our paper if you find this repository useful.   
 ```  
