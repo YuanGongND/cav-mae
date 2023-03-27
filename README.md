@@ -25,7 +25,7 @@
  
 ## Introduction  
 
-<p align="center"><img src="https://github.com/YuanGongND/cav-mae/blob/main/cav-mae.png?raw=true" alt="Illustration of CAV-MAE." width="700"/></p>
+<p align="center"><img src="https://github.com/YuanGongND/cav-mae/blob/master/cav-mae.png?raw=true" alt="Illustration of CAV-MAE." width="700"/></p>
 
 This repository contains the official implementation (in PyTorch) of the **Contrastive Audio-Visual Masked Autoencoder (CAV-MAE)** proposed in the ICLR 2023 paper [Contrastive Audio-Visual Masked Autoencoder](https://openreview.net/forum?id=QPtMRyk5rb) (Yuan Gong, Andrew Rouditchenko, Alexander H. Liu, David Harwath, Leonid Karlinsky, Hilde Kuehne, James Glass).  
 
