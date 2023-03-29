@@ -66,7 +66,7 @@ The proposed *cav-mae* models are in `src/models/cav-mae.py`, there are two mode
 
 The input of `CAVMAE` and `CAVMAEFT` should be a pair of (audio, image). The shape of the audio should be [batch size, length_in_frame, mel_bin_num], e.g., [batch size, 1000, 128] ; the shape of the image should be [batch size, channel_num, height, width], e.g., [batch_size, 3, 224, 224].
 
-The `CAVMAE` model, with its default arguments, reflects the model we used in the paper. However, there are some other things also implemented, e.g.,
+The `CAVMAE` model, with its default arguments, is the model we used in the paper. However, there are some other things also implemented, e.g.,
 - The masking ratios of audio and image do not have to be the same. 
 - We used unstructured masking in the paper, but structured masking strategies (e.g., time, freq, time-freq) are also implemented, you can change it by changing `mask_mode` in the `forward` function.
 - We use single-directional contrastive loss in the paper, but the bidirectional contrastive loss is also implemented.
