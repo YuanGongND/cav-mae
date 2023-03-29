@@ -62,7 +62,7 @@ This repo contains everything you would need to reproduce our experiments and fu
 
 ## The CAV-MAE Model 
 
-The proposed *cav-mae* models are in `src/models/cav-mae.py`, there are two models `CAVMAE` (for pretraining, with decoder) and `CAVMAEFT` (for finetuning, without decoder). In general, the code is self-contained and commented, the best way to understand the details is by reading the code.
+The proposed *cav-mae* models are in `src/models/cav-mae.py`, there are two models: `CAVMAE` (for pretraining, with decoder) and `CAVMAEFT` (for finetuning, without decoder). In general, the code is self-contained and commented, the best way to understand the details is by reading the code.
 
 The input of `CAVMAE` and `CAVMAEFT` should be a pair of (audio, image). The shape of the audio should be [batch size, length_in_frame, mel_bin_num], e.g., [batch size, 1000, 128] ; the shape of the image should be [batch size, channel_num, height, width], e.g., [batch_size, 3, 224, 224].
 
