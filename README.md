@@ -56,7 +56,7 @@ This repo contains everything you would need to reproduce our experiments and fu
 - The `CAVMAE` and `CAVMAEFT` model scripts are in [`src/models/cav-mae.py`](https://github.com/YuanGongND/cav-mae/blob/master/src/models/cav_mae.py). 
 - The data preprocessing scripts are in [`src/preprocess/`](https://github.com/YuanGongND/cav-mae/tree/master/src/preprocess). 
 - The training pipelines are in [`src/run_cavmae_pretrain.py`](https://github.com/YuanGongND/cav-mae/blob/master/src/run_cavmae_pretrain.py) and [`src/traintest_cavmae.py`](https://github.com/YuanGongND/cav-mae/blob/master/src/traintest_cavmae.py) (for cav-mae self-supervised pretraining); and [`src/run_cavmae_ft.py`](https://github.com/YuanGongND/cav-mae/blob/master/src/run_cavmae_ft.py) and [`src/traintest_ft.py`](https://github.com/YuanGongND/cav-mae/blob/master/src/traintest_ft.py) (for classification finetuning).
-- The AudioSet and VGGSound training scripts and logs are in [`egs/`](https://github.com/YuanGongND/cav-mae/tree/master/egs)
+- The AudioSet and VGGSound training scripts and logs are in [`egs/{audioset,vggsound}`](https://github.com/YuanGongND/cav-mae/tree/master/egs)
 - The retrieval experiments script is in [`src/retrieval.py`](https://github.com/YuanGongND/cav-mae/blob/master/src/retrieval.py).
 - The inpainting experiments scripts is in [`src/inpainting.py`](https://github.com/YuanGongND/cav-mae/blob/master/src/inpaint.py).
 - Pretrained models and data lists, a detailed list is [[here]](#pretrained-models).
