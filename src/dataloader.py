@@ -292,6 +292,7 @@ class AudiosetDataset(Dataset):
             fbank = fbank + torch.rand(fbank.shape[0], fbank.shape[1]) * np.random.rand() / 10
             fbank = torch.roll(fbank, np.random.randint(-self.target_length, self.target_length), 0)
 
+        # fbank shape is [time_frame_num, frequency_bins], e.g., [1024, 128]
         return fbank, image, label_indices
 
     def __len__(self):

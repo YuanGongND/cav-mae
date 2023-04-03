@@ -228,27 +228,27 @@ class CAVMAE(nn.Module):
         len_keep = int(L * (1 - mask_ratio))
 
         noise = torch.rand(N, L, device=x.device)  # noise in [0, 1]
-        assert L == t * f
-        noise = noise.reshape(N, f, t)
+        assert L == f * t
+        noise = noise.reshape(N, f, t) # the audio patch is in shape [f,t], not [t,f]
         if mode == 'time':
             for i in range(N):
                 mask_t_list = random.sample(range(t), int(t * mask_ratio))
                 for k in mask_t_list:
-                    noise[i, :, k] = 1.1  # large will be removed
+                    noise[i, :, k] = 1.1  # large value will be removed
         elif mode == 'freq':
             for i in range(N):
                 mask_f_list = random.sample(range(f), int(f * mask_ratio))
                 for k in mask_f_list:
-                    noise[i, k, :] = 1.1  # large will be removed
+                    noise[i, k, :] = 1.1  # large value will be removed
         elif mode == 'tf':
             for i in range(N):
                 mask_t_list = random.sample(range(t), int(t * mask_ratio * 0.7))
                 for k in mask_t_list:
-                    noise[i, :, k] = 1.1  # large will be removed
+                    noise[i, :, k] = 1.1  # large value will be removed
             for i in range(N):
                 mask_f_list = random.sample(range(f), int(f * mask_ratio * 0.7))
                 for k in mask_f_list:
-                    noise[i, k, :] = 1.1  # large will be removed
+                    noise[i, k, :] = 1.1  # large value will be removed
         noise = noise.reshape(N, L)
 
         # sort noise for each sample, only need to manuplate these two ids_shuffle, ids_restore
@@ -647,29 +647,48 @@ class CAVMAEFT(nn.Module):
             return x
 
     # for retrieval
-    def forward_feat(self, a, v):
-        a = a.unsqueeze(1)
-        a = a.transpose(2, 3)
-        a = self.patch_embed_a(a)
-        a = a + self.pos_embed_a
-        a = a + self.modality_a
+    def forward_feat(self, a, v, mode='av'):
+        # return both audio and visual
+        if mode == 'av':
+            a = a.unsqueeze(1)
+            a = a.transpose(2, 3)
+            a = self.patch_embed_a(a)
+            a = a + self.pos_embed_a
+            a = a + self.modality_a
 
-        v = self.patch_embed_v(v)
-        v = v + self.pos_embed_v
-        v = v + self.modality_v
+            v = self.patch_embed_v(v)
+            v = v + self.pos_embed_v
+            v = v + self.modality_v
 
-        for blk in self.blocks_a:
-            a = blk(a)
+            for blk in self.blocks_a:
+                a = blk(a)
 
-        for blk in self.blocks_v:
-            v = blk(v)
+            for blk in self.blocks_v:
+                v = blk(v)
 
-        for blk in self.blocks_u:
-            a = blk(a, 'a')
-        a = self.norm_a(a)
+            for blk in self.blocks_u:
+                a = blk(a, 'a')
+            a = self.norm_a(a)
 
-        for blk in self.blocks_u:
-            v = blk(v, 'v')
+            for blk in self.blocks_u:
+                v = blk(v, 'v')
 
-        v = self.norm_v(v)
-        return a, v
+            v = self.norm_v(v)
+            return a, v
+
+        # return only audio
+        if mode == 'a':
+            a = a.unsqueeze(1)
+            a = a.transpose(2, 3)
+            a = self.patch_embed_a(a)
+            a = a + self.pos_embed_a
+            a = a + self.modality_a
+
+            for blk in self.blocks_a:
+                a = blk(a)
+
+            for blk in self.blocks_u:
+                a = blk(a, 'a')
+
+            a = self.norm_a(a)
+            return a

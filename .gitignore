@@ -21,3 +21,5 @@ src/dataloader_old.py
 .idea
 .DS_Store
 egs/vggsound/run_cavmae_ft_internal.sh
+src/dataloader_audio_only.py
+src/gen_audio_embedding.py
