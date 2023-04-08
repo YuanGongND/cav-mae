@@ -32,6 +32,8 @@ This repository contains the official implementation (in PyTorch) of the **Contr
 CAV-MAE **combines** two major self-supervised learning frameworks: **contrastive learning** and **masked data modeling**, to learn a joint and coordinated audio-visual representation. Our experiments show that the contrastive audio-visual correspondence learning objective not only enables the model to perform audio-visual retrieval tasks, but also helps the model learn a better joint representation. 
 CAV-MAE achieves a new SOTA accuracy of 65.9% on VGGSound, and is comparable with the previous best supervised pretrained model on AudioSet in the audio-visual event classification task.
 
+**[[5-Minute Video]](https://recorder-v3.slideslive.com/?share=80147&s=29e0bafa-9193-4971-ac6f-e5a4cf7d69a0)** **[[Slides]](https://docs.google.com/presentation/d/1l-cofX9liikkVG6TkH2XwboYLVJoUDhpcyyq-fqtfcM/edit?usp=sharing):**
+
 **Reviews:** The reviews of this paper and our responses are on [OpenReview](https://openreview.net/forum?id=QPtMRyk5rb), we thank the chair and anonymous reviewers' invaluable comments.
 
 [![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/contrastive-audio-visual-masked-autoencoder/multi-modal-classification-on-audioset)](https://paperswithcode.com/sota/multi-modal-classification-on-audioset?p=contrastive-audio-visual-masked-autoencoder)
