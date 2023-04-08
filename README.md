@@ -27,6 +27,8 @@
 
 <p align="center"><img src="https://github.com/YuanGongND/cav-mae/blob/master/CAV-MAE_Poster.png?raw=true?raw=true" alt="Illustration of CAV-MAE." width="900"/></p>
 
+----
+
 This repository contains the official implementation (in PyTorch) of the **Contrastive Audio-Visual Masked Autoencoder (CAV-MAE)** proposed in the ICLR 2023 paper [Contrastive Audio-Visual Masked Autoencoder](https://openreview.net/forum?id=QPtMRyk5rb) (Yuan Gong, Andrew Rouditchenko, Alexander H. Liu, David Harwath, Leonid Karlinsky, Hilde Kuehne, James Glass).  
 
 CAV-MAE **combines** two major self-supervised learning frameworks: **contrastive learning** and **masked data modeling**, to learn a joint and coordinated audio-visual representation. Our experiments show that the contrastive audio-visual correspondence learning objective not only enables the model to perform audio-visual retrieval tasks, but also helps the model learn a better joint representation. 
