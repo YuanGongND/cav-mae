@@ -25,3 +25,4 @@ src/dataloader_audio_only.py
 src/gen_audio_embedding.py
 src/gen_audio_embedding_test.py
 egs/audioset/run_cavmae_ft_bal_audioonly_internal.sh
+egs/vggsound/run_cavmae_ft_audioonly_internal.sh
