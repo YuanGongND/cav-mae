@@ -210,7 +210,7 @@ Load CAV-MAE models with a decoder using the following script:
 ```python3
 import torch,timm
 from models import CAVMAE
-assert timm.__version__ == 0.4.5 # it is important to have right version of timm
+assert timm.__version__ == '0.4.5' # it is important to have right version of timm
 model_path = 'the path to your model location'
 # CAV-MAE model with decoder
 audio_model = CAVMAE(audio_length=1024, \ # all models trained with 10s audio
@@ -275,7 +275,7 @@ Load CAV-MAE models without a decoder (typically a finetuned model) using the fo
 ```python3
 import torch,timm
 from models import CAVMAEFT
-assert timm.__version__ == 0.4.5 # it is important to have right version of timm
+assert timm.__version__ == '0.4.5' # it is important to have right version of timm
 model_path = 'the path to your model location'
 n_class = 527 # 527 for audioset finetuned models, 309 for vggsound finetuned models
 # CAV-MAE model without decoder
