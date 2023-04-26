@@ -297,15 +297,16 @@ print(miss, unexpected) # check if all weights are correctly loaded, if you are 
 |  CAV-MAE-Scale+  |    AudioSet-2M   |    VGGSound    | 65.5 accuracy |  [link](https://www.dropbox.com/s/f4wrbxv2unewss9/vgg_65.5.pth?dl=1)  |
 |  CAV-MAE-Scale+  | AS-2M + VGGSound |    VGGSound    | 65.9 accuracy |  [link](https://www.dropbox.com/s/q66s3mu526mj2x6/vgg_66.0.pth?dl=1)  |
 
-*Audio-Only Models*
+*Audio-Only or Visual-Only Models*
 
-One conclusion of the paper is multi-modal pretraining helps single-modality performance. Below we release models pretrained with multi-modal data, but fine-tuned on only audio data. These models works when only audio is input.
+One conclusion of the paper is multi-modal pretraining helps single-modality performance. Below we release models pretrained with multi-modal data, but fine-tuned on only audio or only visual data. These models works when **only one** modality is input in inference.
 
 | Pretrained Model |      Pretrain Data      |    Finetune Data    |  Performance  | Download |
 |:----------------:|:-------------------------:|:--------------------:|:-------------:|:--------:|
 |  CAV-MAE-Scale+  | AudioSet-2M (multi-modal) |  AudioSet-2M (audio) |    46.6 mAP   |  [link](https://www.dropbox.com/s/itfw7p0ueq7z9og/as_46.6.pth?dl=1)  |
 |  CAV-MAE-Scale+  | AudioSet-2M (multi-modal) | AudioSet-20K (audio) |    37.7 mAP   |  [link](https://www.dropbox.com/s/pariabyh1iyayda/as_37.7.pth?dl=1)  |
-|  CAV-MAE-Scale+  | AS-2M + VGGSound (multi-modal) |   VGGSound (audio)   | 59.8 accuracy |  [link](https://www.dropbox.com/s/l4rj0sgpnt08bp2/vgg_59.8.pth?dl=1)  |
+|  CAV-MAE-Scale++ <br> (Note it is ++)  | AudioSet-2M (multi-modal) | AudioSet-20K (visual) |   20.0 mAP   |  [link](https://www.dropbox.com/s/9ngkq9ygwqecxz5/as_20.0.pth?dl=1)  |
+|  CAV-MAE-Scale+  | AS-2M + VGGSound (multi-modal) |   VGGSound (audio) | 59.8 accuracy |  [link](https://www.dropbox.com/s/l4rj0sgpnt08bp2/vgg_59.8.pth?dl=1)  |
 
 #### AudioSet and VGGSound Data Lists
 
