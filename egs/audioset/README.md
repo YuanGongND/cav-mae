@@ -6,4 +6,5 @@ Pretraining Scripts
 Finetuning Scrips
 - `run_cavmae_ft_bal.sh`: Finetune CAV-MAE Scale++ on balanced AS-20K.
 - `run_cavmae_ft_bal_audioonly.sh`: Finetune CAV-MAE Scale++ on balanced AS-20K with audio only.
+- `run_cavmae_ft_bal_videoonly.sh`: Finetune CAV-MAE Scale++ on balanced AS-20K with visual data only.
 - `run_cavmae_ft_full.sh`: Finetune CAV-MAE Scale++ on full AS-2M. 
