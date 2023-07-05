@@ -2,7 +2,7 @@
 
 ## Data Preparation
 ### Download a video from Youtube (on MacOS)
-Install Homebrew: The Missing Package Manager for macOS (or Linux)
+Install `Homebrew` https://brew.sh/, the Missing Package Manager for macOS (or Linux)
 ```
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 ```
@@ -10,7 +10,7 @@ Install `youtube-dl` through Homebrew. The `youtube-dl` repo can be found at htt
 ```
 brew install youtube-dl
 ```
-Install `ffmpeg` through Homebrew.
+Install `ffmpeg` through Homebrew
 ```
 brew install ffmpeg
 ```
