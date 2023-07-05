@@ -342,8 +342,8 @@ If you have a question, please bring up an issue (preferred) or send me an email
 
 ## Inference
 ### Build a virtual environment and install packages
-'''
+```
 python3 -m venv venv
 source venv/bin/activate
 TMPDIR=/var/tmp pip3 install -r requirements_a5.txt --extra-index-url https://download.pytorch.org/whl/cu116 
-'''
+```
