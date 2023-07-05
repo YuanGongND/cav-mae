@@ -34,8 +34,8 @@ https://drive.google.com/file/d/1g69qziYaRUKLObjnvpNvaSJV-tBVsvNe/view?usp=drive
 ## Extract audio and video frames from the mp4 video
 ```
 cd src/preprocess
-python extract_video_frame.py -input_file-list sample_video_extract_list.csv -target_fold ./sample_frames
-python extract_audio.py -input_file-list sample_video_extract_list.csv -target_fold ./sample_audio
+python extract_video_frame.py -input_file_list sample_video_extract_list.csv -target_fold ./sample_frames
+python extract_audio.py -input_file_list sample_video_extract_list.csv -target_fold ./sample_audio
 ```
 
 ## Evaluating with a Pretrained Model
@@ -46,6 +46,10 @@ python3 -m venv venv
 source venv/bin/activate
 TMPDIR=/var/tmp pip3 install -r requirements_a5.txt --extra-index-url https://download.pytorch.org/whl/cu116 
 ```
+
+### Build sox package from source
+https://ziangzhou.com/blog/Install-Sox-Locally/
+
 
 ## Contact
 If you have a question, please bring up an issue (preferred) or send me an email [tao88@purdue.edu].

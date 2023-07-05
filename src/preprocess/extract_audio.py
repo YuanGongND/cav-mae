@@ -1,13 +1,17 @@
 import os
 import numpy as np
 import argparse
+import sox
+import pdb
 
 parser = argparse.ArgumentParser(description='Easy video feature extractor')
 parser.add_argument("-input_file_list", type=str, default='sample_video_extract_list.csv', help="Should be a csv file of a single columns, each row is the input video path.")
 parser.add_argument("-target_fold", type=str, default='./sample_audio/', help="The place to store the video frames.")
 args = parser.parse_args()
 
-input_filelist = np.loadtxt(args.input_file_list, delimiter=',', dtype=str)
+input_filelist = np.loadtxt(args.input_file_list, delimiter=',', dtype=str, usecols=0)
+if not input_filelist.shape: # only 1 line
+    input_filelist = np.array([input_filelist])
 if os.path.exists(args.target_fold) == False:
     os.makedirs(args.target_fold)
 
@@ -27,5 +31,10 @@ for i in range(input_filelist.shape[0]):
     output_f_1 = args.target_fold + '/' + video_id + '_intermediate.wav'
     output_f_2 = args.target_fold + '/' + video_id + '.wav'
     os.system('sox {:s} {:s} remix 1'.format(output_f_1, output_f_2))
-    # remove the intermediate file
+    # Alternatively, use sox in python
+    # tfm = sox.Transformer()
+    # tfm.remix(remix_dictionary={1:[1]}, num_output_channels=1)
+    # tfm.build_file(input_filepath=output_f_1,
+    #                output_filepath=output_f_2)
+    # Remove the intermediate file
     os.remove(output_f_1)

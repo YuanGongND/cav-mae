@@ -122,6 +122,7 @@ sklearn==0.0
 smmap==5.0.0
 SoundFile==0.10.3.post1
 soupsieve==2.3.2.post1
+sox==1.4.1
 streamlit==1.13.0
 tensorboard==2.11.0
 tensorboard-data-server==0.6.1

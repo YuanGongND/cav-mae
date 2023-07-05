@@ -11,6 +11,7 @@ import numpy as np
 from PIL import Image
 import torchvision.transforms as T
 from torchvision.utils import save_image
+import pdb
 
 preprocess = T.Compose([
     T.Resize(224),
@@ -46,7 +47,9 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     # note the first row (header) is skipped
-    input_filelist = np.loadtxt(args.input_file_list, dtype=str, delimiter=',')
+    input_filelist = np.loadtxt(args.input_file_list, dtype=str, delimiter=',', usecols=0)
+    if not input_filelist.shape: # only 1 line
+        input_filelist = np.array([input_filelist])
     num_file = input_filelist.shape[0]
     print('Total {:d} videos are input'.format(num_file))
     for file_id in range(num_file):
