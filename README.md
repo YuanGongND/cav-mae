@@ -337,3 +337,13 @@ Due to copyright reasons, we cannot provide raw data for both datasets.
 
  ## Contact
 If you have a question, please bring up an issue (preferred) or send me an email [yuangong@mit.edu](yuangong@mit.edu).
+
+# Implementation by tao88
+
+## Inference
+### Build a virtual environment and install packages
+'''
+python3 -m venv venv
+source venv/bin/activate
+TMPDIR=/var/tmp pip3 install -r requirements_a5.txt --extra-index-url https://download.pytorch.org/whl/cu116 
+'''
