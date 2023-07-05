@@ -27,6 +27,16 @@ If there's an issue downloading YouTube video, try:
 brew update
 brew upgrade youtube-dl
 ```
+Example video (cars don't fly)
+https://drive.google.com/file/d/1g69qziYaRUKLObjnvpNvaSJV-tBVsvNe/view?usp=drive_link
+
+
+## Extract audio and video frames from the mp4 video
+```
+cd src/preprocess
+python extract_video_frame.py -input_file-list sample_video_extract_list.csv -target_fold ./sample_frames
+python extract_audio.py -input_file-list sample_video_extract_list.csv -target_fold ./sample_audio
+```
 
 ## Evaluating with a Pretrained Model
 ### Build a virtual environment and install packages
