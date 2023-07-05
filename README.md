@@ -31,6 +31,7 @@ brew upgrade youtube-dl
 ## Evaluating with a Pretrained Model
 ### Build a virtual environment and install packages
 ```
+git clone https://github.com/ChunTao1999/cav-mae.git
 python3 -m venv venv
 source venv/bin/activate
 TMPDIR=/var/tmp pip3 install -r requirements_a5.txt --extra-index-url https://download.pytorch.org/whl/cu116 
