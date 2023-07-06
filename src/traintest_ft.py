@@ -16,6 +16,7 @@ from torch import nn
 import numpy as np
 import pickle
 from torch.cuda.amp import autocast,GradScaler
+import pdb
 
 def train(audio_model, train_loader, test_loader, args):
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
@@ -224,7 +225,6 @@ def validate(audio_model, val_loader, args, output_pred=False):
 
             with autocast():
                 audio_output = audio_model(a_input, v_input, args.ftmode)
-
             predictions = audio_output.to('cpu').detach()
 
             A_predictions.append(predictions)

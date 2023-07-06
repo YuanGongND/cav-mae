@@ -173,7 +173,7 @@ msg = audio_model.load_state_dict(sdA, strict=True)
 print(msg)
 audio_model.eval()
 
-# skil multi-frame evaluation, for audio-only model
+# skip multi-frame evaluation, for audio-only model
 if args.skip_frame_agg == True:
     val_audio_conf['frame_use'] = 5
     val_loader = torch.utils.data.DataLoader(
