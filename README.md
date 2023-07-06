@@ -30,8 +30,13 @@ brew upgrade youtube-dl
 Example video (cars don't fly)
 https://drive.google.com/file/d/1g69qziYaRUKLObjnvpNvaSJV-tBVsvNe/view?usp=drive_link
 
+### Split the video into 10-second pieces
+```
+cd src/preprocess
+python video_splitter.py -f ./preprocess/sample_video/carsdontfly.mp4 -s 10
+```
 
-## Extract audio and video frames from the mp4 video
+### Extract audio and video frames from the mp4 video
 ```
 cd src/preprocess
 python extract_video_frame.py -input_file_list sample_video_extract_list.csv -target_fold ./sample_frames
