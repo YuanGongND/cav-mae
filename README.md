@@ -55,6 +55,10 @@ TMPDIR=/var/tmp pip3 install -r requirements_a5.txt --extra-index-url https://do
 ### Build sox package from source
 https://ziangzhou.com/blog/Install-Sox-Locally/
 
+### Run inference with pretrained model
+```
+python src/test_yt_video.py
+```
 
 ## Contact
 If you have a question, please bring up an issue (preferred) or send me an email [tao88@purdue.edu].
