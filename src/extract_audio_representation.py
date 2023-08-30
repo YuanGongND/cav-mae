@@ -3,7 +3,7 @@
 # @Author  : Yuan Gong
 # @Affiliation  : Massachusetts Institute of Technology
 # @Email   : yuangong@mit.edu
-# @File    : retrieval.py
+# @File    : extract_audio_representation.py
 
 # extract un-pooled audio representations (last layer) of a dataset [num_sample, 512, 768], 512 corresponds to 512 patches of each 10 second audios
 # with some modification, this code can also be used for visual representations extraction
