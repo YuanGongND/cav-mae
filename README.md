@@ -62,6 +62,7 @@ This repo contains everything you would need to reproduce our experiments and fu
 - The AudioSet and VGGSound training scripts and logs are in [`egs/{audioset,vggsound}`](https://github.com/YuanGongND/cav-mae/tree/master/egs)
 - The retrieval experiments script is in [`src/retrieval.py`](https://github.com/YuanGongND/cav-mae/blob/master/src/retrieval.py).
 - The inpainting experiments scripts is in [`src/inpainting.py`](https://github.com/YuanGongND/cav-mae/blob/master/src/inpaint.py).
+- The audio representation extraction scripts is in [`src/extract_audio_representation.py`](https://github.com/YuanGongND/cav-mae/blob/master/src/extract_audio_representation.py).
 - Pretrained models and data lists, a detailed list is [[here]](#pretrained-models).
 
 ## The CAV-MAE Model 
