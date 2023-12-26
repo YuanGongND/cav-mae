@@ -6,15 +6,15 @@
 # @File    : cav_mae.py
 
 import os
-
-os.environ["TORCH_HOME"] = "./pretrained_models"
 import random
 import torch
 import torch.nn as nn
 import timm
-from timm.models.layers import to_2tuple, trunc_normal_, DropPath
-from timm.models.vision_transformer import Attention, Mlp, PatchEmbed, Block
+from timm.models.layers import to_2tuple, DropPath
+from timm.models.vision_transformer import Attention, Mlp
 from .pos_embed import get_2d_sincos_pos_embed
+
+os.environ["TORCH_HOME"] = "./pretrained_models"
 
 
 class PatchEmbed(nn.Module):
@@ -44,7 +44,6 @@ class Block(nn.Module):
         num_heads,
         mlp_ratio=4.0,
         qkv_bias=False,
-        qk_scale=None,
         drop=0.0,
         attn_drop=0.0,
         drop_path=0.0,
@@ -59,7 +58,6 @@ class Block(nn.Module):
             dim,
             num_heads=num_heads,
             qkv_bias=qkv_bias,
-            qk_scale=qk_scale,
             attn_drop=attn_drop,
             proj_drop=drop,
         )
@@ -77,7 +75,7 @@ class Block(nn.Module):
         )
 
     def forward(self, x, modality=None):
-        if modality == None:
+        if modality is None:
             x = x + self.drop_path(self.attn(self.norm1(x)))
             x = x + self.drop_path(self.mlp(self.norm2(x)))
         elif modality == "a":
@@ -150,7 +148,6 @@ class CAVMAE(nn.Module):
                     num_heads,
                     mlp_ratio,
                     qkv_bias=True,
-                    qk_scale=None,
                     norm_layer=norm_layer,
                 )
                 for i in range(modality_specific_depth)
@@ -164,7 +161,6 @@ class CAVMAE(nn.Module):
                     num_heads,
                     mlp_ratio,
                     qkv_bias=True,
-                    qk_scale=None,
                     norm_layer=norm_layer,
                 )
                 for i in range(modality_specific_depth)
@@ -178,7 +174,6 @@ class CAVMAE(nn.Module):
                     num_heads,
                     mlp_ratio,
                     qkv_bias=True,
-                    qk_scale=None,
                     norm_layer=norm_layer,
                 )
                 for i in range(12 - modality_specific_depth)
@@ -218,7 +213,6 @@ class CAVMAE(nn.Module):
                     decoder_num_heads,
                     mlp_ratio,
                     qkv_bias=True,
-                    qk_scale=None,
                     norm_layer=norm_layer,
                 )
                 for i in range(decoder_depth)
@@ -525,7 +519,7 @@ class CAVMAE(nn.Module):
         total = torch.mm(audio_rep, torch.transpose(video_rep, 0, 1)) / 0.05
 
         # by default we use single directional
-        if bidirect_contrast == False:
+        if bidirect_contrast is False:
             nce = -torch.mean(torch.diag(torch.nn.functional.log_softmax(total, dim=0)))
             c_acc = (
                 torch.sum(
@@ -765,7 +759,6 @@ class CAVMAEFT(nn.Module):
                     num_heads,
                     mlp_ratio,
                     qkv_bias=True,
-                    qk_scale=None,
                     norm_layer=norm_layer,
                 )
                 for i in range(modality_specific_depth)
@@ -778,7 +771,6 @@ class CAVMAEFT(nn.Module):
                     num_heads,
                     mlp_ratio,
                     qkv_bias=True,
-                    qk_scale=None,
                     norm_layer=norm_layer,
                 )
                 for i in range(modality_specific_depth)
@@ -791,7 +783,6 @@ class CAVMAEFT(nn.Module):
                     num_heads,
                     mlp_ratio,
                     qkv_bias=True,
-                    qk_scale=None,
                     norm_layer=norm_layer,
                 )
                 for i in range(12 - modality_specific_depth)
