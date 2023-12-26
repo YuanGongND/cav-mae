@@ -275,7 +275,7 @@ val_loader = torch.utils.data.DataLoader(
     drop_last=True,
 )
 
-if args.data_eval != None:
+if args.data_eval is not None:
     eval_loader = torch.utils.data.DataLoader(
         dataloader.AudiosetDataset(
             args.data_eval, label_csv=args.label_csv, audio_conf=val_audio_conf
@@ -343,18 +343,18 @@ def wa_model(exp_dir, start_epoch, end_epoch):
 # evaluate with multiple frames
 if not isinstance(audio_model, torch.nn.DataParallel):
     audio_model = torch.nn.DataParallel(audio_model)
-if args.wa == True:
+if args.wa is True:
     sdA = wa_model(args.exp_dir, start_epoch=args.wa_start, end_epoch=args.wa_end)
     torch.save(sdA, args.exp_dir + "/models/audio_model_wa.pth")
 else:
-    # if no wa, use the best checkpint
+    # if no wa, use the best checkpoint
     sdA = torch.load(args.exp_dir + "/models/best_audio_model.pth", map_location="cpu")
 msg = audio_model.load_state_dict(sdA, strict=True)
 print(msg)
 audio_model.eval()
 
 # skil multi-frame evaluation, for audio-only model
-if args.skip_frame_agg == True:
+if args.skip_frame_agg is True:
     val_audio_conf["frame_use"] = 5
     val_loader = torch.utils.data.DataLoader(
         dataloader.AudiosetDataset(
@@ -378,6 +378,7 @@ else:
     res = []
     multiframe_pred = []
     total_frames = 10  # change if your total frame is different
+    target = None
     for frame in range(total_frames):
         val_audio_conf["frame_use"] = frame
         val_loader = torch.utils.data.DataLoader(
@@ -406,6 +407,8 @@ else:
         elif args.metrics == "acc":
             cur_res = stats[0]["acc"]
             print("acc of frame {:d} is {:.4f}".format(frame, cur_res))
+        else:
+            raise ValueError("metrics not supported: %s" % args.metrics)
         res.append(cur_res)
 
     # ensemble over frames

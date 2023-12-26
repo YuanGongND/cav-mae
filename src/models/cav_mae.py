@@ -442,6 +442,7 @@ class CAVMAE(nn.Module):
             x = blk(x)
         x = self.norm(x)
 
+        ca, cv = None, None
         for blk in self.blocks_u:
             ca = blk(a, "a")
         ca = self.norm_a(ca)
@@ -456,7 +457,8 @@ class CAVMAE(nn.Module):
         x = self.decoder_embed(x)
 
         # append mask tokens to sequence
-        # mask_tokens_a in shape [B, #a_mask_token, mask_token_dim], get the number of masked samples from mask_a[0], which is the first example of the batch, all samples should have same number of masked tokens
+        # mask_tokens_a in shape [B, #a_mask_token, mask_token_dim], get the number of masked samples from mask_a[0],
+        # which is the first example of the batch, all samples should have same number of masked tokens
         mask_tokens_a = self.mask_token.repeat(x.shape[0], int(mask_a[0].sum()), 1)
         a_ = torch.cat(
             [
@@ -582,8 +584,11 @@ class CAVMAE(nn.Module):
                 int(input.shape[3] / self.patch_embed_v.patch_size[1]),
                 16,
             )
+        else:
+            raise ValueError("modality must be one of ['a', 'v']")
 
-        # patch-wise normalization might minorly improve the classification performance, but will make the model lose inpainting function
+        # patch-wise normalization might minorly improve the classification performance,
+        # but will make the model lose inpainting function
         if self.norm_pix_loss:
             mean = target.mean(dim=-1, keepdim=True)
             var = target.var(dim=-1, keepdim=True)
@@ -849,21 +854,9 @@ class CAVMAEFT(nn.Module):
     def forward(self, a, v, mode):
         # multi-modal fine-tuning, our default method for fine-tuning
         if mode == "multimodal":
-            a = a.unsqueeze(1)
-            a = a.transpose(2, 3)
-            a = self.patch_embed_a(a)
-            a = a + self.pos_embed_a
-            a = a + self.modality_a
+            a = self.preprocess_audio_1(a)
 
-            v = self.patch_embed_v(v)
-            v = v + self.pos_embed_v
-            v = v + self.modality_v
-
-            for blk in self.blocks_a:
-                a = blk(a)
-
-            for blk in self.blocks_v:
-                v = blk(v)
+            v = self.preprocess_video(v)
 
             x = torch.cat((a, v), dim=1)
 
@@ -877,31 +870,14 @@ class CAVMAEFT(nn.Module):
 
         # finetune with only audio (and inference with only audio when the model is finetuned with only audio)
         elif mode == "audioonly":
-            a = a.unsqueeze(1)
-            a = a.transpose(2, 3)
-            a = self.patch_embed_a(a)
-            a = a + self.pos_embed_a
-            a = a + self.modality_a
-
-            for blk in self.blocks_a:
-                a = blk(a)
-
-            # note here uses the 'a' normalization, it is used in both training and inference, so it is fine
-            for blk in self.blocks_u:
-                a = blk(a, "a")
-            a = self.norm_a(a)
+            a = self.preprocess_audio(a)
             x = a.mean(dim=1)
             x = self.mlp_head(x)
             return x
 
         # finetune with only image (and inference with only audio when the model is finetuned with only image)
         elif mode == "videoonly":
-            v = self.patch_embed_v(v)
-            v = v + self.pos_embed_v
-            v = v + self.modality_v
-
-            for blk in self.blocks_v:
-                v = blk(v)
+            v = self.preprocess_video(v)
 
             # note here uses the 'v' normalization, it is used in both training and inference, so it is fine
             for blk in self.blocks_u:
@@ -913,16 +889,10 @@ class CAVMAEFT(nn.Module):
 
         # used in case that the model is finetuned with both modality, but in inference only audio is given
         elif mode == "missingaudioonly":
-            a = a.unsqueeze(1)
-            a = a.transpose(2, 3)
-            a = self.patch_embed_a(a)
-            a = a + self.pos_embed_a
-            a = a + self.modality_a
+            a = self.preprocess_audio_1(a)
 
-            for blk in self.blocks_a:
-                a = blk(a)
-
-            # two forward passes to the block_u, one with modality-specific normalization, another with unified normalization
+            # two forward passes to the block_u, one with modality-specific normalization,
+            # another with unified normalization
             u = a
             for blk in self.blocks_u:
                 u = blk(u)  # note here use unified normalization
@@ -941,14 +911,10 @@ class CAVMAEFT(nn.Module):
 
         # used in case that the model is fine-tuned with both modality, but in inference only image is given
         elif mode == "missingvideoonly":
-            v = self.patch_embed_v(v)
-            v = v + self.pos_embed_v
-            v = v + self.modality_v
+            v = self.preprocess_video(v)
 
-            for blk in self.blocks_v:
-                v = blk(v)
-
-            # two forward passes to the block_u, one with modality-specific normalization, another with unified normalization
+            # two forward passes to the block_u, one with modality-specific normalization,
+            # another with unified normalization
             u = v
             for blk in self.blocks_u:
                 u = blk(u)  # note here use unified normalization
@@ -965,29 +931,30 @@ class CAVMAEFT(nn.Module):
             x = self.mlp_head(x)
             return x
 
+    def preprocess_video(self, v):
+        v = self.patch_embed_v(v)
+        v = v + self.pos_embed_v
+        v = v + self.modality_v
+        for blk in self.blocks_v:
+            v = blk(v)
+        return v
+
+    def preprocess_audio_1(self, a):
+        a = a.unsqueeze(1)
+        a = a.transpose(2, 3)
+        a = self.patch_embed_a(a)
+        a = a + self.pos_embed_a
+        a = a + self.modality_a
+        for blk in self.blocks_a:
+            a = blk(a)
+        return a
+
     # for retrieval
     def forward_feat(self, a, v, mode="av"):
         # return both audio and visual
         if mode == "av":
-            a = a.unsqueeze(1)
-            a = a.transpose(2, 3)
-            a = self.patch_embed_a(a)
-            a = a + self.pos_embed_a
-            a = a + self.modality_a
-
-            v = self.patch_embed_v(v)
-            v = v + self.pos_embed_v
-            v = v + self.modality_v
-
-            for blk in self.blocks_a:
-                a = blk(a)
-
-            for blk in self.blocks_v:
-                v = blk(v)
-
-            for blk in self.blocks_u:
-                a = blk(a, "a")
-            a = self.norm_a(a)
+            a = self.preprocess_audio(a)
+            v = self.preprocess_video(v)
 
             for blk in self.blocks_u:
                 v = blk(v, "v")
@@ -997,17 +964,12 @@ class CAVMAEFT(nn.Module):
 
         # return only audio
         if mode == "a":
-            a = a.unsqueeze(1)
-            a = a.transpose(2, 3)
-            a = self.patch_embed_a(a)
-            a = a + self.pos_embed_a
-            a = a + self.modality_a
-
-            for blk in self.blocks_a:
-                a = blk(a)
-
-            for blk in self.blocks_u:
-                a = blk(a, "a")
-
-            a = self.norm_a(a)
+            a = self.preprocess_audio(a)
             return a
+
+    def preprocess_audio(self, a):
+        a = self.preprocess_audio_1(a)
+        for blk in self.blocks_u:
+            a = blk(a, "a")
+        a = self.norm_a(a)
+        return a
