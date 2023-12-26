@@ -98,8 +98,28 @@ class CAVMAEBase(nn.Module):
             nn.init.constant_(m.bias, 0)
             nn.init.constant_(m.weight, 1.0)
 
+    def weight_preprocess(self):
+        pos_embed_a = get_2d_sincos_pos_embed(
+            self.pos_embed_a.shape[-1],
+            8,
+            int(self.patch_embed_a.num_patches / 8),
+            cls_token=False,
+        )
+        self.pos_embed_a.data.copy_(torch.from_numpy(pos_embed_a).float().unsqueeze(0))
+        pos_embed_v = get_2d_sincos_pos_embed(
+            self.pos_embed_v.shape[-1],
+            int(self.patch_embed_v.num_patches**0.5),
+            int(self.patch_embed_v.num_patches**0.5),
+            cls_token=False,
+        )
+        self.pos_embed_v.data.copy_(torch.from_numpy(pos_embed_v).float().unsqueeze(0))
+        w = self.patch_embed_a.proj.weight.data
+        torch.nn.init.xavier_uniform_(w.view([w.shape[0], -1]))
+        w = self.patch_embed_v.proj.weight.data
+        torch.nn.init.xavier_uniform_(w.view([w.shape[0], -1]))
 
-# our main proposed model, for pretraining only, for finetuning, use CAVMAEFT class
+
+# our main proposed model, for pretraining only, for fine tuning, use CAVMAEFT class
 class CAVMAE(CAVMAEBase):
     """CAV-MAE Model"""
 
@@ -126,7 +146,7 @@ class CAVMAE(CAVMAEBase):
         print("Learnable Positional Embedding: ", tr_pos)
 
         # the encoder part
-        # overide the timm package
+        # override the timm package
         timm.models.vision_transformer.PatchEmbed = PatchEmbed
         timm.models.vision_transformer.Block = Block
 
@@ -250,21 +270,7 @@ class CAVMAE(CAVMAEBase):
 
     def initialize_weights(self):
         # initialize (and freeze) pos_embed by sin-cos embedding, opt the cls token, add by myself
-        pos_embed_a = get_2d_sincos_pos_embed(
-            self.pos_embed_a.shape[-1],
-            8,
-            int(self.patch_embed_a.num_patches / 8),
-            cls_token=False,
-        )
-        self.pos_embed_a.data.copy_(torch.from_numpy(pos_embed_a).float().unsqueeze(0))
-
-        pos_embed_v = get_2d_sincos_pos_embed(
-            self.pos_embed_v.shape[-1],
-            int(self.patch_embed_v.num_patches**0.5),
-            int(self.patch_embed_v.num_patches**0.5),
-            cls_token=False,
-        )
-        self.pos_embed_v.data.copy_(torch.from_numpy(pos_embed_v).float().unsqueeze(0))
+        self.weight_preprocess()
 
         decoder_pos_embed_a = get_2d_sincos_pos_embed(
             self.decoder_pos_embed_a.shape[-1],
@@ -285,12 +291,6 @@ class CAVMAE(CAVMAEBase):
         self.decoder_pos_embed_v.data.copy_(
             torch.from_numpy(decoder_pos_embed_v).float().unsqueeze(0)
         )
-
-        # initialize patch_embed like nn.Linear (instead of nn.Conv2d)
-        w = self.patch_embed_a.proj.weight.data
-        torch.nn.init.xavier_uniform_(w.view([w.shape[0], -1]))
-        w = self.patch_embed_v.proj.weight.data
-        torch.nn.init.xavier_uniform_(w.view([w.shape[0], -1]))
 
         # timm's trunc_normal_(std=.02) is effectively normal_(std=0.02) as cutoff is too big (2.)
         torch.nn.init.normal_(self.modality_a, std=0.02)
@@ -810,26 +810,7 @@ class CAVMAEFT(CAVMAEBase):
         return test_output.shape[2], test_output[3], test_output[2] * test_output[2]
 
     def initialize_weights(self):
-        pos_embed_a = get_2d_sincos_pos_embed(
-            self.pos_embed_a.shape[-1],
-            8,
-            int(self.patch_embed_a.num_patches / 8),
-            cls_token=False,
-        )
-        self.pos_embed_a.data.copy_(torch.from_numpy(pos_embed_a).float().unsqueeze(0))
-
-        pos_embed_v = get_2d_sincos_pos_embed(
-            self.pos_embed_v.shape[-1],
-            int(self.patch_embed_v.num_patches**0.5),
-            int(self.patch_embed_v.num_patches**0.5),
-            cls_token=False,
-        )
-        self.pos_embed_v.data.copy_(torch.from_numpy(pos_embed_v).float().unsqueeze(0))
-
-        w = self.patch_embed_a.proj.weight.data
-        torch.nn.init.xavier_uniform_(w.view([w.shape[0], -1]))
-        w = self.patch_embed_v.proj.weight.data
-        torch.nn.init.xavier_uniform_(w.view([w.shape[0], -1]))
+        self.weight_preprocess()
 
         torch.nn.init.normal_(self.modality_a, std=0.02)
         torch.nn.init.normal_(self.modality_v, std=0.02)
