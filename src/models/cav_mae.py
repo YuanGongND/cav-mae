@@ -406,11 +406,7 @@ class CAVMAE(nn.Module):
         self, a, v, mask_ratio_a, mask_ratio_v, mask_mode="unstructured"
     ):
         # embed patches
-        a = a.unsqueeze(1)
-        a = a.transpose(2, 3)
-        a = self.patch_embed_a(a)
-        a = a + self.pos_embed_a
-        a = a + self.modality_a
+        a = self.preprocess_audio_2(a)
 
         v = self.patch_embed_v(v)
         v = v + self.pos_embed_v
@@ -452,6 +448,14 @@ class CAVMAE(nn.Module):
         cv = self.norm_v(cv)
 
         return x, mask_a, ids_restore_a, mask_v, ids_restore_v, ca, cv
+
+    def preprocess_audio_2(self, a):
+        a = a.unsqueeze(1)
+        a = a.transpose(2, 3)
+        a = self.patch_embed_a(a)
+        a = a + self.pos_embed_a
+        a = a + self.modality_a
+        return a
 
     def forward_decoder(self, x, mask_a, ids_restore_a, mask_v, ids_restore_v):
         x = self.decoder_embed(x)
@@ -683,11 +687,7 @@ class CAVMAE(nn.Module):
     # used for retrieval, ignore if retrieval is not of interest
     def forward_feat(self, a, v):
         # embed patches
-        a = a.unsqueeze(1)
-        a = a.transpose(2, 3)
-        a = self.patch_embed_a(a)
-        a = a + self.pos_embed_a
-        a = a + self.modality_a
+        a = self.preprocess_audio_2(a)
 
         v = self.patch_embed_v(v)
         v = v + self.pos_embed_v
