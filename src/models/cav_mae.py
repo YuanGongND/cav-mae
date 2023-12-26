@@ -87,8 +87,20 @@ class Block(nn.Module):
         return x
 
 
+class CAVMAEBase(nn.Module):
+    def _init_weights(self, m):
+        if isinstance(m, nn.Linear):
+            # we use xavier_uniform following official JAX ViT:
+            torch.nn.init.xavier_uniform_(m.weight)
+            if isinstance(m, nn.Linear) and m.bias is not None:
+                nn.init.constant_(m.bias, 0)
+        elif isinstance(m, nn.LayerNorm):
+            nn.init.constant_(m.bias, 0)
+            nn.init.constant_(m.weight, 1.0)
+
+
 # our main proposed model, for pretraining only, for finetuning, use CAVMAEFT class
-class CAVMAE(nn.Module):
+class CAVMAE(CAVMAEBase):
     """CAV-MAE Model"""
 
     def __init__(
@@ -290,27 +302,18 @@ class CAVMAE(nn.Module):
         # initialize nn.Linear and nn.LayerNorm
         self.apply(self._init_weights)
 
-    def _init_weights(self, m):
-        if isinstance(m, nn.Linear):
-            # we use xavier_uniform following official JAX ViT:
-            torch.nn.init.xavier_uniform_(m.weight)
-            if isinstance(m, nn.Linear) and m.bias is not None:
-                nn.init.constant_(m.bias, 0)
-        elif isinstance(m, nn.LayerNorm):
-            nn.init.constant_(m.bias, 0)
-            nn.init.constant_(m.weight, 1.0)
-
-    def patchify(self, imgs, c, h, w, p=16):
+    @staticmethod
+    def patchify(imgs, c, h, w, p=16):
         """
         imgs: (N, 3, H, W)
         x: (N, L, patch_size**2 *3)
         """
         x = imgs.reshape(shape=(imgs.shape[0], c, h, p, w, p))
         x = torch.einsum("nchpwq->nhwpqc", x)
-        x = x.reshape(shape=(imgs.shape[0], h * w, p**2 * c))
-        return x
+        return x.reshape(shape=(imgs.shape[0], h * w, p**2 * c))
 
-    def unpatchify(self, x, c, h, w, p=16):
+    @staticmethod
+    def unpatchify(x, c, h, w, p=16):
         """
         x: (N, L, patch_size**2 *3)
         imgs: (N, 3, H, W)
@@ -319,37 +322,7 @@ class CAVMAE(nn.Module):
 
         x = x.reshape(shape=(x.shape[0], h, w, p, p, c))
         x = torch.einsum("nhwpqc->nchpwq", x)
-        imgs = x.reshape(shape=(x.shape[0], c, h * p, w * p))
-        return imgs
-
-    def random_masking_unstructured(self, x, mask_ratio):
-        """
-        Perform per-sample random masking by per-sample shuffling.
-        Per-sample shuffling is done by argsort random noise.
-        x: [N, L, D], sequence
-        """
-        N, L, D = x.shape  # batch, length, dim
-        len_keep = int(L * (1 - mask_ratio))
-
-        noise = torch.rand(N, L, device=x.device)  # noise in [0, 1]
-
-        # sort noise for each sample
-        ids_shuffle = torch.argsort(
-            noise, dim=1
-        )  # ascend: small is keep, large is remove
-        ids_restore = torch.argsort(ids_shuffle, dim=1)
-
-        # keep the first subset
-        ids_keep = ids_shuffle[:, :len_keep]
-        x_masked = torch.gather(x, dim=1, index=ids_keep.unsqueeze(-1).repeat(1, 1, D))
-
-        # generate the binary mask: 0 is keep, 1 is remove
-        mask = torch.ones([N, L], device=x.device)
-        mask[:, :len_keep] = 0
-        # unshuffle to get the binary mask
-        mask = torch.gather(mask, dim=1, index=ids_restore)
-
-        return x_masked, mask, ids_restore
+        return x.reshape(shape=(x.shape[0], c, h * p, w * p))
 
     def random_masking_structured(self, x, mask_ratio, t=64, f=8, mode="time"):
         """
@@ -382,23 +355,44 @@ class CAVMAE(nn.Module):
                 mask_f_list = random.sample(range(f), int(f * mask_ratio * 0.7))
                 for k in mask_f_list:
                     noise[i, k, :] = 1.1  # large value will be removed
+        else:
+            raise ValueError("mode must be one of ['time', 'freq', 'tf']")
         noise = noise.reshape(N, L)
 
-        # sort noise for each sample, only need to manuplate these two ids_shuffle, ids_restore
+        # sort noise for each sample, only need to manipulate these two ids_shuffle, ids_restore
+        ids_restore, mask, x_masked = self.mask_ids(D, L, N, len_keep, noise, x)
+
+        return x_masked, mask, ids_restore
+
+    @staticmethod
+    def mask_ids(D, L, N, len_keep, noise, x):
         ids_shuffle = torch.argsort(
             noise, dim=1
         )  # ascend: small is keep, large is remove
         ids_restore = torch.argsort(ids_shuffle, dim=1)
-
         # keep the first subset
         ids_keep = ids_shuffle[:, :len_keep]
         x_masked = torch.gather(x, dim=1, index=ids_keep.unsqueeze(-1).repeat(1, 1, D))
-
         # generate the binary mask: 0 is keep, 1 is remove
         mask = torch.ones([N, L], device=x.device)
         mask[:, :len_keep] = 0
         # unshuffle to get the binary mask
         mask = torch.gather(mask, dim=1, index=ids_restore)
+        return ids_restore, mask, x_masked
+
+    def random_masking_unstructured(self, x, mask_ratio):
+        """
+        Perform per-sample random masking by per-sample shuffling.
+        Per-sample shuffling is done by argsort random noise.
+        x: [N, L, D], sequence
+        """
+        N, L, D = x.shape  # batch, length, dim
+        len_keep = int(L * (1 - mask_ratio))
+
+        noise = torch.rand(N, L, device=x.device)  # noise in [0, 1]
+
+        # sort noise for each sample
+        ids_restore, mask, x_masked = self.mask_ids(D, L, N, len_keep, noise, x)
 
         return x_masked, mask, ids_restore
 
@@ -516,7 +510,8 @@ class CAVMAE(nn.Module):
         # return audio and video tokens
         return x_a, x_v
 
-    def forward_contrastive(self, audio_rep, video_rep, bidirect_contrast=False):
+    @staticmethod
+    def forward_contrastive(audio_rep, video_rep, bidirect_contrast=False):
         # calculate nce loss for mean-visual representation and mean-audio representation
 
         audio_rep = torch.nn.functional.normalize(audio_rep, dim=-1)
@@ -568,24 +563,24 @@ class CAVMAE(nn.Module):
             c_acc = (c_acc_1 + c_acc_2) / 2
             return nce, c_acc
 
-    def forward_mae_loss(self, input, pred, mask, modality):
+    def forward_mae_loss(self, inputs, pred, mask, modality):
         if modality == "a":
             # for audio, need to adjust the shape
-            input = input.unsqueeze(1)
-            input = input.transpose(2, 3)
+            inputs = inputs.unsqueeze(1)
+            inputs = inputs.transpose(2, 3)
             target = self.patchify(
-                input,
+                inputs,
                 1,
-                int(input.shape[2] / self.patch_embed_a.patch_size[0]),
-                int(input.shape[3] / self.patch_embed_a.patch_size[1]),
+                int(inputs.shape[2] / self.patch_embed_a.patch_size[0]),
+                int(inputs.shape[3] / self.patch_embed_a.patch_size[1]),
                 16,
             )
         elif modality == "v":
             target = self.patchify(
-                input,
+                inputs,
                 3,
-                int(input.shape[2] / self.patch_embed_v.patch_size[0]),
-                int(input.shape[3] / self.patch_embed_v.patch_size[1]),
+                int(inputs.shape[2] / self.patch_embed_v.patch_size[0]),
+                int(inputs.shape[3] / self.patch_embed_v.patch_size[1]),
                 16,
             )
         else:
@@ -712,7 +707,7 @@ class CAVMAE(nn.Module):
 
 
 # the finetuned CAV-MAE model
-class CAVMAEFT(nn.Module):
+class CAVMAEFT(CAVMAEBase):
     def __init__(
         self,
         label_dim,
@@ -841,16 +836,6 @@ class CAVMAEFT(nn.Module):
 
         self.apply(self._init_weights)
 
-    def _init_weights(self, m):
-        if isinstance(m, nn.Linear):
-            # we use xavier_uniform following official JAX ViT:
-            torch.nn.init.xavier_uniform_(m.weight)
-            if isinstance(m, nn.Linear) and m.bias is not None:
-                nn.init.constant_(m.bias, 0)
-        elif isinstance(m, nn.LayerNorm):
-            nn.init.constant_(m.bias, 0)
-            nn.init.constant_(m.weight, 1.0)
-
     def forward(self, a, v, mode):
         # multi-modal fine-tuning, our default method for fine-tuning
         if mode == "multimodal":
@@ -930,6 +915,10 @@ class CAVMAEFT(nn.Module):
             x = (u + v) / 2
             x = self.mlp_head(x)
             return x
+        else:
+            raise ValueError(
+                "mode must be one of ['multimodal', 'audioonly', 'videoonly', 'missingaudioonly', 'missingvideoonly']"
+            )
 
     def preprocess_video(self, v):
         v = self.patch_embed_v(v)
