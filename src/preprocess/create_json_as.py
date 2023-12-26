@@ -16,30 +16,34 @@ import json
 # "vfeat": "/data/sls/scratch/yuangong/avbyol/data/audioset/v_feat/video_feat_convnext_2/-0nqfRcnAYE.npy",
 # "video": "/data/sls/audioset/dave_version/eval/-0nqfRcnAYE.mkv"
 
+
 def clean_json(dataset_json_file):
     new_data = []
-    with open(dataset_json_file, 'r') as fp:
+    with open(dataset_json_file, "r") as fp:
         data_json = json.load(fp)
-        data = data_json['data']
-        print('before clean {:d} files'.format(len(data)))
+        data = data_json["data"]
+        print("before clean {:d} files".format(len(data)))
         for entry in data:
-            video_id = entry['video_id']
-            wav = entry['wav']
-            video_path = entry['image']
-            video_path = '/'.join(video_path.split('/')[:-1])
-            video_path = '/data/sls/audioset/dave_version/image_mulframe/'
-            labels = entry['labels']
+            video_id = entry["video_id"]
+            wav = entry["wav"]
+            video_path = entry["image"]
+            video_path = "/".join(video_path.split("/")[:-1])
+            video_path = "/data/sls/audioset/dave_version/image_mulframe/"
+            labels = entry["labels"]
 
             new_entry = {}
-            new_entry['video_id'] = video_id
-            new_entry['wav'] = wav
-            new_entry['video_path'] = video_path
-            new_entry['labels'] = labels
+            new_entry["video_id"] = video_id
+            new_entry["wav"] = wav
+            new_entry["video_path"] = video_path
+            new_entry["labels"] = labels
             new_data.append(new_entry)
 
-    output = {'data': new_data}
-    print('after clean {:d} files'.format(len(new_data)))
-    with open(dataset_json_file[:-5] + '_cleaned.json', 'w') as f:
+    output = {"data": new_data}
+    print("after clean {:d} files".format(len(new_data)))
+    with open(dataset_json_file[:-5] + "_cleaned.json", "w") as f:
         json.dump(output, f, indent=1)
 
-clean_json('/data/sls/scratch/yuangong/cav-mae/pretrained_model/datafiles/audioset/audioset_2m.json')
+
+clean_json(
+    "/data/sls/scratch/yuangong/cav-mae/pretrained_model/datafiles/audioset/audioset_2m.json"
+)
