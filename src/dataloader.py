@@ -96,7 +96,8 @@ class AudiosetDataset(Dataset):
         # dataset spectrogram mean and std, used to normalize the input
         self.norm_mean = self.audio_conf.get("mean")
         self.norm_std = self.audio_conf.get("std")
-        # skip_norm is a flag that if you want to skip normalization to compute the normalization stats using src/get_norm_stats.py, if Ture, input normalization will be skipped for correctly calculating the stats.
+        # skip_norm is a flag that if you want to skip normalization to compute the normalization stats using
+        # src/get_norm_stats.py, if Ture, input normalization will be skipped for correctly calculating the stats.
         # set it as True ONLY when you are getting the normalization stats.
         self.skip_norm = (
             self.audio_conf.get("skip_norm")
@@ -116,7 +117,7 @@ class AudiosetDataset(Dataset):
 
         # if add noise for data augmentation
         self.noise = self.audio_conf.get("noise", False)
-        if self.noise == True:
+        if self.noise is True:
             print("now use noise augmentation")
         else:
             print("not use noise augmentation")
@@ -156,7 +157,8 @@ class AudiosetDataset(Dataset):
         )
 
     # change python list to numpy array to avoid memory leak.
-    def pro_data(self, data_json):
+    @staticmethod
+    def pro_data(data_json):
         for i in range(len(data_json)):
             data_json[i] = [
                 data_json[i]["wav"],
@@ -168,16 +170,13 @@ class AudiosetDataset(Dataset):
         return data_np
 
     # reformat numpy data to original json format, make it compatible with old code
-    def decode_data(self, np_data):
-        datum = {}
-        datum["wav"] = np_data[0]
-        datum["labels"] = np_data[1]
-        datum["video_id"] = np_data[2]
-        datum["video_path"] = np_data[3]
+    @staticmethod
+    def decode_data(np_data):
+        datum = {"wav": np_data[0], "labels": np_data[1], "video_id": np_data[2], "video_path": np_data[3]}
         return datum
 
     def get_image(self, filename, filename2=None, mix_lambda=1):
-        if filename2 == None:
+        if filename2 is None:
             img = Image.open(filename)
             image_tensor = self.preprocess(img)
             return image_tensor
@@ -191,9 +190,9 @@ class AudiosetDataset(Dataset):
             image_tensor = mix_lambda * image_tensor1 + (1 - mix_lambda) * image_tensor2
             return image_tensor
 
-    def _wav2fbank(self, filename, filename2=None, mix_lambda=-1):
+    def _wav2fbank(self, filename, filename2=None, mix_lambda=-1.0):
         # no mixup
-        if filename2 == None:
+        if filename2 is None:
             waveform, sr = torchaudio.load(filename)
             waveform = waveform - waveform.mean()
         # mixup
@@ -228,9 +227,9 @@ class AudiosetDataset(Dataset):
                 dither=0.0,
                 frame_shift=10,
             )
-        except:
+        except Exception as e:
             fbank = torch.zeros([512, 128]) + 0.01
-            print("there is a loading error")
+            print("there is a loading error: %s" % e)
 
         target_length = self.target_length
         n_frames = fbank.shape[0]
@@ -250,7 +249,7 @@ class AudiosetDataset(Dataset):
         if self.mode == "eval":
             # if not specified, use the middle frame
             if self.frame_use == -1:
-                frame_idx = int((self.total_frame) / 2)
+                frame_idx = int(self.total_frame / 2)
             else:
                 frame_idx = self.frame_use
         else:
@@ -260,7 +259,7 @@ class AudiosetDataset(Dataset):
             os.path.exists(
                 video_path + "/frame_" + str(frame_idx) + "/" + video_id + ".jpg"
             )
-            == False
+            is False
             and frame_idx >= 1
         ):
             print("frame {:s} {:d} does not exist".format(video_id, frame_idx))
@@ -280,18 +279,18 @@ class AudiosetDataset(Dataset):
             mix_lambda = np.random.beta(10, 10)
             try:
                 fbank = self._wav2fbank(datum["wav"], mix_datum["wav"], mix_lambda)
-            except:
+            except Exception as e:
                 fbank = torch.zeros([self.target_length, 128]) + 0.01
-                print("there is an error in loading audio")
+                print("there is an error in loading audio: %s" % e)
             try:
                 image = self.get_image(
                     self.randselect_img(datum["video_id"], datum["video_path"]),
                     self.randselect_img(mix_datum["video_id"], datum["video_path"]),
                     mix_lambda,
                 )
-            except:
+            except Exception as e:
                 image = torch.zeros([3, self.im_res, self.im_res]) + 0.01
-                print("there is an error in loading image")
+                print("there is an error in loading image: %s" % e)
             label_indices = np.zeros(self.label_num) + (
                 self.label_smooth / self.label_num
             )
@@ -314,16 +313,16 @@ class AudiosetDataset(Dataset):
             )
             try:
                 fbank = self._wav2fbank(datum["wav"], None, 0)
-            except:
+            except Exception as e:
                 fbank = torch.zeros([self.target_length, 128]) + 0.01
-                print("there is an error in loading audio")
+                print("there is an error in loading audio: %s" % e)
             try:
                 image = self.get_image(
                     self.randselect_img(datum["video_id"], datum["video_path"]), None, 0
                 )
-            except:
+            except Exception as e:
                 image = torch.zeros([3, self.im_res, self.im_res]) + 0.01
-                print("there is an error in loading image")
+                print("there is an error in loading image: %s" % e)
             for label_str in datum["labels"].split(","):
                 label_indices[int(self.index_dict[label_str])] = 1.0 - self.label_smooth
             label_indices = torch.FloatTensor(label_indices)
@@ -341,13 +340,13 @@ class AudiosetDataset(Dataset):
         fbank = torch.transpose(fbank, 0, 1)
 
         # normalize the input for both training and test
-        if self.skip_norm == False:
-            fbank = (fbank - self.norm_mean) / (self.norm_std)
+        if self.skip_norm is False:
+            fbank = (fbank - self.norm_mean) / self.norm_std
         # skip normalization the input ONLY when you are trying to get the normalization stats.
         else:
             pass
 
-        if self.noise == True:
+        if self.noise is True:
             fbank = (
                 fbank
                 + torch.rand(fbank.shape[0], fbank.shape[1]) * np.random.rand() / 10
