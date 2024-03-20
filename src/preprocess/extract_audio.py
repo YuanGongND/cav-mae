@@ -16,16 +16,5 @@ for i in range(input_filelist.shape[0]):
     input_f = input_filelist[i]
     ext_len = len(input_f.split('/')[-1].split('.')[-1])
     video_id = input_f.split('/')[-1][:-ext_len-1]
-    output_f_1 = args.target_fold + '/' + video_id + '_intermediate.wav'
-    os.system('ffmpeg -i {:s} -vn -ar 16000 {:s}'.format(input_f, output_f_1)) # save an intermediate file
-
-# then extract the first channel
-for i in range(input_filelist.shape[0]):
-    input_f = input_filelist[i]
-    ext_len = len(input_f.split('/')[-1].split('.')[-1])
-    video_id = input_f.split('/')[-1][:-ext_len-1]
-    output_f_1 = args.target_fold + '/' + video_id + '_intermediate.wav'
-    output_f_2 = args.target_fold + '/' + video_id + '.wav'
-    os.system('sox {:s} {:s} remix 1'.format(output_f_1, output_f_2))
-    # remove the intermediate file
-    os.remove(output_f_1)
+    output_f_1 = args.target_fold + '/' + video_id + '.wav'
+    os.system('ffmpeg -i {:s} -vn -ar 16000 -ac 1 {:s}'.format(input_f, output_f_1)) # save an intermediate file
